@@ -21,9 +21,9 @@ import java.util.HashMap;
  */
 public class ExceptionManager {
 
-    public static final String PATH = "C:\\Users\\jscru\\Documents\\GitHub\\reinos-cenfotecos-service";
+    private static final String PATH = "C:\\Users\\jscru\\Documents\\GitHub\\reinos-cenfotecos-service";
     private static ExceptionManager instance;
-    public static HashMap<String, ApplicationMessage> listMessages = new HashMap<String, ApplicationMessage>();
+    private static HashMap<String, ApplicationMessage> listMessages = new HashMap<String, ApplicationMessage>();
 
     private ExceptionManager() throws Exception {
         loadMessages();
@@ -70,16 +70,16 @@ public class ExceptionManager {
         }
     }
 
-    private void ProcessGenericException(Exception ex) throws Exception{
-         String pattern = "yyyy_MM_dd__hh_mm_ss";
+    private void ProcessGenericException(Exception ex) throws Exception {
+        String pattern = "yyyy_MM_dd__hh_mm_ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String today = simpleDateFormat.format(new Date());
         String logName = "\\Logs\\"
-                + today + 
-                "_" + "log.txt";
+                + today
+                + "_" + "log.txt";
         String logPath = PATH + logName;
-        
-        String exceptionMessage = ex.getMessage() + "\n" + ex.getStackTrace();
+
+        String exceptionMessage = logger(ex);
         File logFile = new File(logPath);
         try {
             logFile.createNewFile();
@@ -88,20 +88,21 @@ public class ExceptionManager {
             myWriter.close();
         } catch (IOException e) {
             ProcessGenericException(e);
-            
+
         }
         throw ex;
     }
+
     private void ProcessBussinesException(BussinessException bex) throws BussinessException, Exception {
         String pattern = "yyyy_MM_dd__hh_mm_ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String today = simpleDateFormat.format(new Date());
         String logName = "\\Logs\\"
-                + today + 
-                "_" + "log.txt";
+                + today
+                + "_" + "log.txt";
         String logPath = PATH + logName;
         bex.message = getMessage(bex);
-        String exceptionMessage = bex.message.message + "\n" + bex.getStackTrace();
+        String exceptionMessage = logger(bex);
         File logFile = new File(logPath);
         try {
             logFile.createNewFile();
@@ -110,7 +111,7 @@ public class ExceptionManager {
             myWriter.close();
         } catch (IOException e) {
             ProcessGenericException(e);
-            
+
         }
         throw bex;
     }
@@ -127,4 +128,37 @@ public class ExceptionManager {
         return appMessage;
     }
 
+    private String logger(Exception ex) {
+        String logTrace = "";
+
+        String pattern = "dd-M-yyyy hh:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String today = simpleDateFormat.format(new Date());
+
+        if (ex instanceof BussinessException) {
+            logTrace = "######  Log Entry   ####\n"
+                    + " " + today + ":\n"
+                    + ((BussinessException) ex).exceptionId + ": " 
+                    + ((BussinessException) ex).message.message
+                    + "\n " +  StackTraceToString(ex);
+
+        } else {
+            logTrace = "######  Log Entry   ####\n"
+                    + " " + today + ":\n"
+                    + ex.getMessage()
+                    + "\n " +  StackTraceToString(ex);
+        }
+
+        return logTrace;
+    }
+
+    
+    public static String StackTraceToString(Exception ex) {
+        String result = ex.toString() + "\n";
+        StackTraceElement[] trace = ex.getStackTrace();
+        for (int i=0;i<trace.length;i++) {
+            result += trace[i].toString() + "\n";
+        }
+        return result;
+    }
 }

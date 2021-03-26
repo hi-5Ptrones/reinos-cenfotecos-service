@@ -9,6 +9,16 @@ package com.ReinosCenfotecosService.Entities;
  *
  * @author jscru
  */
-public class Infanteria {
+public class Infanteria extends Personaje{
+
+    @Override
+    public void setEstadisticasPersonaje() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getInfoPersonaje() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

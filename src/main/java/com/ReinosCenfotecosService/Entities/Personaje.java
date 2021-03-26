@@ -16,7 +16,8 @@ public abstract class Personaje {
     private int ataque;
     private int defensa;
     private int movsMaximos;
-
+    private String tipoPersonaje; 
+    
     public Personaje() {
     }
 
@@ -59,6 +60,16 @@ public abstract class Personaje {
     public void setMovsMaximos(int movsMaximos) {
         this.movsMaximos = movsMaximos;
     }
+
+    public String getTipoPersonaje() {
+        return tipoPersonaje;
+    }
+
+    public void setTipoPersonaje(String tipoPersonaje) {
+        this.tipoPersonaje = tipoPersonaje;
+    }
+    
+    
 
     public abstract void setEstadisticasPersonaje();
 

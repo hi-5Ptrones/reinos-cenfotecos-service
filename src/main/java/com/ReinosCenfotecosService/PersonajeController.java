@@ -10,7 +10,6 @@ import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
 import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

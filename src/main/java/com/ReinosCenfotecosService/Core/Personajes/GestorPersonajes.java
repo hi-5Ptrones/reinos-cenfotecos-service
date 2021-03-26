@@ -5,6 +5,7 @@
  */
 package com.ReinosCenfotecosService.Core.Personajes;
 
+import com.ReinosCenfotecosService.Entities.Personaje;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 
@@ -15,18 +16,21 @@ import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 public class GestorPersonajes {
 
     public String CrearPersonaje(int tpersonaje) throws BussinessException, Exception {
-
+        String responseMessage = "";
         try {
             if (tpersonaje < 1 || tpersonaje > 3) {
                 throw new BussinessException(500);
             } else {
+
                 FactoryPersonaje factory = new FactoryPersonaje();
-                factory.crearPersonaje(tpersonaje);
+                Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
+
+                responseMessage = "Su personaje de tipo: " + objPersonaje.getTipoPersonaje() + " fue creado con éxito.";
 
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
         }
-        return "Personaje creado";
+        return responseMessage;
     }
 }

@@ -13,7 +13,11 @@ public class Artillero extends Personaje{
 
     @Override
     public void setEstadisticasPersonaje() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setAtaque(0);
+        this.setDefensa(0);
+        this.setMovsMaximos(0);
+        this.setVida(0);
+        this.setTipoPersonaje("Artillero");
     }
 
     @Override

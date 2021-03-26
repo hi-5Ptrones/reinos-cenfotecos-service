@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ReinosCenfotecosService;
+
+import com.ReinosCenfotecosService.Core.Personajes.GestorPersonajes;
+import com.ReinosCenfotecosService.exceptions.BussinessException;
+import com.ReinosCenfotecosService.exceptions.ExceptionManager;
+import com.ReinosCenfotecosService.webapi.models.ApiResponse;
+import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ *
+ * @author jscru
+ */
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+public class PersonajeController {
+
+    ApiResponse apiResponse;
+
+    @RequestMapping(value = "/api/personaje/crearPersonaje", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<ApiResponse> crearPersonaje(int tPersonaje) {
+        ResponseEntity serverResponse;
+        try {
+            apiResponse = new ApiResponse();
+            GestorPersonajes gestor = new GestorPersonajes();
+            apiResponse.message = gestor.CrearPersonaje(tPersonaje);
+            return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
+        } catch (BussinessException bex) {
+
+            return serverResponse = new ResponseEntity(new ExceptionResponse(bex.message.message,
+                    ExceptionManager.StackTraceToString(bex)), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        } catch (Exception e) {
+
+            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
+                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}

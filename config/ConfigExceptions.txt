@@ -1,0 +1,1 @@
+500:El formato de personaje que desea crear no existe, intente con otro.

@@ -22,12 +22,15 @@ public class FactoryPersonaje implements IAbstractFactoryMethodPersonaje {
         switch (tPersonaje) {
             case 1:
                 objPersonaje = new Artillero();
+                objPersonaje.setEstadisticasPersonaje();
                 break;
             case 2:
                 objPersonaje = new Infanteria();
+                objPersonaje.setEstadisticasPersonaje();
                 break;
             case 3:
                 objPersonaje = new Tanque();
+                objPersonaje.setEstadisticasPersonaje();
                 break;
             default:
                 break;

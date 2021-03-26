@@ -10,7 +10,5 @@ package com.ReinosCenfotecosService.Entities;
  * @author jscru
  */
 public class AtaqueNormal extends Accion{
-    private int danno;
-    private String nombre;
-    private String Descripcion;
+    
 }

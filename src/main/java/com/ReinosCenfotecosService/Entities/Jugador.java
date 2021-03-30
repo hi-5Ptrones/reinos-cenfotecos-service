@@ -5,6 +5,8 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jscru
@@ -13,4 +15,7 @@ public class Jugador {
     private String id;
     private String nombre;
     private int vidaCastillo;
+    private ArrayList<Personaje> personajesEnJuego = new ArrayList<>();
+    
+    
 }

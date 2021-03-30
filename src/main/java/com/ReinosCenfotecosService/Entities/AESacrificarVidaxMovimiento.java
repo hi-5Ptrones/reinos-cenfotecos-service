@@ -11,7 +11,11 @@ import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
  *
  * @author jscru
  */
-public class AESacrificarVidaxMovimiento extends AsbtractClassEvolucion{
+public class AESacrificarVidaxMovimiento extends AsbtractClassEvolucion {
+
+    public AESacrificarVidaxMovimiento(Personaje estadoBasePersonaje) {
+        super(estadoBasePersonaje);
+    }
 
     @Override
     public void accionAtaque() {

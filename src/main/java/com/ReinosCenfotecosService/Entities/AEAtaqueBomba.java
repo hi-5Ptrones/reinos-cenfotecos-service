@@ -13,6 +13,10 @@ import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
  */
 public class AEAtaqueBomba extends AsbtractClassEvolucion{
 
+    public AEAtaqueBomba(Personaje estadoBasePersonaje) {
+        super(estadoBasePersonaje);
+    }
+
     @Override
     public void accionAtaque() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

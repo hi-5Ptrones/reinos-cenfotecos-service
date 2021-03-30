@@ -11,7 +11,11 @@ import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
  *
  * @author jscru
  */
-public class AEDebuffAoE extends AsbtractClassEvolucion{
+public class AEDebuffAoE extends AsbtractClassEvolucion {
+
+    public AEDebuffAoE(Personaje estadoBasePersonaje) {
+        super(estadoBasePersonaje);
+    }
 
     @Override
     public void accionAtaque() {

@@ -12,8 +12,17 @@ import com.ReinosCenfotecosService.Entities.Personaje;
  * @author jscru
  */
 public abstract class AsbtractClassEvolucion extends Personaje {
+
     private Personaje estadoBasePersonaje;
-    
+
+    public AsbtractClassEvolucion(Personaje estadoBasePersonaje) {
+        this.estadoBasePersonaje = estadoBasePersonaje;
+    }
+
+    public Personaje getEstadoBasePersonaje() {
+        return estadoBasePersonaje;
+    }
+
     @Override
     public void setEstadisticasPersonaje() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

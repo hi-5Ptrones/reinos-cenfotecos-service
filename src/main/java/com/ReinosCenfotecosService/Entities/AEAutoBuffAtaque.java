@@ -11,7 +11,11 @@ import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
  *
  * @author jscru
  */
-public class AEAutoBuffAtaque extends AsbtractClassEvolucion{
+public class AEAutoBuffAtaque extends AsbtractClassEvolucion {
+
+    public AEAutoBuffAtaque(Personaje estadoBasePersonaje) {
+        super(estadoBasePersonaje);
+    }
 
     @Override
     public void accionAtaque() {

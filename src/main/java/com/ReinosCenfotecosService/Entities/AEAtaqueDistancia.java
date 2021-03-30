@@ -11,7 +11,11 @@ import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
  *
  * @author jscru
  */
-public class AEAtaqueDistancia extends AsbtractClassEvolucion{
+public class AEAtaqueDistancia extends AsbtractClassEvolucion {
+
+    public AEAtaqueDistancia(Personaje estadoBasePersonaje) {
+        super(estadoBasePersonaje);
+    }
 
     @Override
     public void accionAtaque() {

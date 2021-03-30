@@ -11,7 +11,11 @@ import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
  *
  * @author jscru
  */
-public class AEHealerlvl2 extends AsbtractClassEvolucion{
+public class AEHealerlvl2 extends AsbtractClassEvolucion {
+
+    public AEHealerlvl2(Personaje estadoBasePersonaje) {
+        super(estadoBasePersonaje);
+    }
 
     @Override
     public void accionAtaque() {

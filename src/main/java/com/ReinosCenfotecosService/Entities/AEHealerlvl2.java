@@ -5,13 +5,13 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
-import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
+import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassataqueEspecial;
 
 /**
  *
  * @author jscru
  */
-public class AEHealerlvl2 extends AsbtractClassEvolucion {
+public class AEHealerlvl2 extends AsbtractClassataqueEspecial {
 
     public AEHealerlvl2(Personaje estadoBasePersonaje) {
         super(estadoBasePersonaje);

@@ -11,11 +11,11 @@ import com.ReinosCenfotecosService.Entities.Personaje;
  *
  * @author jscru
  */
-public abstract class AsbtractClassEvolucion extends Personaje {
+public abstract class AsbtractClassataqueEspecial extends Personaje {
 
     private Personaje estadoBasePersonaje;
 
-    public AsbtractClassEvolucion(Personaje estadoBasePersonaje) {
+    public AsbtractClassataqueEspecial(Personaje estadoBasePersonaje) {
         this.estadoBasePersonaje = estadoBasePersonaje;
     }
 

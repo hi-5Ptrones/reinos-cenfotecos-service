@@ -5,13 +5,13 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
-import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
+import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassataqueEspecial;
 
 /**
  *
  * @author jscru
  */
-public class AESacrificarVidaxMovimiento extends AsbtractClassEvolucion {
+public class AESacrificarVidaxMovimiento extends AsbtractClassataqueEspecial {
 
     public AESacrificarVidaxMovimiento(Personaje estadoBasePersonaje) {
         super(estadoBasePersonaje);

@@ -5,13 +5,13 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
-import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassEvolucion;
+import com.ReinosCenfotecosService.Core.AtaqueEspecial.AsbtractClassataqueEspecial;
 
 /**
  *
  * @author jscru
  */
-public class AEBufferAtaque extends AsbtractClassEvolucion {
+public class AEBufferAtaque extends AsbtractClassataqueEspecial {
 
     public AEBufferAtaque(Personaje estadoBasePersonaje) {
         super(estadoBasePersonaje);

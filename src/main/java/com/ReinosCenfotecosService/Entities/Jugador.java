@@ -15,7 +15,16 @@ public class Jugador {
     private String id;
     private String nombre;
     private int vidaCastillo;
-    private ArrayList<Personaje> personajesEnJuego = new ArrayList<>();
+    private ArrayList<Personaje> personajesEnJuego;
+
+    public Jugador(String id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.vidaCastillo = 4;
+        this.personajesEnJuego = new ArrayList<>();
+    }
     
-    
+    public void agregarPersonajealistadeJugador(Personaje newPersonaje){
+        personajesEnJuego.add(newPersonaje);
+    }
 }

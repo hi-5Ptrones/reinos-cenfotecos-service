@@ -17,6 +17,7 @@ import com.ReinosCenfotecosService.Entities.AESacrificarVidaxMovimiento;
 import com.ReinosCenfotecosService.Entities.Artillero;
 import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
 import com.ReinosCenfotecosService.Entities.Infanteria;
+import com.ReinosCenfotecosService.Entities.Jugador;
 import com.ReinosCenfotecosService.Entities.Personaje;
 import com.ReinosCenfotecosService.Entities.Tanque;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
@@ -28,51 +29,67 @@ import com.ReinosCenfotecosService.exceptions.ExceptionManager;
  */
 public class GestorAtaqueEspecial {
 
-    Personaje objPersonajeAtacando = null;
+    Jugador player;
+
+    public GestorAtaqueEspecial() {
+        player = new Jugador("123456", "Bryan");
+        player.agregarPersonajealistadeJugador(new Infanteria());
+        player.agregarPersonajealistadeJugador(new Infanteria());
+        player.agregarPersonajealistadeJugador(new Artillero());
+        player.agregarPersonajealistadeJugador(new Artillero());
+        player.agregarPersonajealistadeJugador(new Tanque());
+        player.agregarPersonajealistadeJugador(new Tanque());
+    }
 
     public void asignarAtaqueEspcial(AtaqueEspcecial specialAtack, int idPersonajeAplica,
             int idPersonajeaAplicar) throws BussinessException, Exception {
+        Personaje objPersonajeAplica = null;
+        Personaje objPersonajeaAplicar = null;
+        
+         
         try {
-            if (objPersonajeAtacando instanceof Infanteria) {
+            if (objPersonajeAplica instanceof Infanteria) {
                 switch (specialAtack.getNombre()) {
                     case "Altar del guardián":
-                        objPersonajeAtacando = new AEHealerlvl1(objPersonajeAtacando);
+                        new AEHealerlvl1(objPersonajeaAplicar);                        
                         break;
                     case "Plegaria":
-                        objPersonajeAtacando = new AEHealerlvl2(objPersonajeAtacando);
+                        new AEHealerlvl2(objPersonajeaAplicar);
                         break;
                     case "Horno del alma":
-                        objPersonajeAtacando = new AEBufferAtaque(objPersonajeAtacando);
+                        new AEBufferAtaque(objPersonajeaAplicar);
                         break;
                     case "Refugio del espiritu":
-                        objPersonajeAtacando = new AEBufferDefensa(objPersonajeAtacando);
+                        new AEBufferDefensa(objPersonajeaAplicar);
                         break;
+                    default:
+                        throw new BussinessException(502);
                 }
-            } else if (objPersonajeAtacando instanceof Artillero) {
+            } else if (objPersonajeAplica instanceof Artillero) {
                 switch (specialAtack.getNombre()) {
                     case "Embate imparable":
-                        objPersonajeAtacando = new AEAtaqueDistancia(objPersonajeAtacando);
+                        new AEAtaqueDistancia(objPersonajeaAplicar);
                         break;
                     case "Indestuctrible":
-                        objPersonajeAtacando = new AEBufferAtaque(objPersonajeAtacando);
+                        new AEBufferAtaque(objPersonajeaAplicar);
                         break;
                     case "Heraldo de la Destrucción":
-                        objPersonajeAtacando = new AEBufferDefensa(objPersonajeAtacando);
+                        new AEBufferDefensa(objPersonajeaAplicar);
                         break;
                 }
-            } else if (objPersonajeAtacando instanceof Tanque) {
+            } else if (objPersonajeAplica instanceof Tanque) {
                 switch (specialAtack.getNombre()) {
                     case "Descarga de Adrenalina ":
-                        objPersonajeAtacando = new AESacrificarVidaxMovimiento(objPersonajeAtacando);
+                        new AESacrificarVidaxMovimiento(objPersonajeaAplicar);
                         break;
                     case "Gloria en la muerte":
-                        objPersonajeAtacando = new AEAtaqueBomba(objPersonajeAtacando);
+                        new AEAtaqueBomba(objPersonajeaAplicar);
                         break;
                     case "Embajador de Hierro":
-                        objPersonajeAtacando = new AEProteccionEquivalente(objPersonajeAtacando);
+                        new AEProteccionEquivalente(objPersonajeaAplicar);
                         break;
                     case "Tormenta Creciente ":
-                        objPersonajeAtacando = new AEDebuffAoE(objPersonajeAtacando);
+                        new AEDebuffAoE(objPersonajeaAplicar);
                         break;
                 }
             } else {
@@ -83,8 +100,8 @@ public class GestorAtaqueEspecial {
         }
     }
 
-    public void finalizacionAtaqueEspecial() {
-        AsbtractClassEvolucion personajeAtacando = (AsbtractClassEvolucion) objPersonajeAtacando;
-        Personaje estadoBase = personajeAtacando.getEstadoBasePersonaje();
-    }
+//    public void finalizacionAtaqueEspecial() {
+//        AsbtractClassEvolucion personajeAtacando = (AsbtractClassEvolucion) objPersonajeAtacando;
+//        Personaje estadoBase = personajeAtacando.getEstadoBasePersonaje();
+//    }
 }

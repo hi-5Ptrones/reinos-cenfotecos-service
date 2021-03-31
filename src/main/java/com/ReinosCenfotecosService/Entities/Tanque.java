@@ -5,6 +5,8 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
+import com.ReinosCenfotecosService.Helper.Helper;
+
 /**
  *
  * @author jscru
@@ -13,10 +15,11 @@ public class Tanque extends Personaje {
 
     @Override
     public void setEstadisticasPersonaje() {
-        this.setAtaque(0);
-        this.setDefensa(0);
-        this.setMovsMaximos(0);
-        this.setVida(0);
+        this.setId(Helper.creadorDeIdentificacion());
+        this.setAtaque(2);
+        this.setDefensa(10);
+        this.setMovsMaximos(Helper.ingetMovsMaximos(2));
+        this.setVida(10);
         this.setTipoPersonaje("Tanque");
     }
 

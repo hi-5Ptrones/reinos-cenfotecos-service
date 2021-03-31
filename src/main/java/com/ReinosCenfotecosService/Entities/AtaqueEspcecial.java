@@ -12,7 +12,7 @@ package com.ReinosCenfotecosService.Entities;
 public class AtaqueEspcecial extends Accion{
     private int danno;
     private String nombre;
-    private String Descripcion;
+    private String descripcion;
 
     public AtaqueEspcecial() {
     }
@@ -34,11 +34,11 @@ public class AtaqueEspcecial extends Accion{
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
     

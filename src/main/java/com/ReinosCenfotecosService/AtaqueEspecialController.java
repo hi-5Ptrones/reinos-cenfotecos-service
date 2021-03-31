@@ -30,7 +30,7 @@ public class AtaqueEspecialController {
     
     ApiResponse apiResponse;
 
-    @RequestMapping(value = "/api/personaje/crearPersonaje", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/ataqueEspecial/asignarAtaqueEspecial", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ApiResponse> asignarAtaqueEspecial(AtaqueEspcecial specialAttack, 
             int idPersonajeAplica, int idPersonajeaAplicar){

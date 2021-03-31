@@ -30,7 +30,8 @@ public class GestorAtaqueEspecial {
 
     Personaje objPersonajeAtacando = null;
 
-    public void asignarAtaqueEspcial(AtaqueEspcecial specialAtack) throws BussinessException, Exception {
+    public void asignarAtaqueEspcial(AtaqueEspcecial specialAtack, int idPersonajeAplica,
+            int idPersonajeaAplicar) throws BussinessException, Exception {
         try {
             if (objPersonajeAtacando instanceof Infanteria) {
                 switch (specialAtack.getNombre()) {
@@ -80,11 +81,10 @@ public class GestorAtaqueEspecial {
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
         }
-
     }
-    
-    public void finalizacionAtaqueEspecial(){
-        AsbtractClassEvolucion personajeAtacando = (AsbtractClassEvolucion)objPersonajeAtacando;
+
+    public void finalizacionAtaqueEspecial() {
+        AsbtractClassEvolucion personajeAtacando = (AsbtractClassEvolucion) objPersonajeAtacando;
         Personaje estadoBase = personajeAtacando.getEstadoBasePersonaje();
     }
 }

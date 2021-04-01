@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author jscru
  */
 public class Jugador {
+
     private String id;
     private String nombre;
     private int vidaCastillo;
@@ -23,8 +24,13 @@ public class Jugador {
         this.vidaCastillo = 4;
         this.personajesEnJuego = new ArrayList<>();
     }
-    
-    public void agregarPersonajealistadeJugador(Personaje newPersonaje){
+
+    public void agregarPersonajealistadeJugador(Personaje newPersonaje) {
         personajesEnJuego.add(newPersonaje);
     }
+
+    public ArrayList<Personaje> getPersonajesEnJuego() {
+        return personajesEnJuego;
+    }
+
 }

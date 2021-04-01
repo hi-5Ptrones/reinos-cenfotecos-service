@@ -39,19 +39,24 @@ public class GestorAtaqueEspecial {
         player.agregarPersonajealistadeJugador(new Artillero());
         player.agregarPersonajealistadeJugador(new Tanque());
         player.agregarPersonajealistadeJugador(new Tanque());
+        player.getPersonajesEnJuego().get(0).setId(123);
+        player.getPersonajesEnJuego().get(1).setId(234);
+        player.getPersonajesEnJuego().get(2).setId(345);
+        player.getPersonajesEnJuego().get(3).setId(567);
+        player.getPersonajesEnJuego().get(4).setId(789);
+        player.getPersonajesEnJuego().get(5).setId(890);
     }
 
     public void asignarAtaqueEspcial(AtaqueEspcecial specialAtack, int idPersonajeAplica,
             int idPersonajeaAplicar) throws BussinessException, Exception {
-        Personaje objPersonajeAplica = null;
-        Personaje objPersonajeaAplicar = null;
-        
-         
+        Personaje objPersonajeAplica = buscarPersonajeByID(idPersonajeAplica);
+        Personaje objPersonajeaAplicar = buscarPersonajeByID(idPersonajeaAplicar);
+
         try {
             if (objPersonajeAplica instanceof Infanteria) {
                 switch (specialAtack.getNombre()) {
                     case "Altar del guardián":
-                        new AEHealerlvl1(objPersonajeaAplicar);                        
+                        new AEHealerlvl1(objPersonajeaAplicar);
                         break;
                     case "Plegaria":
                         new AEHealerlvl2(objPersonajeaAplicar);
@@ -76,6 +81,8 @@ public class GestorAtaqueEspecial {
                     case "Heraldo de la Destrucción":
                         new AEBufferDefensa(objPersonajeaAplicar);
                         break;
+                    default:
+                        throw new BussinessException(502);
                 }
             } else if (objPersonajeAplica instanceof Tanque) {
                 switch (specialAtack.getNombre()) {
@@ -91,6 +98,8 @@ public class GestorAtaqueEspecial {
                     case "Tormenta Creciente ":
                         new AEDebuffAoE(objPersonajeaAplicar);
                         break;
+                    default:
+                        throw new BussinessException(502);
                 }
             } else {
                 throw new BussinessException(501);
@@ -104,4 +113,26 @@ public class GestorAtaqueEspecial {
 //        AsbtractClassEvolucion personajeAtacando = (AsbtractClassEvolucion) objPersonajeAtacando;
 //        Personaje estadoBase = personajeAtacando.getEstadoBasePersonaje();
 //    }
+    private Personaje buscarPersonajeByID(int idPersonaje) throws Exception {
+        Personaje personajeEncontrado = null;
+        try {
+            boolean found = false;
+
+            for (Personaje objPersonaje : player.getPersonajesEnJuego()) {
+                if (objPersonaje.getId() == idPersonaje) {
+                    personajeEncontrado = objPersonaje;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found == false) {
+                throw new BussinessException(503);
+            }
+        } catch (BussinessException bex) {
+            ExceptionManager.GetInstance().Process(bex);
+        }
+
+        return personajeEncontrado;
+    }
 }

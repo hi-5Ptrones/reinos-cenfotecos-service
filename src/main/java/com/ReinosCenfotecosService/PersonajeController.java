@@ -37,13 +37,12 @@ public class PersonajeController {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();
-
             apiResponse = new ApiResponse();
             GestorPersonajes gestor = new GestorPersonajes();
             String string = gson.toJson(gestor.CrearPersonaje(tPersonaje));
             JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
             apiResponse.data = jsonObject;
-            apiResponse.message = "TEst";
+            apiResponse.message = "Tropa creada";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
         } catch (BussinessException bex) {
 

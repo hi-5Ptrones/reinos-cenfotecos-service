@@ -20,7 +20,7 @@ public class Infanteria extends Personaje{
         this.setDefensa(5);
         this.setMovsMaximos(Helper.ingetMovsMaximos(2));
         this.setVida(5);
-        this.setTipoPersonaje("Infantería");
+        this.setTipoPersonaje("Infanteria");
     }
 
     @Override

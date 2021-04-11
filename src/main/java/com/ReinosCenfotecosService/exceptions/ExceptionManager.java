@@ -87,7 +87,7 @@ public class ExceptionManager {
             myWriter.write(exceptionMessage);
             myWriter.close();
         } catch (IOException e) {
-            ProcessGenericException(e);
+            System.out.println(e.getMessage());
         }
         throw ex;
     }

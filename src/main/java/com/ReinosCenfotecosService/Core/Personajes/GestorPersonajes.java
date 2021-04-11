@@ -15,8 +15,8 @@ import com.ReinosCenfotecosService.exceptions.ExceptionManager;
  */
 public class GestorPersonajes {
 
-    public String CrearPersonaje(int tpersonaje) throws BussinessException, Exception {
-        String responseMessage = "";
+    public Personaje CrearPersonaje(int tpersonaje) throws BussinessException, Exception {
+        Personaje responseMessage = null;
         try {
             if (tpersonaje < 1 || tpersonaje > 3) {
                 throw new BussinessException(500);
@@ -25,7 +25,7 @@ public class GestorPersonajes {
                 FactoryPersonaje factory = new FactoryPersonaje();
                 Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
 
-                responseMessage = "Su personaje de tipo: " + objPersonaje.getTipoPersonaje() + " fue creado con éxito.";
+                responseMessage =objPersonaje;
 
             }
         } catch (BussinessException bex) {

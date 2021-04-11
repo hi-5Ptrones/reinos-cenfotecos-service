@@ -10,6 +10,10 @@ import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
 import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.json.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,9 +37,14 @@ public class PersonajeController {
     public ResponseEntity<ApiResponse> crearPersonaje(int tPersonaje) {
         ResponseEntity serverResponse;
         try {
+            Gson gson = new Gson();
+
             apiResponse = new ApiResponse();
             GestorPersonajes gestor = new GestorPersonajes();
-            apiResponse.message = gestor.CrearPersonaje(tPersonaje);
+            String string = gson.toJson(gestor.CrearPersonaje(tPersonaje));
+            JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
+            apiResponse.data = jsonObject;
+            apiResponse.message = "TEst";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
         } catch (BussinessException bex) {
 

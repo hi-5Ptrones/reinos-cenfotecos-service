@@ -11,12 +11,12 @@ package com.ReinosCenfotecosService.Entities;
  */
 public abstract class Personaje {
 
-    private int id;
-    private int vida;
-    private int ataque;
-    private int defensa;
-    private int movsMaximos;
-    private String tipoPersonaje; 
+    public int id;
+    public int vida;
+    public int ataque;
+    public int defensa;
+    public int movsMaximos;
+    public String tipoPersonaje;
     
     public Personaje() {
     }

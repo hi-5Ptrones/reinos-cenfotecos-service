@@ -44,12 +44,12 @@ public class AtaqueEspecialController {
         } catch (BussinessException bex) {
 
             return serverResponse = new ResponseEntity(new ExceptionResponse(bex.message.message,
-                    ExceptionManager.StackTraceToString(bex)), HttpStatus.INTERNAL_SERVER_ERROR);
+                    ExceptionManager.StackTraceToString(bex)), HttpStatus.OK);
 
         } catch (Exception e) {
 
             return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
-                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
+                    ExceptionManager.StackTraceToString(e)), HttpStatus.OK);
         }
     }
 }

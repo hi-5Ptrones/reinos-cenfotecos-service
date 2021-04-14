@@ -33,4 +33,32 @@ public class GestorPersonajes {
         }
         return responseMessage;
     }
+
+
+    public Object saveCurrentPoscitionCharacter(int idPersonaje, String lastCoords) throws BussinessException, Exception{
+        try {
+            if (true) {
+                throw new BussinessException(500);
+            } else {
+
+            }
+        } catch (BussinessException bex) {
+            ExceptionManager.GetInstance().Process(bex);
+        }
+        return "";
+    }
+
+
+    public Object validateNewPosCharacter(int idPersonaje, String newCoords) throws BussinessException, Exception{
+        try {
+            if (true) {
+                throw new BussinessException(500);
+            } else {
+
+            }
+        } catch (BussinessException bex) {
+            ExceptionManager.GetInstance().Process(bex);
+        }
+        return "";
+    }
 }

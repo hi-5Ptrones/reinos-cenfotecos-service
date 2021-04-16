@@ -9,12 +9,12 @@ package com.ReinosCenfotecosService.Entities;
  *
  * @author jscru
  */
-public class AtaqueEspcecial extends Accion{
+public class AtaqueEspecial extends Accion{
     private int danno;
     private String nombre;
     private String descripcion;
 
-    public AtaqueEspcecial() {
+    public AtaqueEspecial() {
     }
 
     public int getDanno() {

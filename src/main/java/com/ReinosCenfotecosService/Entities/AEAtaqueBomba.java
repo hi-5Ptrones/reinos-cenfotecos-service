@@ -19,7 +19,8 @@ public class AEAtaqueBomba extends AsbtractClassataqueEspecial{
 
     @Override
     public void accionAtaque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setAtaque(250);
+        this.setVida(0);
     }
     
 }

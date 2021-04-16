@@ -6,7 +6,7 @@
 package com.ReinosCenfotecosService;
 
 import com.ReinosCenfotecosService.Core.AtaqueEspecial.GestorAtaqueEspecial;
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
+import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
@@ -32,8 +32,8 @@ public class AtaqueEspecialController {
 
     @RequestMapping(value = "/api/ataqueEspecial/asignarAtaqueEspecial", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<ApiResponse> asignarAtaqueEspecial(AtaqueEspcecial specialAttack, 
-            int idPersonajeAplica, int idPersonajeaAplicar){
+    public ResponseEntity<ApiResponse> asignarAtaqueEspecial(AtaqueEspecial specialAttack,
+                                                             int idPersonajeAplica, int idPersonajeaAplicar){
         ResponseEntity serverResponse;
         try {
             apiResponse = new ApiResponse();

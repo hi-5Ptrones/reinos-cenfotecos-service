@@ -19,6 +19,9 @@ public class AEHealerlvl1 extends AsbtractClassataqueEspecial {
 
     @Override
     public void accionAtaque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int vida = this.getVida();
+        vida = vida +1;
+        this.setVida(vida);
+
     }
 }

@@ -10,19 +10,10 @@ package com.ReinosCenfotecosService.Entities;
  * @author jscru
  */
 public class AtaqueEspecial extends Accion{
-    private int danno;
     private String nombre;
     private String descripcion;
 
     public AtaqueEspecial() {
-    }
-
-    public int getDanno() {
-        return danno;
-    }
-
-    public void setDanno(int danno) {
-        this.danno = danno;
     }
 
     public String getNombre() {

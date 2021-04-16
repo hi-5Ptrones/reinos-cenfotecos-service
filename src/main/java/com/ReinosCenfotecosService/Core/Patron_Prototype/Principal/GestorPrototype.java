@@ -7,8 +7,6 @@ import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 import java.util.ArrayList;
 
 
-
-
 public class GestorPrototype {
     private static ArrayList<PrototipoDado> arrDados = new ArrayList<PrototipoDado>();
 
@@ -71,7 +69,6 @@ public class GestorPrototype {
     public String obtenerDatos(int pid) {
         return obtenerDatosObjeto(arrDados.get(pid)) + "\n";
     }
-
     /**
      * **********************************************************
      * Metodo:	obtenerDatos
@@ -107,5 +104,7 @@ public class GestorPrototype {
     private String obtenerDatosObjeto(PrototipoDado pObj) {
         return pObj.getData() + "\n";
     }
-
+    public void limpiarLista(){
+        arrDados.clear();
+    }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DadoController {
 
-    private static GestorPrototype gGestorPrototype;
+    private static GestorPrototype Prototype;
     ApiResponse apiResponse;
 
     @RequestMapping(value = "/api/dado/obtenerdado", method = RequestMethod.GET)
@@ -42,7 +42,6 @@ public class DadoController {
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
-
             return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -50,7 +49,7 @@ public class DadoController {
 
     public void creacionDados(int generados[]) {
         //crea el gestor prototype
-        gGestorPrototype = new GestorPrototype(1);
+        Prototype = new GestorPrototype(1);
         //arreglo de dados por crear en backend
         ArrayList<String> dados = new ArrayList<String>();
 
@@ -83,9 +82,12 @@ public class DadoController {
         //patron prototype
         for (int i = 0; i < dados.size(); i++) {
             //envia el id, DNI, y numero de militantes
-            System.out.println(gGestorPrototype.nuevos_dados(dados.get(i), i));
+            System.out.println(Prototype.nuevos_dados(dados.get(i), i));
         }
-        //los imprime
-        System.out.println("\n" + gGestorPrototype.obtenerDatos());
+        //los imprime (o guarda en el chest)
+        System.out.println("\n" + Prototype.obtenerDatos());
+        
+        //limpia la lista
+        Prototype.limpiarLista();
     }
 }

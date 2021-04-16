@@ -1,6 +1,6 @@
 package com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo;
 
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
+import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 
 
@@ -9,7 +9,7 @@ public abstract class PrototipoDado {
     private int dado;
     private String tipo;
     private int valor;
-    private AtaqueEspcecial ae;
+    private AtaqueEspecial ae;
     private AtaqueNormal an;
     private int cantMovimientos;
 
@@ -41,11 +41,11 @@ public abstract class PrototipoDado {
         this.valor = valor;
     }
 
-    public AtaqueEspcecial getAe() {
+    public AtaqueEspecial getAe() {
         return ae;
     }
 
-    public void setAe(AtaqueEspcecial ae) {
+    public void setAe(AtaqueEspecial ae) {
         this.ae = ae;
     }
 

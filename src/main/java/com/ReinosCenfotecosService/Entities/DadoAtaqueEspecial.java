@@ -1,20 +1,20 @@
 package com.ReinosCenfotecosService.Entities;
 
 public class DadoAtaqueEspecial extends Dado{
-    private AtaqueEspcecial ataqueEspecial;
+    private AtaqueEspecial ataqueEspecial;
     
     public DadoAtaqueEspecial(){};
     
-    public DadoAtaqueEspecial(AtaqueEspcecial ae){
+    public DadoAtaqueEspecial(AtaqueEspecial ae){
         this.ataqueEspecial = ae;
         
     }
 
-    public AtaqueEspcecial getAtaqueEspecial() {
+    public AtaqueEspecial getAtaqueEspecial() {
         return ataqueEspecial;
     }
 
-    public void setAtaqueEspecial(AtaqueEspcecial ae) {
+    public void setAtaqueEspecial(AtaqueEspecial ae) {
         this.ataqueEspecial = ae;
     }
 }

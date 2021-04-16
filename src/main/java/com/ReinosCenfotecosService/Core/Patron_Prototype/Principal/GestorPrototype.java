@@ -2,7 +2,7 @@ package com.ReinosCenfotecosService.Core.Patron_Prototype.Principal;
 
 import com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo.PrototipoDado;
 import com.ReinosCenfotecosService.Core.Patron_Prototype.prototipo.Dados;
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
+import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class GestorPrototype {
 
     private PrototipoDado protipoDado;
     private static AtaqueNormal an = new AtaqueNormal();
-    private static AtaqueEspcecial ae = new AtaqueEspcecial();
+    private static AtaqueEspecial ae = new AtaqueEspecial();
 
     public GestorPrototype(int pId) {
         //crea el que se va a clonar
@@ -54,7 +54,7 @@ public class GestorPrototype {
         if(pDado.equals("Movimiento")){
         cc.setCantMovimientos(Helper.ramdomizeCantMovimientos());
         }
-        ae = new AtaqueEspcecial();
+        ae = new AtaqueEspecial();
     }
     /**
      * **********************************************************

@@ -3,13 +3,13 @@ package com.ReinosCenfotecosService.Core.Patron_Prototype.prototipo;
 //agregar  naves,campamentos, nombre y profesion.
 
 import com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo.PrototipoDado;
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
+import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 
 
 public class Dados extends PrototipoDado {
 
-    public Dados(int pDado, String pTipo, int pValor, AtaqueNormal pAN, AtaqueEspcecial pAE, int cantMovimientos) {
+    public Dados(int pDado, String pTipo, int pValor, AtaqueNormal pAN, AtaqueEspecial pAE, int cantMovimientos) {
         this.setDado(pDado);
         this.setTipo(pTipo);
         this.setValor(pValor);

@@ -2,3 +2,4 @@
 501:El formato de personaje al que desea asignarle el ataque especial no existe, intente con otro.
 502:El ataque especial que le desea asiganr al personaje no existe, intentelo nuevamente.
 503:Personaje no encontrado, favor envie una identificacion correcta.
+300:Partida no encontrado, favor envie una identificacion correcta.

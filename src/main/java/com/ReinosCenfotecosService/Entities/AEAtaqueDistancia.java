@@ -19,6 +19,8 @@ public class AEAtaqueDistancia extends AsbtractClassataqueEspecial {
 
     @Override
     public void accionAtaque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int rango = this.getRangoAtaque();
+        rango = 2;
+        this.setRangoAtaque(rango);
     }
 }

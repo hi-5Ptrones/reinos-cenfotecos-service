@@ -19,6 +19,7 @@ public class AEAutoBuffAtaque extends AsbtractClassataqueEspecial {
 
     @Override
     public void accionAtaque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int ataque = this.getAtaque();
+        ataque = ataque + 3;
     }
 }

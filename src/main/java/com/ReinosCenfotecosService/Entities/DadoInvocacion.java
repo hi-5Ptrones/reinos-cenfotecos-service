@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ReinosCenfotecosService.Entities;
 
-/**
- *
- * @author jscru
- */
 public class DadoInvocacion extends Dado{
-    private String tipoInvicacion;
+    private String tipoInvocacion;
+
+    public DadoInvocacion() {
+    }
+
+    public String getTipoInvocacion() {
+        return tipoInvocacion;
+    }
+
+    public void setTipoInvocacion(String tipoInvocacion) {
+        this.tipoInvocacion = tipoInvocacion;
+    }
+    
+    
 }

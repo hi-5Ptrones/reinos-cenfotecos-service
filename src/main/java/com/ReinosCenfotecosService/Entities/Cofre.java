@@ -14,15 +14,15 @@ import java.util.ArrayList;
 public class Cofre {
 
     private ArrayList<DadoInvocacion> listDadosInvocacion;
-    private ArrayList<DadoAccion> listDadosMovimiento;
-    private ArrayList<DadoAccion> listDadosAtaque;
-    private ArrayList<DadoAccion> listDadosAtaqueEspecial;
+    private ArrayList<DadoAtaque> listDadosMovimiento;
+    private ArrayList<DadoAtaque> listDadosAtaque;
+    private ArrayList<DadoAtaque> listDadosAtaqueEspecial;
 
     public Cofre() {
         listDadosInvocacion = new ArrayList<DadoInvocacion>();
-        listDadosMovimiento = new ArrayList<DadoAccion>();
-        listDadosAtaque = new ArrayList<DadoAccion>();
-        listDadosAtaqueEspecial = new ArrayList<DadoAccion>();
+        listDadosMovimiento = new ArrayList<DadoAtaque>();
+        listDadosAtaque = new ArrayList<DadoAtaque>();
+        listDadosAtaqueEspecial = new ArrayList<DadoAtaque>();
     }
 
 }

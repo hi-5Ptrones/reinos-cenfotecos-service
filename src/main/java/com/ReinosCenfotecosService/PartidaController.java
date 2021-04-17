@@ -5,23 +5,16 @@
  */
 package com.ReinosCenfotecosService;
 
-import com.ReinosCenfotecosService.Core.AtaqueEspecial.GestorAtaqueEspecial;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
 import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
- *
  * @author jorge
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -55,7 +48,7 @@ public class PartidaController {
         try {
             apiResponse = new ApiResponse();
             GestorPartidas gestor = new GestorPartidas();
-            apiResponse.data = gestor.construcionPartida(nombre1,nombre2, ganador);
+            apiResponse.data = gestor.construcionPartida(nombre1, nombre2, ganador);
             apiResponse.message = "Partida Iniciada ";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 

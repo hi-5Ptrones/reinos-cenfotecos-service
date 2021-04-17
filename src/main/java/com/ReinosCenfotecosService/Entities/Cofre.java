@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class Cofre {
 
+    static int classCounter = 0;
+    int id;
     private ArrayList<DadoInvocacion> listDadosInvocacion;
     private ArrayList<DadoAccion> listDadosMovimiento;
     private ArrayList<DadoAccion> listDadosAtaque;
@@ -23,6 +25,43 @@ public class Cofre {
         listDadosMovimiento = new ArrayList<DadoAccion>();
         listDadosAtaque = new ArrayList<DadoAccion>();
         listDadosAtaqueEspecial = new ArrayList<DadoAccion>();
+        this.id = classCounter = 0;
+    }
+
+    public ArrayList<DadoInvocacion> getListDadosInvocacion() {
+        return listDadosInvocacion;
+    }
+
+    public void setListDadosInvocacion(ArrayList<DadoInvocacion> listDadosInvocacion) {
+        this.listDadosInvocacion = listDadosInvocacion;
+    }
+
+    public ArrayList<DadoAccion> getListDadosMovimiento() {
+        return listDadosMovimiento;
+    }
+
+    public void setListDadosMovimiento(ArrayList<DadoAccion> listDadosMovimiento) {
+        this.listDadosMovimiento = listDadosMovimiento;
+    }
+
+    public ArrayList<DadoAccion> getListDadosAtaque() {
+        return listDadosAtaque;
+    }
+
+    public void setListDadosAtaque(ArrayList<DadoAccion> listDadosAtaque) {
+        this.listDadosAtaque = listDadosAtaque;
+    }
+
+    public ArrayList<DadoAccion> getListDadosAtaqueEspecial() {
+        return listDadosAtaqueEspecial;
+    }
+
+    public void setListDadosAtaqueEspecial(ArrayList<DadoAccion> listDadosAtaqueEspecial) {
+        this.listDadosAtaqueEspecial = listDadosAtaqueEspecial;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }

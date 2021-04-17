@@ -5,9 +5,7 @@
  */
 package com.ReinosCenfotecosService;
 
-import com.ReinosCenfotecosService.Core.AtaqueEspecial.GestorAtaqueEspecial;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;

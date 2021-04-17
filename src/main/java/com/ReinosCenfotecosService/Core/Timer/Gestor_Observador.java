@@ -24,4 +24,8 @@ public class Gestor_Observador {
         public void NuevoTiempo(String pProducto, int pTiempo) {
 		ListaProductos.get(pProducto).setState(pTiempo);
 	}
+        
+        public void iniciarTurno(){
+        
+        }
 }

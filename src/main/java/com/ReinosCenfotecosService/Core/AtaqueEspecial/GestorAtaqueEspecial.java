@@ -19,7 +19,7 @@ public class GestorAtaqueEspecial {
     Jugador player;
 
     public GestorAtaqueEspecial() {
-        player = new Jugador("123456", "Bryan");
+        player = new Jugador(123456, "Bryan");
         player.agregarPersonajealistadeJugador(new Infanteria());
         player.agregarPersonajealistadeJugador(new Infanteria());
         player.agregarPersonajealistadeJugador(new Artillero());
@@ -102,6 +102,8 @@ public class GestorAtaqueEspecial {
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
+        }catch(Exception e){
+            ExceptionManager.GetInstance().Process(e);
         }
     }
 

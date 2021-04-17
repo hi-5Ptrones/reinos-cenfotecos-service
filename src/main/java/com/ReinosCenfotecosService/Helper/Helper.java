@@ -19,7 +19,7 @@ public class Helper {
         return rnd;
     }
 
-    public static int ingetMovsMaximos(int codPersonaje) {
+    public static int getMovsMaximos(int codPersonaje) {
         Random random = new Random();
         int rnd = 0;
 

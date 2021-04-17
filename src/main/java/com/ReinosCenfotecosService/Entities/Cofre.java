@@ -21,10 +21,10 @@ public class Cofre {
     private ArrayList<DadoAtaque> listDadosAtaqueEspecial;
 
     public Cofre() {
-        listDadosInvocacion = new ArrayList<DadoInvocacion>();
-        listDadosMovimiento = new ArrayList<DadoAccion>();
-        listDadosAtaque = new ArrayList<DadoAccion>();
-        listDadosAtaqueEspecial = new ArrayList<DadoAccion>();
+        // listDadosInvocacion = new ArrayList<DadoInvocacion>();
+        // listDadosMovimiento = new ArrayList<DadoAccion>();
+        //    listDadosAtaque = new ArrayList<DadoAccion>();
+        //     listDadosAtaqueEspecial = new ArrayList<DadoAccion>();
         this.id = classCounter = 0;
     }
 
@@ -36,29 +36,29 @@ public class Cofre {
         this.listDadosInvocacion = listDadosInvocacion;
     }
 
-    public ArrayList<DadoAccion> getListDadosMovimiento() {
-        return listDadosMovimiento;
-    }
-
-    public void setListDadosMovimiento(ArrayList<DadoAccion> listDadosMovimiento) {
-        this.listDadosMovimiento = listDadosMovimiento;
-    }
-
-    public ArrayList<DadoAccion> getListDadosAtaque() {
-        return listDadosAtaque;
-    }
-
-    public void setListDadosAtaque(ArrayList<DadoAccion> listDadosAtaque) {
-        this.listDadosAtaque = listDadosAtaque;
-    }
-
-    public ArrayList<DadoAccion> getListDadosAtaqueEspecial() {
-        return listDadosAtaqueEspecial;
-    }
-
-    public void setListDadosAtaqueEspecial(ArrayList<DadoAccion> listDadosAtaqueEspecial) {
-        this.listDadosAtaqueEspecial = listDadosAtaqueEspecial;
-    }
+//    public ArrayList<DadoAccion> getListDadosMovimiento() {
+//        return listDadosMovimiento;
+//    }
+//
+//    public void setListDadosMovimiento(ArrayList<DadoAccion> listDadosMovimiento) {
+//        this.listDadosMovimiento = listDadosMovimiento;
+//    }
+//
+//    public ArrayList<DadoAccion> getListDadosAtaque() {
+//        return listDadosAtaque;
+//    }
+//
+//    public void setListDadosAtaque(ArrayList<DadoAccion> listDadosAtaque) {
+//        this.listDadosAtaque = listDadosAtaque;
+//    }
+//
+//    public ArrayList<DadoAccion> getListDadosAtaqueEspecial() {
+//        return listDadosAtaqueEspecial;
+//    }
+//
+//    public void setListDadosAtaqueEspecial(ArrayList<DadoAccion> listDadosAtaqueEspecial) {
+//        this.listDadosAtaqueEspecial = listDadosAtaqueEspecial;
+//    }
 
     public int getId() {
         return id;

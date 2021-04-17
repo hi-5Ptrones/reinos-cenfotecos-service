@@ -1,9 +1,9 @@
-package com.ReinosCenfotecosService.Core.Patron_Prototype.Principal;
+package com.ReinosCenfotecosService.Core.Dados;
 
-import com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo.PrototipoDado;
-import com.ReinosCenfotecosService.Core.Patron_Prototype.prototipo.Dados;
 import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
+import com.ReinosCenfotecosService.Helper.Helper;
+
 import java.util.ArrayList;
 
 
@@ -16,7 +16,7 @@ public class GestorPrototype {
 
     public GestorPrototype(int pId) {
         //crea el que se va a clonar
-        protipoDado = new Dados(pId,"Invocacion" , 3, an, ae, 0);
+        protipoDado = new Dados(pId, "Invocacion", 3, an, ae, 0);
     }
 
     public String nuevos_dados(String pDado, int id) {
@@ -26,7 +26,7 @@ public class GestorPrototype {
 
         //vamos a buscar los Id de los militantes y ponerlos en el DNI
         updateCloneDados(pDado, id);
-        
+
         msj = "Dados creados";
 
         return msj;
@@ -41,44 +41,46 @@ public class GestorPrototype {
         cc.setTipo(pDado);
         cc.setValor(Helper.ramdomizeCantMovimientos());
         cc.setAn(an);
-        
+
         //valorAE
-        if(pDado.equals("AtaqueEspecial")){
-        ae.setNombre(Helper.ramdomizeAtaquesEspeciales());
-        cc.setAe(ae);
+        if (pDado.equals("AtaqueEspecial")) {
+            ae.setNombre(Helper.ramdomizeAtaquesEspeciales());
+            cc.setAe(ae);
         }
-        
+
         //valorCantMovs
-        if(pDado.equals("Movimiento")){
-        cc.setCantMovimientos(Helper.ramdomizeCantMovimientos());
+        if (pDado.equals("Movimiento")) {
+            cc.setCantMovimientos(Helper.ramdomizeCantMovimientos());
         }
         ae = new AtaqueEspecial();
     }
+
     /**
      * **********************************************************
      * Metodo:	obtenerDatos
-     *
+     * <p>
      * Descripción:	Obtiene los datos de los objetos del arreglo y los devuelve
      * en una variable.
-     *
+     * <p>
      * Parametros:	pid [int] id del arreglo.
      *
-     * @return:	mResult [String]
+     * @return: mResult [String]
      * ***********************************************************
      */
     public String obtenerDatos(int pid) {
         return obtenerDatosObjeto(arrDados.get(pid)) + "\n";
     }
+
     /**
      * **********************************************************
      * Metodo:	obtenerDatos
-     *
+     * <p>
      * Descripción:	Obtiene los datos de las identificaciones y los devuelve en
      * una variable.
-     *
+     * <p>
      * Parametros:	N/A
      *
-     * @return:	mResult [String]
+     * @return: mResult [String]
      * ***********************************************************
      */
     public String obtenerDatos() {
@@ -93,18 +95,19 @@ public class GestorPrototype {
     /**
      * ************************************************************
      * Metodo:	obtenerDatosObjeto
-     *
+     * <p>
      * Descripción:	Obtiene los datos de un objeto en especifico
-     *
+     * <p>
      * Parametros:	pObj [PrototipoDado]
      *
-     * @return:	mResult [String]
+     * @return: mResult [String]
      * ***********************************************************
      */
     private String obtenerDatosObjeto(PrototipoDado pObj) {
         return pObj.getData() + "\n";
     }
-    public void limpiarLista(){
+
+    public void limpiarLista() {
         arrDados.clear();
     }
 }

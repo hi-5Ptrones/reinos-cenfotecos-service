@@ -1,7 +1,6 @@
 package com.ReinosCenfotecosService;
 
-import com.ReinosCenfotecosService.Core.Patron_Prototype.Principal.GestorPrototype;
-import com.ReinosCenfotecosService.Entities.Dado;
+import com.ReinosCenfotecosService.Core.Dados.GestorPrototype;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
 import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;

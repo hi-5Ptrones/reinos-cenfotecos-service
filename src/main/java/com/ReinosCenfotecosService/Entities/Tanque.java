@@ -18,7 +18,7 @@ public class Tanque extends Personaje {
         this.setId(Helper.creadorDeIdentificacion());
         this.setAtaque(2);
         this.setDefensa(10);
-        this.setMovsMaximos(Helper.ingetMovsMaximos(2));
+        this.setMovsMaximos(Helper.getMovsMaximos(2));
         this.setVida(10);
         this.setTipoPersonaje("Tanque");
     }

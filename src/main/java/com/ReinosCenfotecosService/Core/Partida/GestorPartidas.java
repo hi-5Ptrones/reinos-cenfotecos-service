@@ -101,4 +101,8 @@ public class GestorPartidas {
         objDirector.construirPartida(getIdPartida(), jug1, jug2, getIdJugador());
         return objDirector.getBuilderPartida().getObjeto();
     }
+
+    public ArrayList<Partida> getPartidas() {
+        return partidas;
+    }
 }

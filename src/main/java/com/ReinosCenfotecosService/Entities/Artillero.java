@@ -18,7 +18,7 @@ public class Artillero extends Personaje{
         this.setId(Helper.creadorDeIdentificacion());
         this.setAtaque(6);
         this.setDefensa(10);
-        this.setMovsMaximos(Helper.ingetMovsMaximos(1));
+        this.setMovsMaximos(Helper.getMovsMaximos(1));
         this.setVida(5);
         this.setTipoPersonaje("Artillero");
     }

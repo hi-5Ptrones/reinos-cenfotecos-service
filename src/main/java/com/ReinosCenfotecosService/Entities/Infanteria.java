@@ -18,7 +18,7 @@ public class Infanteria extends Personaje{
         this.setId(Helper.creadorDeIdentificacion());
         this.setAtaque(3);
         this.setDefensa(5);
-        this.setMovsMaximos(Helper.ingetMovsMaximos(2));
+        this.setMovsMaximos(Helper.getMovsMaximos(2));
         this.setVida(5);
         this.setTipoPersonaje("Infanteria");
     }

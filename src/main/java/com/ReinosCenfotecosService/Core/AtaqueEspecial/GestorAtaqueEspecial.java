@@ -102,6 +102,8 @@ public class GestorAtaqueEspecial {
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
+        }catch(Exception e){
+            ExceptionManager.GetInstance().Process(e);
         }
     }
 

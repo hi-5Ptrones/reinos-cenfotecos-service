@@ -53,7 +53,7 @@ public class ExceptionManager {
         String data;
 
         try {
-            FileReader reader = new FileReader(PATH + "\\config\\ConfigExceptions.txt");
+            FileReader reader = new FileReader("config//ConfigExceptions.txt");
             BufferedReader buffer = new BufferedReader(reader);
             String datos;
 
@@ -74,10 +74,10 @@ public class ExceptionManager {
         String pattern = "yyyy_MM_dd__hh_mm_ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String today = simpleDateFormat.format(new Date());
-        String logName = "\\Logs\\"
+        String logName = "Logs//"
                 + today
                 + "_" + "log.txt";
-        String logPath = PATH + logName;
+        String logPath = logName;
 
         String exceptionMessage = logger(ex);
         File logFile = new File(logPath);
@@ -87,8 +87,7 @@ public class ExceptionManager {
             myWriter.write(exceptionMessage);
             myWriter.close();
         } catch (IOException e) {
-            ProcessGenericException(e);
-
+            System.out.println(e.getMessage());
         }
         throw ex;
     }
@@ -97,10 +96,10 @@ public class ExceptionManager {
         String pattern = "yyyy_MM_dd__hh_mm_ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String today = simpleDateFormat.format(new Date());
-        String logName = "\\Logs\\"
+        String logName = "Logs//"
                 + today
                 + "_" + "log.txt";
-        String logPath = PATH + logName;
+        String logPath = logName;
         bex.message = getMessage(bex);
         String exceptionMessage = logger(bex);
         File logFile = new File(logPath);
@@ -110,8 +109,7 @@ public class ExceptionManager {
             myWriter.write(exceptionMessage);
             myWriter.close();
         } catch (IOException e) {
-            ProcessGenericException(e);
-
+            System.out.println(e.getMessage());
         }
         throw bex;
     }

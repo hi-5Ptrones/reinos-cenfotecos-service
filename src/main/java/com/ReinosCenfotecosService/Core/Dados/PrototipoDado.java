@@ -1,4 +1,4 @@
-package com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo;
+package com.ReinosCenfotecosService.Core.Dados;
 
 import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;

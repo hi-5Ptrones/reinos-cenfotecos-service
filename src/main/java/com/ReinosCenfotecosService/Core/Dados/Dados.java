@@ -1,8 +1,7 @@
-package com.ReinosCenfotecosService.Core.Patron_Prototype.prototipo;
+package com.ReinosCenfotecosService.Core.Dados;
 
 //agregar  naves,campamentos, nombre y profesion.
 
-import com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo.PrototipoDado;
 import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 

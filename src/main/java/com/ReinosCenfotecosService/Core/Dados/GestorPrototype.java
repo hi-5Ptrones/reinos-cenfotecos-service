@@ -1,7 +1,6 @@
-package com.ReinosCenfotecosService.Core.Patron_Prototype.Principal;
+package com.ReinosCenfotecosService.Core.Dados;
 
-import com.ReinosCenfotecosService.Core.Patron_Prototype.iProtitpo.PrototipoDado;
-import com.ReinosCenfotecosService.Core.Patron_Prototype.prototipo.Dados;
+import com.ReinosCenfotecosService.Helper.Helper;
 import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 import java.util.ArrayList;

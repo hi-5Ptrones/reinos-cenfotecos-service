@@ -36,7 +36,7 @@ public class GestorPersonajes {
         return responseMessage;
     }
 
-    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String coordenadas) {
+    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String coordenadas) throws BussinessException {
         Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
         String coords[] = new String[2];
         int row, coll;
@@ -51,10 +51,10 @@ public class GestorPersonajes {
                 objPartida.getJugador2().addPJtoListPlayer(objPersonaje);
 
             } else {
-                //tirar excepion
+                throw new BussinessException(505);
             }
         } else {
-            //tirar excepion
+            throw new BussinessException(504);
         }
     }
 

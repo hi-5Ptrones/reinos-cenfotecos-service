@@ -5,26 +5,13 @@
  */
 package com.ReinosCenfotecosService.Core.AtaqueEspecial;
 
-import com.ReinosCenfotecosService.Entities.AEAtaqueBomba;
-import com.ReinosCenfotecosService.Entities.AEAtaqueDistancia;
-import com.ReinosCenfotecosService.Entities.AEBufferAtaque;
-import com.ReinosCenfotecosService.Entities.AEBufferDefensa;
-import com.ReinosCenfotecosService.Entities.AEDebuffAoE;
-import com.ReinosCenfotecosService.Entities.AEHealerlvl1;
-import com.ReinosCenfotecosService.Entities.AEHealerlvl2;
-import com.ReinosCenfotecosService.Entities.AEProteccionEquivalente;
-import com.ReinosCenfotecosService.Entities.AESacrificarVidaxMovimiento;
-import com.ReinosCenfotecosService.Entities.Artillero;
-import com.ReinosCenfotecosService.Entities.AtaqueEspcecial;
-import com.ReinosCenfotecosService.Entities.Infanteria;
-import com.ReinosCenfotecosService.Entities.Jugador;
-import com.ReinosCenfotecosService.Entities.Personaje;
-import com.ReinosCenfotecosService.Entities.Tanque;
+import com.ReinosCenfotecosService.Entities.*;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 
+import java.util.ArrayList;
+
 /**
- *
  * @author jscru
  */
 public class GestorAtaqueEspecial {
@@ -32,7 +19,7 @@ public class GestorAtaqueEspecial {
     Jugador player;
 
     public GestorAtaqueEspecial() {
-        player = new Jugador("123456", "Bryan");
+        player = new Jugador(123456, "Bryan");
         player.agregarPersonajealistadeJugador(new Infanteria());
         player.agregarPersonajealistadeJugador(new Infanteria());
         player.agregarPersonajealistadeJugador(new Artillero());
@@ -47,8 +34,8 @@ public class GestorAtaqueEspecial {
         player.getPersonajesEnJuego().get(5).setId(890);
     }
 
-    public void asignarAtaqueEspcial(AtaqueEspcecial specialAtack, int idPersonajeAplica,
-            int idPersonajeaAplicar) throws BussinessException, Exception {
+    public void asignarAtaqueEspcial(AtaqueEspecial specialAtack, int idPersonajeAplica,
+                                     int idPersonajeaAplicar) throws BussinessException, Exception {
         Personaje objPersonajeAplica = buscarPersonajeByID(idPersonajeAplica);
         Personaje objPersonajeaAplicar = buscarPersonajeByID(idPersonajeaAplicar);
 
@@ -56,16 +43,18 @@ public class GestorAtaqueEspecial {
             if (objPersonajeAplica instanceof Infanteria) {
                 switch (specialAtack.getNombre()) {
                     case "Altar del guardián":
-                        new AEHealerlvl1(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEHealerlvl1(objPersonajeaAplicar));
                         break;
                     case "Plegaria":
-                        new AEHealerlvl2(objPersonajeaAplicar);
+                        for (Personaje objPj : player.getPersonajesEnJuego()) {
+                            replaceInArray(objPj.getId(), new AEHealerlvl2(objPj));
+                        }
                         break;
                     case "Horno del alma":
-                        new AEBufferAtaque(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEBufferAtaque(objPersonajeaAplicar));
                         break;
                     case "Refugio del espiritu":
-                        new AEBufferDefensa(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEBufferDefensa(objPersonajeaAplicar));
                         break;
                     default:
                         throw new BussinessException(502);
@@ -73,30 +62,37 @@ public class GestorAtaqueEspecial {
             } else if (objPersonajeAplica instanceof Artillero) {
                 switch (specialAtack.getNombre()) {
                     case "Embate imparable":
-                        new AEAtaqueDistancia(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEAtaqueDistancia(objPersonajeaAplicar));
                         break;
                     case "Indestuctrible":
-                        new AEBufferAtaque(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEAutoBuffDefensa(objPersonajeaAplicar));
                         break;
                     case "Heraldo de la Destrucción":
-                        new AEBufferDefensa(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEAutoBuffAtaque(objPersonajeaAplicar));
                         break;
                     default:
                         throw new BussinessException(502);
                 }
             } else if (objPersonajeAplica instanceof Tanque) {
                 switch (specialAtack.getNombre()) {
+
                     case "Descarga de Adrenalina ":
-                        new AESacrificarVidaxMovimiento(objPersonajeaAplicar);
+                        if (objPersonajeaAplicar.getVida() == 2) {
+                            replaceInArray(idPersonajeaAplicar, new AESacrificarVidaxMovimiento(objPersonajeaAplicar));
+                        } else {
+                            //Agregar msg de error
+                            throw new BussinessException(502);
+                        }
                         break;
                     case "Gloria en la muerte":
-                        new AEAtaqueBomba(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEAtaqueBomba(objPersonajeaAplicar));
                         break;
                     case "Embajador de Hierro":
-                        new AEProteccionEquivalente(objPersonajeaAplicar);
+                        objPersonajeAplica.setDefensa(objPersonajeAplica.getDefensa() / 2);
+                        replaceInArray(idPersonajeaAplicar, new AEProteccionEquivalente(objPersonajeaAplicar));
                         break;
                     case "Tormenta Creciente ":
-                        new AEDebuffAoE(objPersonajeaAplicar);
+                        replaceInArray(idPersonajeaAplicar, new AEDebuffAoE(objPersonajeaAplicar));
                         break;
                     default:
                         throw new BussinessException(502);
@@ -106,10 +102,12 @@ public class GestorAtaqueEspecial {
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
+        }catch(Exception e){
+            ExceptionManager.GetInstance().Process(e);
         }
     }
 
-//    public void finalizacionAtaqueEspecial() {
+    //    public void finalizacionAtaqueEspecial() {
 //        AsbtractClassEvolucion personajeAtacando = (AsbtractClassEvolucion) objPersonajeAtacando;
 //        Personaje estadoBase = personajeAtacando.getEstadoBasePersonaje();
 //    }
@@ -134,5 +132,12 @@ public class GestorAtaqueEspecial {
         }
 
         return personajeEncontrado;
+    }
+
+    private void replaceInArray(int id, Personaje pjDecorado) throws Exception {
+        ArrayList<Personaje> personajes = this.player.getPersonajesEnJuego();
+        Personaje objPersonaje = buscarPersonajeByID(id);
+        int index = personajes.indexOf(objPersonaje);
+        personajes.set(index, pjDecorado);
     }
 }

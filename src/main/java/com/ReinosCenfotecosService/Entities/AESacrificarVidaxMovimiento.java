@@ -19,6 +19,9 @@ public class AESacrificarVidaxMovimiento extends AsbtractClassataqueEspecial {
 
     @Override
     public void accionAtaque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int vida = this.getVida();
+        int maxmovs = this.getMovsMaximos();
+        vida = vida- 1;
+        maxmovs = maxmovs + 2;
     }
 }

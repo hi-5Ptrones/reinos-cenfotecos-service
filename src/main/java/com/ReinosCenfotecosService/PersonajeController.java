@@ -34,13 +34,13 @@ public class PersonajeController {
 
     @RequestMapping(value = "/api/personaje/crearPersonaje", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<ApiResponse> crearPersonaje(int tPersonaje) {
+    public ResponseEntity<ApiResponse> crearPersonaje(int tPersonaje, int idPartida, int jugador, String coordenadas) {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();
             apiResponse = new ApiResponse();
             GestorPersonajes gestor = new GestorPersonajes();
-            String string = gson.toJson(gestor.CrearPersonaje(tPersonaje));
+            String string = gson.toJson(gestor.CrearPersonaje(tPersonaje, idPartida, jugador, coordenadas));
             JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
             apiResponse.data = jsonObject;
             apiResponse.message = "Tropa creada";

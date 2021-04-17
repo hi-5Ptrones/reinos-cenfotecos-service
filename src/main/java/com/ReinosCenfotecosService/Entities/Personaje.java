@@ -11,11 +11,12 @@ package com.ReinosCenfotecosService.Entities;
  */
 public abstract class Personaje {
 
-    public int id;
-    public int vida;
-    public int ataque;
-    public int defensa;
-    public int movsMaximos;
+    private int id;
+    private int vida;
+    private int ataque;
+    private int defensa;
+    private int movsMaximos;
+    private int rangoAtaque = 1;
     public String tipoPersonaje;
     
     public Personaje() {
@@ -68,8 +69,14 @@ public abstract class Personaje {
     public void setTipoPersonaje(String tipoPersonaje) {
         this.tipoPersonaje = tipoPersonaje;
     }
-    
-    
+
+    public int getRangoAtaque() {
+        return rangoAtaque;
+    }
+
+    public void setRangoAtaque(int rangoAtaque) {
+        this.rangoAtaque = rangoAtaque;
+    }
 
     public abstract void setEstadisticasPersonaje();
 

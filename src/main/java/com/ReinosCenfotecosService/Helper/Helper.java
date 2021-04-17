@@ -19,7 +19,7 @@ public class Helper {
         return rnd;
     }
 
-    public static int ingetMovsMaximos(int codPersonaje) {
+    public static int getMovsMaximos(int codPersonaje) {
         Random random = new Random();
         int rnd = 0;
 
@@ -37,4 +37,43 @@ public class Helper {
 
         return rnd;
     }
+    //Dados
+    public static int ramdomizeCantMovimientos() {
+        return (int) (Math.random() * (6 - 0) + 1);
+    }
+
+    public static String ramdomizeAtaquesEspeciales() {
+        String valor = "";
+        int random = (int) (Math.random() * (6 - 0) + 1);
+        switch (random) {
+            case 1:
+                valor = "volar";
+                break;
+            case 2:
+                valor = "correr";
+                break;
+            case 3:
+                valor = "fuerza";
+                break;
+            case 4:
+                valor = "disparar";
+                break;
+            case 5:
+                valor = "curar";
+                break;
+            case 6:
+                valor = "nadar";
+                break;
+            case 7:
+                valor = "Domingo";
+                break;
+            default:
+                valor = "";
+                break;
+        }
+
+        return valor;
+    }
+
+    //FIn dados
 }

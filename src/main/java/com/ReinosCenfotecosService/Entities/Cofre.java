@@ -16,9 +16,9 @@ public class Cofre {
     static int classCounter = 0;
     int id;
     private ArrayList<DadoInvocacion> listDadosInvocacion;
-    private ArrayList<DadoAccion> listDadosMovimiento;
-    private ArrayList<DadoAccion> listDadosAtaque;
-    private ArrayList<DadoAccion> listDadosAtaqueEspecial;
+    private ArrayList<DadoAtaque> listDadosMovimiento;
+    private ArrayList<DadoAtaque> listDadosAtaque;
+    private ArrayList<DadoAtaque> listDadosAtaqueEspecial;
 
     public Cofre() {
         listDadosInvocacion = new ArrayList<DadoInvocacion>();

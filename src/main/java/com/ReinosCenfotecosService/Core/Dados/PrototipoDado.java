@@ -4,7 +4,6 @@ import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 
 
-
 public abstract class PrototipoDado {
     private int dado;
     private String tipo;
@@ -65,21 +64,17 @@ public abstract class PrototipoDado {
         this.cantMovimientos = cantMovimientos;
     }
 
-    
-
-
-  
 
     public String getData() {
         String mData = "< Dado >\n";
 
-        mData += "De tipo: " + this.getTipo()+ "\n";
-        
-        if(this.getCantMovimientos() != 0){
-        mData += "Movs: " + this.getCantMovimientos()+ "\n";
+        mData += "De tipo: " + this.getTipo() + "\n";
+
+        if (this.getCantMovimientos() != 0) {
+            mData += "Movs: " + this.getCantMovimientos() + "\n";
         }
-        if((ae.getNombre() != null)){
-        mData += "Ataque especial: " + this.ae.getNombre()+ "\n";
+        if ((ae.getNombre() != null)) {
+            mData += "Ataque especial: " + this.ae.getNombre() + "\n";
         }
         return mData;
     }

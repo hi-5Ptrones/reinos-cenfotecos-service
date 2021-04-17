@@ -16,9 +16,8 @@ import com.ReinosCenfotecosService.exceptions.ExceptionManager;
  */
 public class GestorPersonajes {
 
-    private GestorPartidas gesParidas = new GestorPartidas();
-
-    public Personaje CrearPersonaje(int tpersonaje, int idPartida, int jugador) throws BussinessException, Exception {
+    private GestorPartidas gesPartidas = new GestorPartidas();
+    public Personaje CrearPersonaje(int tpersonaje, int idPartida, int jugador, String coordenadas) throws BussinessException, Exception {
         Personaje responseMessage = null;
         try {
             if (tpersonaje < 1 || tpersonaje > 3) {
@@ -28,7 +27,7 @@ public class GestorPersonajes {
                 FactoryPersonaje factory = new FactoryPersonaje();
                 Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
                 responseMessage = objPersonaje;
-                asignarPersonajeAJugador(objPersonaje, idPartida, jugador);
+                asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
 
             }
         } catch (BussinessException bex) {
@@ -37,16 +36,20 @@ public class GestorPersonajes {
         return responseMessage;
     }
 
-    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int idCurrentPlayer) {
-        Partida objPartida = gesParidas.obtenerPartidaById(idPartida);
+    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String coordenadas) {
+        Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
+        String coords[] = new String[2];
+        int row, coll;
+        coords = coordenadas.split("-");
+        row = Integer.parseInt(coords[0]);
+        coll = Integer.parseInt(coords[1]);
         if (objPartida != null) {
-            int idPlayer1 = objPartida.getJugador1().getId();
-            int idPlayer2 = objPartida.getJugador2().getId();
 
-            if (idPlayer1 == idCurrentPlayer) {
+            if (currectPlayer == 1) {
                 objPartida.getJugador1().addPJtoListPlayer(objPersonaje);
-            } else if (idPlayer2 == idCurrentPlayer) {
+            } else if (currectPlayer == 2) {
                 objPartida.getJugador2().addPJtoListPlayer(objPersonaje);
+
             } else {
                 //tirar excepion
             }

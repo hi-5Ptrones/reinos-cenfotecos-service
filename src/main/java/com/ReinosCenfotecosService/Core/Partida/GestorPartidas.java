@@ -20,7 +20,7 @@ import java.util.Random;
  */
 public class GestorPartidas {
 
-    protected ArrayList<Partida> partidas = new ArrayList<Partida>();
+    protected static ArrayList<Partida> partidas = new ArrayList<Partida>();
     private DirectorPartida objDirector = new DirectorPartida();
 
     private Jugador construcionJugador(String nombre, int rowCastillo, int columnCastillo, int color) {
@@ -100,5 +100,9 @@ public class GestorPartidas {
     private Partida crearPartida(Jugador jug1, Jugador jug2) {
         objDirector.construirPartida(getIdPartida(), jug1, jug2, getIdJugador());
         return objDirector.getBuilderPartida().getObjeto();
+    }
+
+    public ArrayList<Partida> getPartidas() {
+        return partidas;
     }
 }

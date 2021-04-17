@@ -110,4 +110,8 @@ public class Jugador {
         this.cofre = cofre;
     }
 
+    public void addPJtoListPlayer(Personaje objPersonaje){
+        this.personajesEnJuego.add(objPersonaje);
+    }
+
 }

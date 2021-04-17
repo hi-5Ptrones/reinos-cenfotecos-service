@@ -19,7 +19,7 @@ public class GestorAtaqueEspecial {
     Jugador player;
 
     public GestorAtaqueEspecial() {
-        player = new Jugador("123456", "Bryan");
+        player = new Jugador(123456, "Bryan");
         player.agregarPersonajealistadeJugador(new Infanteria());
         player.agregarPersonajealistadeJugador(new Infanteria());
         player.agregarPersonajealistadeJugador(new Artillero());

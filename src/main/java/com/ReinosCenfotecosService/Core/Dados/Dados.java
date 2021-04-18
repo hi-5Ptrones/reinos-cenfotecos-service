@@ -15,7 +15,7 @@ public class Dados extends PrototipoDado {
         this.setAn(pAN);
         this.setAe(pAE);
         this.setCantMovimientos(cantMovimientos);
-        
+
     }
 
     @Override

@@ -23,6 +23,7 @@ public class Jugador {
     private ArrayList<Personaje> personajesEnJuego;
 
     public Jugador() {
+        this.personajesEnJuego = new ArrayList<>();
     }
 
     public Jugador(int id, String nombre, int vidaCastillo, int row, int column, int color, Cofre cofre) {
@@ -33,6 +34,7 @@ public class Jugador {
         this.column = column;
         this.cofre = cofre;
         this.color = color;
+        this.personajesEnJuego = new ArrayList<>();
     }
 
     public Jugador(int id, String nombre) {//metodo usado solo por jason

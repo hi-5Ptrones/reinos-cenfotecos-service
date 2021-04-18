@@ -8,6 +8,7 @@ package com.ReinosCenfotecosService.Core.Partida;
 import com.ReinosCenfotecosService.Entities.Jugador;
 import com.ReinosCenfotecosService.Entities.Partida;
 import com.ReinosCenfotecosService.Helper.Helper;
+import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -67,13 +68,14 @@ public class GestorPartidas {
     }
 
     public Partida construcionPartida(String nombre1, String nombre2, int ganador) throws Exception {
+        Partida par = null;
         try {
             objDirector.setBuilderTablero(new ConstructorTablero());
             //generar campo random para castillos
             int row1 = 0, col1, row2 = 19, col2, color1, color2;
             Random random = new Random();
-            col1 = random.nextInt(9999 - 1000) + 1000;
-            col2 = random.nextInt(9999 - 1000) + 1000;
+            col1 = random.nextInt(20 - 0) + 0;
+            col2 = random.nextInt(20 - 0) + 0;
 
             if (ganador == 1) {
                 color1 = 1;
@@ -85,11 +87,45 @@ public class GestorPartidas {
 
             Jugador jug1 = construcionJugador(nombre1, row1, col1, color1);
             Jugador jug2 = construcionJugador(nombre2, row2, col2, color2);
-            Partida par;
-            objDirector.setBuilderPartida(new ConstructorPartida());
-            par = crearPartida(jug1, jug2);
 
-            return par;
+            objDirector.setBuilderPartida(new ConstructorPartida());
+            par = crearPartida(jug1, jug2, ganador);
+            partidas.add(par);
+
+        } catch (Exception e) {
+            ExceptionManager.GetInstance().Process(e);
+
+        }
+        return par;
+    }
+
+    private Partida crearPartida(Jugador jug1, Jugador jug2, int turno) {
+        objDirector.construirPartida(getIdPartida(), jug1, jug2, getIdJugador(), turno);
+        return objDirector.getBuilderPartida().getObjeto();
+    }
+
+    public ArrayList<Partida> getPartidas() {
+        return partidas;
+    }
+
+    public Partida actualizarPartida(Partida partida) throws Exception {//actualiza rtodo menos las casillas
+        try {
+            Optional<Partida> obj;
+            obj = partidas.stream().filter(e -> e.getId() == partida.getId()).findFirst();
+            if (obj.isPresent()) {
+
+                int index = partidas.indexOf(obj.get());
+                if (index != -1) {
+                    partida.setTablero(obj.get().getTablero());
+                    partidas.set(index, partida);
+                    return partida;
+                } else {
+                    throw new BussinessException(300);
+                }
+
+            } else {
+                throw new BussinessException(300);
+            }
         } catch (Exception e) {
             ExceptionManager.GetInstance().Process(e);
 
@@ -97,12 +133,41 @@ public class GestorPartidas {
         return null;
     }
 
-    private Partida crearPartida(Jugador jug1, Jugador jug2) {
-        objDirector.construirPartida(getIdPartida(), jug1, jug2, getIdJugador());
-        return objDirector.getBuilderPartida().getObjeto();
+    public Partida crearPartidaRapida() throws Exception {//fachada
+        //generar nombres 
+
+        Partida res = null;
+        try {
+            Random random = new Random();
+
+            res = construcionPartida(getNombreRandom(), getNombreRandom(), random.nextInt(2 - 0) + 1);
+        } catch (Exception e) {
+            ExceptionManager.GetInstance().Process(e);
+
+        }
+        return res;
+
     }
 
-    public ArrayList<Partida> getPartidas() {
-        return partidas;
+    public String getNombreRandom() {
+        //generar nombres 
+        ArrayList<String> nombres = new ArrayList<String>();
+        nombres.add("Beberly");
+        nombres.add("Jason");
+        nombres.add("Junior");
+        nombres.add("Harold");
+        nombres.add("Guisell");
+        nombres.add("Jorge");
+        nombres.add("Hernesto");
+        nombres.add("Pedro");
+        nombres.add("Ana");
+        nombres.add("Lucia");
+        nombres.add("Ramona");
+        nombres.add("Carlos");
+
+        Random random = new Random();
+
+        return nombres.get(random.nextInt(nombres.size() - 0) + 0);
+
     }
 }

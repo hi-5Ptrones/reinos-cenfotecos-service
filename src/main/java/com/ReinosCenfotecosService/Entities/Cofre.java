@@ -5,24 +5,60 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
+import com.ReinosCenfotecosService.Core.Cofre.ICofre;
 import java.util.ArrayList;
 
 /**
  *
  * @author jscru
  */
-public class Cofre {
+public class Cofre implements ICofre {
 
-    private ArrayList<DadoInvocacion> listDadosInvocacion;
-    private ArrayList<DadoAtaque> listDadosMovimiento;
-    private ArrayList<DadoAtaque> listDadosAtaque;
-    private ArrayList<DadoAtaque> listDadosAtaqueEspecial;
-
+    private ArrayList<ICofre> listaComposicion; //Contiene los dados
+    private int id;
+    private static int classCounter = 0;
+    
     public Cofre() {
-        listDadosInvocacion = new ArrayList<DadoInvocacion>();
-        listDadosMovimiento = new ArrayList<DadoAtaque>();
-        listDadosAtaque = new ArrayList<DadoAtaque>();
-        listDadosAtaqueEspecial = new ArrayList<DadoAtaque>();
+        this.listaComposicion = new ArrayList<ICofre>();
+        this.id = classCounter;
+        classCounter ++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ArrayList<ICofre> mostrarDatos() {
+        return listaComposicion;
+    }
+
+    public void agregarComponente(ICofre composicion) {
+        this.listaComposicion.add(composicion);
+    }
+    public void quitarComponente(int  indice) {
+        this.listaComposicion.remove(indice);
+    }
+
+    public ArrayList<ICofre> getListaComposicion() {
+        return listaComposicion;
+    }
+
+    public void setListaComposicion(ArrayList<ICofre> listaComposicion) {
+        this.listaComposicion = listaComposicion;
+    }
+
+    @Override
+    public String ejecutar() {
+        String data = "";
+
+        for (ICofre nodo : listaComposicion) {
+            data += nodo.ejecutar();
+        }
+        return data;
     }
 
 }

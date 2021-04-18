@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class Tablero {
     private int id;
     private int idPartida;
-    private ArrayList<Casilla> casillas;
+    private ArrayList<ArrayList<Casilla>> casillas;
 
     public Tablero() {
     }
 
-    public Tablero(int id, int idPartida, ArrayList<Casilla> casillas) {
+    public Tablero(int id, int idPartida, ArrayList<ArrayList<Casilla>> casillas) {
         this.id = id;
         this.idPartida = idPartida;
         this.casillas = casillas;
@@ -41,11 +41,11 @@ public class Tablero {
         this.idPartida = idPartida;
     }
 
-    public ArrayList<Casilla> getCasillas() {
+    public ArrayList<ArrayList<Casilla>> getCasillas() {
         return casillas;
     }
 
-    public void setCasillas(ArrayList<Casilla> casillas) {
+    public void setCasillas(ArrayList<ArrayList<Casilla>> casillas) {
         this.casillas = casillas;
     }
     

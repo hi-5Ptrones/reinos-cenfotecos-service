@@ -28,12 +28,13 @@ public class AtaqueEspecialController {
     @RequestMapping(value = "/api/ataqueEspecial/asignarAtaqueEspecial", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ApiResponse> asignarAtaqueEspecial(AtaqueEspecial specialAttack,
-                                                             int idPersonajeAplica, int idPersonajeaAplicar) {
+                                                             int idPersonajeAplica, int idPersonajeaAplicar,
+                                                             int idPartida, int turnoplayer) {
         ResponseEntity serverResponse;
         try {
             apiResponse = new ApiResponse();
             GestorAtaqueEspecial gestor = new GestorAtaqueEspecial();
-            gestor.asignarAtaqueEspcial(specialAttack, idPersonajeAplica, idPersonajeaAplicar);
+            gestor.asignarAtaqueEspcial(specialAttack, idPersonajeAplica, idPersonajeaAplicar, idPartida, turnoplayer);
             apiResponse.message = "Ataque especial Exitoso";
             return new ResponseEntity(apiResponse, HttpStatus.OK);
         } catch (BussinessException bex) {

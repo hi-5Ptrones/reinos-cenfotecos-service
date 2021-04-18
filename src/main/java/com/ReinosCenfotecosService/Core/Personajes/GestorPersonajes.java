@@ -5,11 +5,17 @@
  */
 package com.ReinosCenfotecosService.Core.Personajes;
 
+import com.ReinosCenfotecosService.Core.Partida.GestorAcciones;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
+import com.ReinosCenfotecosService.Entities.Casilla;
+import com.ReinosCenfotecosService.Entities.DataInvocar;
 import com.ReinosCenfotecosService.Entities.Partida;
 import com.ReinosCenfotecosService.Entities.Personaje;
+import com.ReinosCenfotecosService.Helper.Helper;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
+
+import java.util.ArrayList;
 
 /**
  * @author jscru
@@ -17,8 +23,11 @@ import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 public class GestorPersonajes {
 
     private GestorPartidas gesPartidas = new GestorPartidas();
-    public Personaje CrearPersonaje(int tpersonaje, int idPartida, int jugador, String coordenadas) throws BussinessException, Exception {
+    //private GestorAcciones gesAcciones = new GestorAcciones();
+
+    public Personaje CrearPersonaje(int tpersonaje, int idPartida, int jugador, String[] coordenadas) throws BussinessException, Exception {
         Personaje responseMessage = null;
+        DataInvocar dataInvocacion = null;
         try {
             if (tpersonaje < 1 || tpersonaje > 3) {
                 throw new BussinessException(500);
@@ -27,8 +36,7 @@ public class GestorPersonajes {
                 FactoryPersonaje factory = new FactoryPersonaje();
                 Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
                 responseMessage = objPersonaje;
-                asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
-
+                //asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
@@ -36,26 +44,39 @@ public class GestorPersonajes {
         return responseMessage;
     }
 
-    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String coordenadas) {
+    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String coordenadas) throws Exception {
         Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
-        String coords[] = new String[2];
+        String coords[] = coordenadas.split("-");
         int row, coll;
-        coords = coordenadas.split("-");
         row = Integer.parseInt(coords[0]);
         coll = Integer.parseInt(coords[1]);
+        int idTablero;
         if (objPartida != null) {
 
             if (currectPlayer == 1) {
                 objPartida.getJugador1().addPJtoListPlayer(objPersonaje);
+                idTablero= objPartida.getTablero().getId();
+                //invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, objPersonaje, idPartida);
             } else if (currectPlayer == 2) {
                 objPartida.getJugador2().addPJtoListPlayer(objPersonaje);
-
+                idTablero= objPartida.getTablero().getId();
+                //invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, objPersonaje, idPartida);
             } else {
-                //tirar excepion
+                //throw new BussinessException(505);
             }
         } else {
-            //tirar excepion
+            //throw new BussinessException(504);
         }
+    }
+
+    private void invocacionPJenTablero(int idPersonaje, int idTablero, int currectPlayer, int row,
+                                       int coll, Personaje objPersonaje, int idPartida) throws Exception {
+        Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(row, coll, idTablero),
+                idTablero, row, coll, objPersonaje, currectPlayer, true);
+        ArrayList<Casilla> casillas = new ArrayList<Casilla>();
+        casillas.add(casillaDeInvocacion);
+        DataInvocar datInvocacion = new DataInvocar(idPersonaje, idPartida, currectPlayer, casillas);
+        //gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
 
 

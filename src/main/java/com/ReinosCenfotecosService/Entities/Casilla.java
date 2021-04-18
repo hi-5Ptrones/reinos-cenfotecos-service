@@ -15,14 +15,14 @@ public class Casilla {
     private int idTablero;
     private int row;
     private int column;
-    private Object obj;//personaje
+    private Personaje obj;//personaje
     private int jugador;// jugador al que pertenece 0- vacio 1= player1, 2= player 2
     private boolean filled;
 
     public Casilla() {
     }
 
-    public Casilla(int id, int idTablero, int row, int column, Object obj, int jugador, boolean filled) {
+    public Casilla(int id, int idTablero, int row, int column, Personaje obj, int jugador, boolean filled) {
         this.id = id;
         this.idTablero = idTablero;
         this.row = row;
@@ -64,11 +64,11 @@ public class Casilla {
         this.column = column;
     }
 
-    public Object getObj() {
+    public Personaje getObj() {
         return obj;
     }
 
-    public void setObj(Object obj) {
+    public void setObj(Personaje obj) {
         this.obj = obj;
     }
 

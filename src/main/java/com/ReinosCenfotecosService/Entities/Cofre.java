@@ -21,10 +21,10 @@ public class Cofre {
     private ArrayList<DadoAtaque> listDadosAtaqueEspecial;
 
     public Cofre() {
-//        listDadosInvocacion = new ArrayList<DadoInvocacion>();
-//        listDadosMovimiento = new ArrayList<DadoAccion>();
-//        listDadosAtaque = new ArrayList<DadoAccion>();
-//        listDadosAtaqueEspecial = new ArrayList<DadoAccion>();
+        // listDadosInvocacion = new ArrayList<DadoInvocacion>();
+        // listDadosMovimiento = new ArrayList<DadoAccion>();
+        //    listDadosAtaque = new ArrayList<DadoAccion>();
+        //     listDadosAtaqueEspecial = new ArrayList<DadoAccion>();
         this.id = classCounter = 0;
     }
 

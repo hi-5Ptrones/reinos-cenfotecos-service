@@ -35,7 +35,8 @@ public class GestorAtaqueEspecial {
     }
 
     public void asignarAtaqueEspcial(AtaqueEspecial specialAtack, int idPersonajeAplica,
-                                     int idPersonajeaAplicar) throws BussinessException, Exception {
+                                     int idPersonajeaAplicar, int idPartida, int turnoplayer) throws BussinessException,
+            Exception {
         Personaje objPersonajeAplica = buscarPersonajeByID(idPersonajeAplica);
         Personaje objPersonajeaAplicar = buscarPersonajeByID(idPersonajeaAplicar);
 
@@ -102,7 +103,7 @@ public class GestorAtaqueEspecial {
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
-        }catch(Exception e){
+        } catch (Exception e) {
             ExceptionManager.GetInstance().Process(e);
         }
     }

@@ -35,14 +35,16 @@ public class GestorAcciones {
 
                 ArrayList<Casilla> casillas = new ArrayList<Casilla>();
 
+                //  Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
                 for (Casilla cas : data.getCasillasModificadas()) {
-                    Optional<Casilla> obj;
-                    obj = partida.getTablero().getCasillas().stream().filter(e -> e.getId() == cas.getId()).findFirst();
+                    ArrayList<Casilla> fila;
+                    Casilla obj;
+                    fila = partida.getTablero().getCasillas().get(cas.getRow());
 
-                    if (obj.isPresent()) {
-                        index = partida.getTablero().getCasillas().indexOf(obj.get());
-                        if (index > -1) {
-                            partida.getTablero().getCasillas().set(index, cas);
+                    if (!fila.isEmpty()) {
+                        obj = fila.get(cas.getColumn());
+                        if (obj != null) {
+                            fila.remove(cas.getColumn());
                         }
 
                     }

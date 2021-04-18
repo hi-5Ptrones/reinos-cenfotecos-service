@@ -5,7 +5,6 @@
  */
 package com.ReinosCenfotecosService.Core.Personajes;
 
-import com.ReinosCenfotecosService.Core.Partida.GestorAcciones;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
 import com.ReinosCenfotecosService.Entities.Casilla;
 import com.ReinosCenfotecosService.Entities.DataInvocar;
@@ -36,7 +35,7 @@ public class GestorPersonajes {
                 FactoryPersonaje factory = new FactoryPersonaje();
                 Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
                 responseMessage = objPersonaje;
-                //asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
+                asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
             }
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
@@ -44,28 +43,49 @@ public class GestorPersonajes {
         return responseMessage;
     }
 
-    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String coordenadas) throws Exception {
+    private void asignarPersonajeAJugador(Personaje objPersonaje, int idPartida, int currectPlayer, String[] coordenadas) throws Exception {
         Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
-        String coords[] = coordenadas.split("-");
         int row, coll;
-        row = Integer.parseInt(coords[0]);
-        coll = Integer.parseInt(coords[1]);
         int idTablero;
+        int i = 0;
         if (objPartida != null) {
-
             if (currectPlayer == 1) {
                 objPartida.getJugador1().addPJtoListPlayer(objPersonaje);
-                idTablero= objPartida.getTablero().getId();
-                //invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, objPersonaje, idPartida);
+                for (String coord : coordenadas) {
+                    String coords[] = coord.split("-");
+                    row = Integer.parseInt(coords[0]);
+                    coll = Integer.parseInt(coords[1]);
+                    if (i == 0) {
+                        idTablero = objPartida.getTablero().getId();
+                        invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, objPersonaje, idPartida);
+                    } else {
+                        idTablero = objPartida.getTablero().getId();
+                        invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, null, idPartida);
+                    }
+                    i++;
+                }
+
+
             } else if (currectPlayer == 2) {
                 objPartida.getJugador2().addPJtoListPlayer(objPersonaje);
-                idTablero= objPartida.getTablero().getId();
-                //invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, objPersonaje, idPartida);
+                for (String coord : coordenadas) {
+                    String coords[] = coord.split("-");
+                    row = Integer.parseInt(coords[0]);
+                    coll = Integer.parseInt(coords[1]);
+                    if (i == 0) {
+                        idTablero = objPartida.getTablero().getId();
+                        invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, objPersonaje, idPartida);
+                    } else {
+                        idTablero = objPartida.getTablero().getId();
+                        invocacionPJenTablero(objPersonaje.getId(), idTablero, currectPlayer, row, coll, null, idPartida);
+                    }
+                    i++;
+                }
             } else {
-                //throw new BussinessException(505);
+                throw new BussinessException(505);
             }
         } else {
-            //throw new BussinessException(504);
+            throw new BussinessException(504);
         }
     }
 

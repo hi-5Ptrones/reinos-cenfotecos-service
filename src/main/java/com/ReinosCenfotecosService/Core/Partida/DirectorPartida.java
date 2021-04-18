@@ -25,20 +25,21 @@ public class DirectorPartida {
     public DirectorPartida() {
     }
 
-    public void construirPartida(int id, Jugador jugador1, Jugador jugador2, int idTablero) {
+    public void construirPartida(int id, Jugador jugador1, Jugador jugador2, int idTablero,int turno) {
         builderPartida.crearNuevo();
         construirTablero(idTablero, id);
-        builderPartida.construir(id, jugador1, jugador2, getBuilderTablero().getObjeto(), 0, new Date().toString(), 1, 0, 1);
+        builderPartida.construir(id, jugador1, jugador2, getBuilderTablero().getObjeto(), 0, new Date().toString(), 1, 0, turno);
 
     }
 
     public void construirTablero(int id, int idPartida) {
         builderTablero.crearNuevo();
         builderTablero.construir(id, idPartida);
-        ArrayList<Casilla> casillas = new ArrayList<Casilla>();
+        ArrayList<ArrayList<Casilla>> casillas = new ArrayList< ArrayList<Casilla>>();
         for (int i = 0; i < 20; i++) {
+            casillas.add(new ArrayList<Casilla>());
             for (int j = 0; j < 20; j++) {
-                casillas.add(new Casilla(Integer.parseInt(i + "" + j + "" + idPartida), id, i, j, null, 0, false));
+                casillas.get(i).add(new Casilla(Integer.parseInt(i + "" + j + "" + idPartida), id, i, j, null, 0, false));
             }
         }
         builderTablero.construirConCasillas(casillas);

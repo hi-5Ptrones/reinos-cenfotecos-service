@@ -26,5 +26,5 @@ public abstract class BuilderTablero {
 
     // Métodos que deberán ser construídos por las clases que hereden de ésta
     public abstract void construir(int id, int idPartida);
-    public abstract void construirConCasillas(ArrayList<Casilla> casillas);
+    public abstract void construirConCasillas(ArrayList<ArrayList<Casilla>> casillas);
 }

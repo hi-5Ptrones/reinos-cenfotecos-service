@@ -30,18 +30,17 @@ public class GestorAcciones {
             if (partida == null) {
                 throw new BussinessException(300);
             } else {
-                int index;
-              //  Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
 
+                //  Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
                 for (Casilla cas : data.getCasillasModificadas()) {
-                    Optional<Casilla> obj;
-                    obj = partida.getTablero().getCasillas().stream().filter(e -> e.getId() == cas.getId()).findFirst();//busco la casilla por id
+                    ArrayList<Casilla> fila;
+                    Casilla obj;
+                    fila = partida.getTablero().getCasillas().get(cas.getRow());
 
-                    if (obj.isPresent()) {
-                        index = partida.getTablero().getCasillas().indexOf(obj.get());//obtengo la c
-                        if (index > -1) {//si lo encuentra
-                            partida.getTablero().getCasillas().set(index, cas);// remplaza la casilloa por otra
-                            
+                    if (!fila.isEmpty()) {
+                        obj = fila.get(cas.getColumn());
+                        if (obj != null) {
+                            fila.remove(cas.getColumn());
                         }
 
                     }

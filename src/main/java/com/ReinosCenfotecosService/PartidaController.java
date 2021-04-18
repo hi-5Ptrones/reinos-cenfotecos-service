@@ -7,6 +7,7 @@ package com.ReinosCenfotecosService;
 
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
 import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
+import com.ReinosCenfotecosService.Entities.Partida;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
@@ -32,6 +33,24 @@ public class PartidaController {
             apiResponse = new ApiResponse();
             GestorPartidas gestor = new GestorPartidas();
             apiResponse.data = gestor.obtenerPartidaById(idPartida);
+            apiResponse.message = "Partida Encontrada";
+            return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+
+            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
+                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/api/partida/actualizarPartida", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<ApiResponse> actualizarPartida(Partida partida) {
+        ResponseEntity serverResponse;
+        try {
+            apiResponse = new ApiResponse();
+            GestorPartidas gestor = new GestorPartidas();
+            apiResponse.data = gestor.actualizarPartida(partida);
             apiResponse.message = "Partida Encontrada";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 

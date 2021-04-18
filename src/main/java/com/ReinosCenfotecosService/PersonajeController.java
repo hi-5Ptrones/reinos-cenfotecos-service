@@ -33,7 +33,7 @@ public class PersonajeController {
 
     @RequestMapping(value = "/api/personaje/crearPersonaje", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<ApiResponse> crearPersonaje(int tPersonaje, int idPartida, int jugador, String coordenadas) {
+    public ResponseEntity<ApiResponse> crearPersonaje(int tPersonaje, int idPartida, int jugador, String[] coordenadas) {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();

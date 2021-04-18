@@ -16,11 +16,18 @@ public class DataInvocar {
     private int idPersonaje;
     private int idPartida;
     private int idJugador;// ya sea el id o el color 1 0 2;
-    private ArrayList<Casilla> casillasModificadas = new ArrayList<Casilla>();
+    private ArrayList<Casilla> casillasModificadas;
 
     public DataInvocar() {
-    }   
-    
+    }
+
+    public DataInvocar(int idPersonaje, int idPartida, int idJugador, ArrayList<Casilla>casillasModificadas) {
+        this.idPersonaje = idPersonaje;
+        this.idPartida = idPartida;
+        this.idJugador = idJugador;
+        this.casillasModificadas = casillasModificadas;
+    }
+
     public int getIdPersonaje() {
         return idPersonaje;
     }

@@ -34,7 +34,6 @@ public class Cofre implements ICofre {
 
     public ArrayList<ICofre> mostrarDatos() {
         return listaComposicion;
-
     }
 
     public void agregarComponente(ICofre composicion) {
@@ -54,9 +53,7 @@ public class Cofre implements ICofre {
         String data = "";
 
         for (ICofre nodo : listaComposicion) {
-
             data += nodo.ejecutar();
-
         }
         return data;
     }

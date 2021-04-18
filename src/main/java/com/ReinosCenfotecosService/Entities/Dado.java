@@ -1,18 +1,22 @@
-
 package com.ReinosCenfotecosService.Entities;
 
-public class Dado {
+import com.ReinosCenfotecosService.Core.Cofre.ICofre;
+import java.util.ArrayList;
+
+public class Dado implements ICofre {
+
     private int id;
     private String tipo;
     private int valor;
-    
-    
-    public Dado(){
+
+    public Dado() {
     }
+
     public Dado(int id, String tipo, int valor) {
         this.id = id;
         this.tipo = tipo;
         this.valor = valor;
+
     }
 
     public int getId() {
@@ -38,8 +42,10 @@ public class Dado {
     public void setValor(int valor) {
         this.valor = valor;
     }
-    
-    
-    
-    
+
+    @Override
+    public String ejecutar() {
+        return this.tipo;
+    }
+
 }

@@ -27,7 +27,7 @@ public class TimerController {
         ResponseEntity serverResponse;
         //iniciaTurno(time);
         try {
-            time = 10;
+            time = 60;
             apiResponse = new ApiResponse();
             apiResponse.message = "Inicia el turno";
             apiResponse.data = time;

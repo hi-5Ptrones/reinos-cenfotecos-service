@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Cofre implements ICofre {
 
-    private ArrayList<ICofre> listaComposicion; //Contiene empleados
+    private ArrayList<ICofre> listaComposicion; //Contiene los dados
     private int id;
     private static int classCounter = 0;
     
@@ -38,6 +38,9 @@ public class Cofre implements ICofre {
 
     public void agregarComponente(ICofre composicion) {
         this.listaComposicion.add(composicion);
+    }
+    public void quitarComponente(int  indice) {
+        this.listaComposicion.remove(indice);
     }
 
     public ArrayList<ICofre> getListaComposicion() {

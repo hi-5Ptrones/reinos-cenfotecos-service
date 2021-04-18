@@ -37,7 +37,12 @@ public class PartidaController {
             apiResponse = new ApiResponse();
             GestorPartidas gestor = new GestorPartidas();
             apiResponse.data = gestor.obtenerPartidaById(idPartida);
-            apiResponse.message = "Partida Encontrada";
+            if(apiResponse.data != null){
+                apiResponse.message = "Partida Encontrada";
+            }else{
+                 throw new BussinessException(301);
+            }
+            
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -61,6 +66,10 @@ public class PartidaController {
             apiResponse.message = "Partida Encontrada";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
+        } catch (BussinessException bex) {
+
+            return serverResponse = new ResponseEntity(new ExceptionResponse(bex.message.message,
+                    ExceptionManager.StackTraceToString(bex)), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
 
             return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),

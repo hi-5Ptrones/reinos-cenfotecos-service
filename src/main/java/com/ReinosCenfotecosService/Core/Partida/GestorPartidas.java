@@ -90,7 +90,7 @@ public class GestorPartidas {
             Partida par;
             objDirector.setBuilderPartida(new ConstructorPartida());
             par = crearPartida(jug1, jug2, ganador);
-
+            partidas.add(par);
             return par;
         } catch (Exception e) {
             ExceptionManager.GetInstance().Process(e);
@@ -108,7 +108,7 @@ public class GestorPartidas {
         return partidas;
     }
 
-    public Partida actualizarPartida(Partida partida) throws Exception {
+    public Partida actualizarPartida(Partida partida) throws Exception {//actualiza rtodo menos las casillas
         try {
             Optional<Partida> obj;
             obj = partidas.stream().filter(e -> e.getId() == partida.getId()).findFirst();
@@ -116,7 +116,9 @@ public class GestorPartidas {
 
                 int index = partidas.indexOf(obj.get());
                 if (index != -1) {
-                  return partidas.set(index, partida);
+                    partida.setTablero(obj.get().getTablero());
+                    partidas.set(index, partida);
+                    return partida;
                 } else {
                     throw new BussinessException(300);
                 }

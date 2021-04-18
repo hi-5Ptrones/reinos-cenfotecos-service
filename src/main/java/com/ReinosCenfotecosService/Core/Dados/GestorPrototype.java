@@ -27,7 +27,7 @@ public class GestorPrototype {
         //vamos a buscar los Id de los militantes y ponerlos en el DNI
         updateCloneDados(pDado, id);
 
-        msj = "Dados creados";
+        msj = "Dado "+(id+1)+" creado";
 
         return msj;
     }

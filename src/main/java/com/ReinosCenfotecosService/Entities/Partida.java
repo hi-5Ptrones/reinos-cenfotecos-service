@@ -20,10 +20,11 @@ public class Partida {
     private int estado;// estado de la partida, 0=terminado,1=en curso, 2= inconcluso
     private int ganador;//0=sin ganador, 1=ganó jugador1, 2=ganó jugador2, 3=empate?
     private int turno;//determiande quien es el siguiente turno 1=player1 2=pllayer2
+
     public Partida() {
     }
 
-    public Partida(int id, Jugador jugador1, 
+    public Partida(int id, Jugador jugador1,
             Jugador jugador2, Tablero tablero,
             int duracion, String fecha, int estate,
             int ganador, int turno) {

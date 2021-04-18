@@ -15,20 +15,17 @@ public class ObservadorC implements Observador {
         mostrarValor(value, "");
     }
 
-    private boolean mostrarValor(Serializable value, String pNomProducto) {
-        boolean trigger = false;
+    private void mostrarValor(Serializable value, String pNomProducto) {
         if (pNomProducto.equals("Tiempo")) {
-            System.out.println("El " + pNomProducto + " ahora es: " + value + " segundos, en " + gNombre + ".");
+            System.out.println("Le quedan: " + value + " segundos, a su turno.");
 
         } else {
             System.out.println("Ahora hay un total de: " + value + " " + gNombre + ".");
             //Ocupamos que llegue a 15 abejas en el observador
             if ((int) value == 2) {
                 System.out.println("Listo");
-                trigger = true;
             }
         }
-        return trigger;
     }
 
     public boolean isCompleted() {
@@ -37,6 +34,7 @@ public class ObservadorC implements Observador {
 
     @Override
     public void update(Serializable value, String nombre) {
+        //este es el que se usa realmente
         mostrarValor(value, nombre);
 
     }

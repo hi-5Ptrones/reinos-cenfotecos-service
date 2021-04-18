@@ -5,6 +5,8 @@
  */
 package com.ReinosCenfotecosService.Helper;
 
+
+import javax.swing.text.html.HTML;
 import java.util.Random;
 
 /**
@@ -76,4 +78,14 @@ public class Helper {
     }
 
     //FIn dados
+
+
+    public static int generarIdCasilla(int row, int coll, int idTablero){
+        String rowString, collString, idTableroString;
+        rowString = String.valueOf(row);
+        collString = String.valueOf(coll);
+        idTableroString = String.valueOf(idTablero);
+        String idCasilla= rowString+collString+idTableroString;
+        return Integer.parseInt(idCasilla);
+    }
 }

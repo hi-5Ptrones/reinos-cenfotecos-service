@@ -21,7 +21,7 @@ public class ConstructorTablero extends BuilderTablero {
     }
 
     @Override
-    public void construirConCasillas(ArrayList<Casilla> casillas) {
+    public void construirConCasillas(ArrayList<ArrayList<Casilla>> casillas) {
         this.obj.setCasillas(casillas);
     }
 

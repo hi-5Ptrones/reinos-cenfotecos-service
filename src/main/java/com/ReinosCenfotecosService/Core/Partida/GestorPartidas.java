@@ -68,6 +68,7 @@ public class GestorPartidas {
     }
 
     public Partida construcionPartida(String nombre1, String nombre2, int ganador) throws Exception {
+        Partida par = null;
         try {
             objDirector.setBuilderTablero(new ConstructorTablero());
             //generar campo random para castillos
@@ -87,16 +88,16 @@ public class GestorPartidas {
 
             Jugador jug1 = construcionJugador(nombre1, row1, col1, color1);
             Jugador jug2 = construcionJugador(nombre2, row2, col2, color2);
-            Partida par;
+
             objDirector.setBuilderPartida(new ConstructorPartida());
             par = crearPartida(jug1, jug2, ganador);
             partidas.add(par);
-            return par;
+
         } catch (Exception e) {
             ExceptionManager.GetInstance().Process(e);
 
         }
-        return null;
+        return par;
     }
 
     private Partida crearPartida(Jugador jug1, Jugador jug2, int turno) {

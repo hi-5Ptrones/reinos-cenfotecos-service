@@ -5,6 +5,7 @@
  */
 package com.ReinosCenfotecosService.Core.Personajes;
 
+import com.ReinosCenfotecosService.Core.Partida.GestorAcciones;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
 import com.ReinosCenfotecosService.Entities.Casilla;
 import com.ReinosCenfotecosService.Entities.DataInvocar;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class GestorPersonajes {
 
     private GestorPartidas gesPartidas = new GestorPartidas();
-    //private GestorAcciones gesAcciones = new GestorAcciones();
+    private GestorAcciones gesAcciones = new GestorAcciones();
 
     public Personaje CrearPersonaje(int tpersonaje, int idPartida, int jugador, String[] coordenadas) throws BussinessException, Exception {
         Personaje responseMessage = null;
@@ -31,7 +32,6 @@ public class GestorPersonajes {
             if (tpersonaje < 1 || tpersonaje > 3) {
                 throw new BussinessException(500);
             } else {
-
                 FactoryPersonaje factory = new FactoryPersonaje();
                 Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
                 responseMessage = objPersonaje;
@@ -96,7 +96,7 @@ public class GestorPersonajes {
         ArrayList<Casilla> casillas = new ArrayList<Casilla>();
         casillas.add(casillaDeInvocacion);
         DataInvocar datInvocacion = new DataInvocar(idPersonaje, idPartida, currectPlayer, casillas);
-        //gesAcciones.actualizarTableroInvocar(datInvocacion);
+        gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
 
 

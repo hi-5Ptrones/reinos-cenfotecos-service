@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ReinosCenfotecosService.Core.Cofre;
-
-import com.ReinosCenfotecosService.Entities.Dado;
-import java.util.ArrayList;
+package com.ReinosCenfotecosService.Core.Partida;
 
 /**
  *
  * @author guiss
  */
-public interface ICofre {
-
-    public String ejecutar();
+public class ContruirPartida {
+    
 }

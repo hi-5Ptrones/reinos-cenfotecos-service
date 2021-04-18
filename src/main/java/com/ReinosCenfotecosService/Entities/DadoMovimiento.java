@@ -1,6 +1,9 @@
 
 package com.ReinosCenfotecosService.Entities;
 
+import com.ReinosCenfotecosService.Core.Cofre.ICofre;
+import java.util.ArrayList;
+
 public class DadoMovimiento extends Dado{
      
     private int cantMovimientos;
@@ -8,8 +11,13 @@ public class DadoMovimiento extends Dado{
     public DadoMovimiento() {
     }
 
-    public DadoMovimiento(int id, String tipo, int valor) {
-        super(id, tipo, valor);
+    public DadoMovimiento(int id, int valor) {
+        super(id, "DadoMovimiento", valor);
+    }
+
+    public DadoMovimiento(int cantMovimientos, int id, int valor) {
+        super(id, "DadoMovimiento", valor);
+        this.cantMovimientos = cantMovimientos;
     }
 
     public int getCantMovimientos() {
@@ -19,5 +27,5 @@ public class DadoMovimiento extends Dado{
     public void setCantMovimientos(int cantMovimientos) {
         this.cantMovimientos = cantMovimientos;
     }
-    
+
 }

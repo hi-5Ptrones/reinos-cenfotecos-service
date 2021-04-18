@@ -64,8 +64,6 @@ public class GestorPersonajes {
                     }
                     i++;
                 }
-
-
             } else if (currectPlayer == 2) {
                 objPartida.getJugador2().addPJtoListPlayer(objPersonaje);
                 for (String coord : coordenadas) {
@@ -95,6 +93,7 @@ public class GestorPersonajes {
                 idTablero, row, coll, objPersonaje, currectPlayer, true);
         ArrayList<Casilla> casillas = new ArrayList<Casilla>();
         casillas.add(casillaDeInvocacion);
+
         DataInvocar datInvocacion = new DataInvocar(idPersonaje, idPartida, currectPlayer, casillas);
         gesAcciones.actualizarTableroInvocar(datInvocacion);
     }

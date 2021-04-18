@@ -98,4 +98,21 @@ public class PartidaController {
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+      @RequestMapping(value = "/api/partida/fachadaCrearPartidaRapida", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<ApiResponse> fachadaCrearPartidaRapida() {
+        ResponseEntity serverResponse;
+        try {
+            apiResponse = new ApiResponse();
+            GestorPartidas gestor = new GestorPartidas();
+            apiResponse.data = gestor.crearPartidaRapida();
+            apiResponse.message = "Partida Iniciada ";
+            return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+
+            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
+                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

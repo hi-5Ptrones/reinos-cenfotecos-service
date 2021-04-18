@@ -73,7 +73,6 @@ public class GestorPartidas {
             //generar campo random para castillos
             int row1 = 0, col1, row2 = 19, col2, color1, color2;
             Random random = new Random();
-
             col1 = random.nextInt(20 - 0) + 0;
             col2 = random.nextInt(20 - 0) + 0;
 
@@ -131,5 +130,43 @@ public class GestorPartidas {
 
         }
         return null;
+    }
+
+    public Partida crearPartidaRapida() throws Exception {//fachada
+        //generar nombres 
+
+        Partida res = null;
+        try {
+            Random random = new Random();
+
+            res = construcionPartida(getNombreRandom(), getNombreRandom(), random.nextInt(2 - 0) + 1);
+        } catch (Exception e) {
+            ExceptionManager.GetInstance().Process(e);
+
+        }
+        return res;
+
+    }
+
+    public String getNombreRandom() {
+        //generar nombres 
+        ArrayList<String> nombres = new ArrayList<String>();
+        nombres.add("Beberly");
+        nombres.add("Jason");
+        nombres.add("Junior");
+        nombres.add("Harold");
+        nombres.add("Guisell");
+        nombres.add("Jorge");
+        nombres.add("Hernesto");
+        nombres.add("Pedro");
+        nombres.add("Ana");
+        nombres.add("Lucia");
+        nombres.add("Ramona");
+        nombres.add("Carlos");
+
+        Random random = new Random();
+
+        return nombres.get(random.nextInt(nombres.size() - 0) + 0);
+
     }
 }

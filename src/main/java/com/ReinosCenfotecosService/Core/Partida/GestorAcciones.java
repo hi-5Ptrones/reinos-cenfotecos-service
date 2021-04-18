@@ -30,6 +30,10 @@ public class GestorAcciones {
             if (partida == null) {
                 throw new BussinessException(300);
             } else {
+                int index;
+               // Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
+
+                ArrayList<Casilla> casillas = new ArrayList<Casilla>();
 
                 //  Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
                 for (Casilla cas : data.getCasillasModificadas()) {

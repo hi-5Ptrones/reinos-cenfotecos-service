@@ -18,8 +18,13 @@ public abstract class Personaje {
     private int movsMaximos;
     private int rangoAtaque = 1;
     public String tipoPersonaje;
-    
+    private int jugador;
+
     public Personaje() {
+    }
+
+    public Personaje(int jugador) {
+        this.jugador = jugador;
     }
 
     public int getId() {
@@ -76,6 +81,14 @@ public abstract class Personaje {
 
     public void setRangoAtaque(int rangoAtaque) {
         this.rangoAtaque = rangoAtaque;
+    }
+
+    public int getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(int jugador) {
+        this.jugador = jugador;
     }
 
     public abstract void setEstadisticasPersonaje();

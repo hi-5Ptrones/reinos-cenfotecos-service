@@ -47,7 +47,8 @@ public class DirectorPartida {
 
     public void construirJugador(int id, String nombre, int row, int column, int color) {
         builderJugador.crearNuevo();
-        builderJugador.construir(id, nombre, 4, row, column,color, null);// aqui falta el cofre
+        //construirCofre
+        builderJugador.construir(id, nombre, 4, row, column,color, null);// aqui falta el cofre  builderCofre.getObjeto();
     }
 
     public BuilderPartida getBuilderPartida() {

@@ -5,23 +5,20 @@ import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 
 
 public abstract class PrototipoDado {
-    private int dado;
+    private int id;
     private String tipo;
-    private int valor;
-    private AtaqueEspecial ae;
-    private AtaqueNormal an;
     private int cantMovimientos;
 
     public abstract PrototipoDado clone();
 
     //Gets and Sets
 
-    public int getDado() {
-        return dado;
+    public int getId() {
+        return id;
     }
 
-    public void setDado(int dado) {
-        this.dado = dado;
+    public void setId (int id) {
+        this.id = id;
     }
 
     public String getTipo() {
@@ -31,31 +28,7 @@ public abstract class PrototipoDado {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
-    public AtaqueEspecial getAe() {
-        return ae;
-    }
-
-    public void setAe(AtaqueEspecial ae) {
-        this.ae = ae;
-    }
-
-    public AtaqueNormal getAn() {
-        return an;
-    }
-
-    public void setAn(AtaqueNormal an) {
-        this.an = an;
-    }
-
+    
     public int getCantMovimientos() {
         return cantMovimientos;
     }
@@ -66,15 +39,12 @@ public abstract class PrototipoDado {
 
 
     public String getData() {
-        String mData = "< Dado >\n";
+        String mData = "< Dado #"+(this.getId()+1)+">\n";
 
         mData += "De tipo: " + this.getTipo() + "\n";
 
         if (this.getCantMovimientos() != 0) {
             mData += "Movs: " + this.getCantMovimientos() + "\n";
-        }
-        if ((ae.getNombre() != null)) {
-            mData += "Ataque especial: " + this.ae.getNombre() + "\n";
         }
         return mData;
     }

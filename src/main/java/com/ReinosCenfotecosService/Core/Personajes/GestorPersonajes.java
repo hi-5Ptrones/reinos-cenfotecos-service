@@ -35,7 +35,7 @@ public class GestorPersonajes {
                 throw new BussinessException(500);
             } else {
                 FactoryPersonaje factory = new FactoryPersonaje();
-                Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
+                Personaje objPersonaje = factory.crearPersonaje(tpersonaje, jugador);
                 responseMessage = objPersonaje;
                 asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
             }
@@ -90,8 +90,9 @@ public class GestorPersonajes {
     }
 
     private void invocacionPJenTablero(int idPersonaje, int idTablero, int currectPlayer, int row,
-                                       int coll, Personaje objPersonaje, int idPartida) throws Exception {
-        Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(row, coll, idTablero),
+            int coll, Personaje objPersonaje, int idPartida) throws Exception {
+
+        Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(row, coll, idPartida),
                 idTablero, row, coll, objPersonaje, currectPlayer, true);
         ArrayList<Casilla> casillas = new ArrayList<Casilla>();
         casillas.add(casillaDeInvocacion);
@@ -102,6 +103,7 @@ public class GestorPersonajes {
 
     public Personaje realizarAccionPersonaje(int idPersonaje, int idPartida, int jugador, Accion accionRealizar) throws Exception {
         Personaje objPersonaje = null;
+
         try {
             objPersonaje  = buscarPersonajebyID(idPersonaje, idPartida, jugador);
         } catch (BussinessException bex) {

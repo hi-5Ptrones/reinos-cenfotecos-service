@@ -12,5 +12,5 @@ import com.ReinosCenfotecosService.Entities.Personaje;
  * @author jscru
  */
 public interface IAbstractFactoryMethodPersonaje {
-    public Personaje crearPersonaje(int tPersonaje);
+    public Personaje crearPersonaje(int tPersonaje, int jugador);
 }

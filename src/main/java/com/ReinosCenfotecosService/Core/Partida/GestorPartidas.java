@@ -117,6 +117,8 @@ public class GestorPartidas {
                 int index = partidas.indexOf(obj.get());
                 if (index != -1) {
                     partida.setTablero(obj.get().getTablero());
+                    partida.getJugador1().setPersonajesEnJuego(obj.get().getJugador1().getPersonajesEnJuego());//ignora la lista de jugadores
+                    partida.getJugador2().setPersonajesEnJuego(obj.get().getJugador2().getPersonajesEnJuego());
                     partidas.set(index, partida);
                     return partida;
                 } else {

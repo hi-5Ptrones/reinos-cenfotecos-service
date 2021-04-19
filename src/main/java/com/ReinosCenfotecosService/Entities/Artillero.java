@@ -11,7 +11,11 @@ import com.ReinosCenfotecosService.Helper.Helper;
  *
  * @author jscru
  */
-public class Artillero extends Personaje{
+public class Artillero extends Personaje {
+
+    public Artillero(int jugador) {
+        super(jugador);
+    }
 
     @Override
     public void setEstadisticasPersonaje() {
@@ -27,5 +31,5 @@ public class Artillero extends Personaje{
     public String getInfoPersonaje() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

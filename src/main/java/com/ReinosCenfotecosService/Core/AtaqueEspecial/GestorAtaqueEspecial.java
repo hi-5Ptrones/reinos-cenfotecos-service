@@ -20,12 +20,13 @@ public class GestorAtaqueEspecial {
 
     public GestorAtaqueEspecial() {
         player = new Jugador(123456, "Bryan");
-        player.agregarPersonajealistadeJugador(new Infanteria());
-        player.agregarPersonajealistadeJugador(new Infanteria());
-        player.agregarPersonajealistadeJugador(new Artillero());
-        player.agregarPersonajealistadeJugador(new Artillero());
-        player.agregarPersonajealistadeJugador(new Tanque());
-        player.agregarPersonajealistadeJugador(new Tanque());
+        player.setColor(1);
+        player.agregarPersonajealistadeJugador(new Infanteria(player.getColor()));
+        player.agregarPersonajealistadeJugador(new Infanteria(player.getColor()));
+        player.agregarPersonajealistadeJugador(new Artillero(player.getColor()));
+        player.agregarPersonajealistadeJugador(new Artillero(player.getColor()));
+        player.agregarPersonajealistadeJugador(new Tanque(player.getColor()));
+        player.agregarPersonajealistadeJugador(new Tanque(player.getColor()));
         player.getPersonajesEnJuego().get(0).setId(123);
         player.getPersonajesEnJuego().get(1).setId(234);
         player.getPersonajesEnJuego().get(2).setId(345);

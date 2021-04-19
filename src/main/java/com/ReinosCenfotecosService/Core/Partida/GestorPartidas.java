@@ -120,6 +120,8 @@ public class GestorPartidas {
                     partida.setTablero(obj.get().getTablero());
                     partida.getJugador1().setPersonajesEnJuego(obj.get().getJugador1().getPersonajesEnJuego());//ignora la lista de jugadores
                     partida.getJugador2().setPersonajesEnJuego(obj.get().getJugador2().getPersonajesEnJuego());
+                    partida.getJugador1().setCofre(obj.get().getJugador1().getCofre());//ignore el cofre
+                    partida.getJugador2().setCofre(obj.get().getJugador2().getCofre());
                     partidas.set(index, partida);
                     return partida;
                 } else {

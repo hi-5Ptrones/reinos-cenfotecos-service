@@ -101,17 +101,19 @@ public class GestorPersonajes {
         gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
 
-    public Personaje realizarAccionPersonaje(int idPersonaje, int idPartida, int jugador, Accion accionRealizar) throws Exception {
-        Personaje objPersonaje = null;
-
+    public Personaje realizarAccionPersonaje(int idPersonajeAplica, int idPersonajeAplcar, int idPartida, int jugador, String[] listCeldas, String accionRealizar) throws Exception {
+        Personaje objPersonajeAplica = null;
+        Personaje objPersonajeAplicar = null;
         try {
-            objPersonaje  = buscarPersonajebyID(idPersonaje, idPartida, jugador);
+            objPersonajeAplica  = buscarPersonajebyID(idPersonajeAplica, idPartida, jugador);
+            objPersonajeAplicar = buscarPersonajebyID(idPersonajeAplcar, idPartida, jugador);
+            realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar);
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
         } catch (Exception e) {
 
         }
-        return objPersonaje;
+        return objPersonajeAplica;
     }
 
     private Personaje buscarPersonajebyID(int idPersonaje, int idPartida, int jugador) throws BussinessException {
@@ -159,8 +161,8 @@ public class GestorPersonajes {
         this.handler = configurarCadena();
     }
 
-    public void valizacionAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
-                                 Casilla[] casillas, Accion accionRealizar){
+    public void realizaciondeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
+                                 String[] casillas, String accionRealizar) throws BussinessException {
         handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar);
 
     }

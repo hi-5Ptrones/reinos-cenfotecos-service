@@ -26,7 +26,7 @@ public class GestorCofre {
 
     public ArrayList<ICofre> nuevo_cofre_Dado(ArrayList<Dado> dados, int idPartida, int jugador) {
         Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
-
+        System.out.println(objPartida.getJugador1().getCofre().getId());
         if (objPartida != null) {
             if (jugador == 1) {
                 cofre = objPartida.getJugador1().getCofre();
@@ -35,15 +35,15 @@ public class GestorCofre {
                     cofre.agregarComponente(nodo);
                 }
                 cofre.ejecutar();
-            }
-        } else if (jugador == 2) {
+            } else if (jugador == 2) {
 
-            cofre = objPartida.getJugador2().getCofre();
-            for (ICofre nodo : dados) {
+                cofre = objPartida.getJugador2().getCofre();
+                for (ICofre nodo : dados) {
 
-                cofre.agregarComponente(nodo);
+                    cofre.agregarComponente(nodo);
+                }
+                cofre.ejecutar();
             }
-            cofre.ejecutar();
         }
 
         return cofre.getListaComposicion();
@@ -64,19 +64,19 @@ public class GestorCofre {
                     }
                 }
                 cofre.ejecutar();
-            }
-        } else if (jugador == 2) {
+            } else if (jugador == 2) {
 
-            cofre = objPartida.getJugador2().getCofre();
-            for (ICofre nodo : dados) {
-                if (nodo instanceof Dado) {
-                    Dado da = (Dado) nodo;
-                    int indice = 0;
-                    indice = cofre.getListaComposicion().indexOf(da);
-                    cofre.quitarComponente(indice);
+                cofre = objPartida.getJugador2().getCofre();
+                for (ICofre nodo : dados) {
+                    if (nodo instanceof Dado) {
+                        Dado da = (Dado) nodo;
+                        int indice = 0;
+                        indice = cofre.getListaComposicion().indexOf(da);
+                        cofre.quitarComponente(indice);
+                    }
                 }
+                cofre.ejecutar();
             }
-            cofre.ejecutar();
         }
 
         return cofre.getListaComposicion();

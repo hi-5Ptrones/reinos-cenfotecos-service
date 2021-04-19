@@ -19,7 +19,7 @@ public class DirectorPartida {
 
     private BuilderPartida builderPartida;
     private BuilderJugador builderJugador;
-    //private BuilderCofre builderCofre;
+    private BuilderCofre builderCofre;
     private BuilderTablero builderTablero;
 
     public DirectorPartida() {
@@ -44,11 +44,15 @@ public class DirectorPartida {
         }
         builderTablero.construirConCasillas(casillas);
     }
+    public void construirCofre() {
+        builderCofre.crearNuevo();
+        builderCofre.construir(); 
+    }
 
     public void construirJugador(int id, String nombre, int row, int column, int color) {
         builderJugador.crearNuevo();
-        //construirCofre
-        builderJugador.construir(id, nombre, 4, row, column,color, null);// aqui falta el cofre  builderCofre.getObjeto();
+        construirCofre();
+        builderJugador.construir(id, nombre, 4, row, column,color, builderCofre.getObjeto());// aqui falta el cofre  builderCofre.getObjeto();
     }
 
     public BuilderPartida getBuilderPartida() {
@@ -73,6 +77,14 @@ public class DirectorPartida {
 
     public void setBuilderTablero(BuilderTablero builderTablero) {
         this.builderTablero = builderTablero;
+    }
+
+    public BuilderCofre getBuilderCofre() {
+        return builderCofre;
+    }
+
+    public void setBuilderCofre(BuilderCofre builderCofre) {
+        this.builderCofre = builderCofre;
     }
 
 }

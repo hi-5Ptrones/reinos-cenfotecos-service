@@ -52,15 +52,15 @@ public class PersonajeController {
         }
     }
 
-    @RequestMapping(value = "/api/personaje/accionPersonaje", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/personaje/accionPersonaje", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<ApiResponse> accionPersonaje(int idPersonaje, int idPartida, int jugador, Accion accionRealizar) {
+    public ResponseEntity<ApiResponse> accionPersonaje(int idPersonajeAplica, int idPersonajeAplicar, int idPartida, int jugador, String[] listCeldas, String accionRealizar) {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();
             apiResponse = new ApiResponse();
             GestorPersonajes gestor = new GestorPersonajes();
-            String string = gson.toJson(gestor.realizarAccionPersonaje(idPersonaje, idPartida, jugador, accionRealizar));
+            String string = gson.toJson(gestor.realizarAccionPersonaje(idPersonajeAplica, idPersonajeAplicar, idPartida, jugador, listCeldas, accionRealizar));
             JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
             apiResponse.data = jsonObject;
             apiResponse.message = "Tropa creada";

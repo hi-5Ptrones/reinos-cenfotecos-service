@@ -3,6 +3,7 @@ package com.ReinosCenfotecosService.Core.Personajes;
 import com.ReinosCenfotecosService.Entities.Accion;
 import com.ReinosCenfotecosService.Entities.Casilla;
 import com.ReinosCenfotecosService.Entities.Personaje;
+import com.ReinosCenfotecosService.exceptions.BussinessException;
 
 public abstract class RealizarAccion {
     RealizarAccion handler;
@@ -12,5 +13,5 @@ public abstract class RealizarAccion {
     }
 
     public abstract void faseDeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
-                                      Casilla[] casillas, Accion accionRealizar);
+                                      String[] casillas, String accionRealizar) throws BussinessException;
 }

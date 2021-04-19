@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class GestorCofre {
 
     private GestorPartidas gesPartidas = new GestorPartidas();
-    private ArrayList<Cofre> cofres = new ArrayList<Cofre>();
 
     Cofre cofre;
 

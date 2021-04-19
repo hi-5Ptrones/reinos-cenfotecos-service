@@ -25,7 +25,6 @@ public class GestorCofre {
 
     public ArrayList<ICofre> nuevo_cofre_Dado(ArrayList<Dado> dados, int idPartida, int jugador) {
         Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
-        System.out.println(objPartida.getJugador1().getCofre().getId());
         if (objPartida != null) {
             if (jugador == 1) {
                 cofre = objPartida.getJugador1().getCofre();

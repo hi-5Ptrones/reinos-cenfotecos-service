@@ -1,4 +1,4 @@
-package com.ReinosCenfotecosService.Core.Timer;
+package com.ReinosCenfotecosService.Core.Observador;
 
 public interface Sujeto {
     void addObserver(Observador o);

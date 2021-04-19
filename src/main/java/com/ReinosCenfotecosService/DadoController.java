@@ -1,6 +1,8 @@
 package com.ReinosCenfotecosService;
 
+import com.ReinosCenfotecosService.Core.Dados.Dados;
 import com.ReinosCenfotecosService.Core.Dados.GestorPrototype;
+import com.ReinosCenfotecosService.Core.Dados.PrototipoDado;
 import com.ReinosCenfotecosService.Entities.Dado;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
@@ -21,7 +23,32 @@ public class DadoController {
     private static GestorPrototype Prototype;
     ApiResponse apiResponse;
 
-    public Dado[] creacionDados(int generados[]) {
+      @RequestMapping(value = "/api/dado/obtenerdados", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<ApiResponse> obtenerDados() {
+        ResponseEntity serverResponse;
+        try {
+            apiResponse = new ApiResponse();
+
+            int randomArray[] = {1, 2, 3};
+
+            for (int i = 0; i < randomArray.length; i++) {
+                randomArray[i] = (int) (Math.random() * (6 - 0) + 1);
+            }
+            //crea los dados en el backend y manda los objetos DADO a la UI
+            apiResponse.data = creacionDados(randomArray);
+            apiResponse.message = "Dados creados";
+
+            Prototype.limpiarLista();
+            return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
+                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    public PrototipoDado[] creacionDados(int generados[]) {
         //crea el gestor prototype
         Prototype = new GestorPrototype(1);
         //arreglo de dados por crear en backend
@@ -65,29 +92,5 @@ public class DadoController {
         return Prototype.obtenerArreglo();
     }
 
-    @RequestMapping(value = "/api/dado/obtenerdados", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<ApiResponse> obtenerDados() {
-        ResponseEntity serverResponse;
-        try {
-            apiResponse = new ApiResponse();
-
-            Dado dadosArray[] = new Dado[3];
-            int randomArray[] = {1, 2, 3};
-
-            for (int i = 0; i < dadosArray.length; i++) {
-                randomArray[i] = (int) (Math.random() * (6 - 0) + 1);
-            }
-            //crea los dados en el backend y manda los objetos DADO a la UI
-            apiResponse.data = creacionDados(randomArray);
-            apiResponse.message = "Dados creados";
-
-            Prototype.limpiarLista();
-            return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
-
-        } catch (Exception e) {
-            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
-                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+  
 }

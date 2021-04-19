@@ -1,4 +1,4 @@
-package com.ReinosCenfotecosService.Core.Timer;
+package com.ReinosCenfotecosService.Core.Observador;
 
 import java.util.HashMap;
 

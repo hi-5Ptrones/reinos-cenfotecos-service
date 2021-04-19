@@ -105,9 +105,10 @@ public class GestorPersonajes {
         Personaje objPersonajeAplica = null;
         Personaje objPersonajeAplicar = null;
         try {
+            Partida partidaActual = gesPartidas.obtenerPartidaById(idPartida);
             objPersonajeAplica  = buscarPersonajebyID(idPersonajeAplica, idPartida, jugador);
             objPersonajeAplicar = buscarPersonajebyID(idPersonajeAplcar, idPartida, jugador);
-            realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar);
+            realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar, partidaActual);
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
         } catch (Exception e) {
@@ -162,7 +163,7 @@ public class GestorPersonajes {
     }
 
     public void realizaciondeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
-                                 String[] casillas, String accionRealizar) throws BussinessException {
+                                 String[] casillas, String accionRealizar, Partida partidaActual) throws BussinessException {
         handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar);
 
     }

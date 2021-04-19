@@ -35,7 +35,7 @@ public class GestorAcciones {
 
                 ArrayList<Casilla> casillas = new ArrayList<Casilla>();
 
-                //  Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
+                //Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
                 for (Casilla cas : data.getCasillasModificadas()) {
                     ArrayList<Casilla> fila;
                     Casilla obj;

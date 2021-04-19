@@ -26,6 +26,7 @@ public class GestorPartidas {
 
     private Jugador construcionJugador(String nombre, int rowCastillo, int columnCastillo, int color) {
         objDirector.setBuilderJugador(new ConstructorJugador());
+        objDirector.setBuilderCofre(new ConstructorCofre());
         return crearJugador(nombre, rowCastillo, columnCastillo, color);
         //objDirector.construirJugador(getIdJugador(), nombre, rowCastillo, columnCastillo);
     }

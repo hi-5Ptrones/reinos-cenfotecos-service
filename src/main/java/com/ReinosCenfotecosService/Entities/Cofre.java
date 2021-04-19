@@ -19,9 +19,7 @@ public class Cofre implements ICofre {
     private static int classCounter = 0;
     
     public Cofre() {
-        this.listaComposicion = new ArrayList<ICofre>();
-        this.id = classCounter;
-        classCounter ++;
+       
     }
 
     public int getId() {

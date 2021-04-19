@@ -36,7 +36,7 @@ public class CofreController {
     private static GestorPrototype Prototype;
     ApiResponse apiResponse;
 
-    @RequestMapping(value = "/api/partida/mostrarCofre", method = RequestMethod.GET, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/partida/mostrarCofre", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ApiResponse> mostrarCofre(HttpEntity<String> httpEntityd, int idPartida, int jugador) {
         ResponseEntity serverResponse;
@@ -45,9 +45,9 @@ public class CofreController {
             apiResponse = new ApiResponse();
             String jsonDado = httpEntityd.getBody();
 
-            Dado[] dado = gson.fromJson(jsonDado,  Dado[].class);
-             ArrayList<Dado> da = new  ArrayList<Dado>() ;
-             da.addAll(Arrays.asList(dado));
+            Dado[] dado = gson.fromJson(jsonDado, Dado[].class);
+            ArrayList<Dado> da = new ArrayList<Dado>();
+            da.addAll(Arrays.asList(dado));
             GestorCofre gestor = new GestorCofre();
             apiResponse.data = gestor.nuevo_cofre_Dado(da, idPartida, jugador);
             apiResponse.message = "Se agregó";
@@ -59,7 +59,7 @@ public class CofreController {
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @RequestMapping(value = "/api/partida/quitarDado", method = RequestMethod.GET, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ApiResponse> quitarDadoCofre(HttpEntity<String> httpEntityd, int idPartida, int jugador) {
@@ -69,9 +69,9 @@ public class CofreController {
             apiResponse = new ApiResponse();
             String jsonDado = httpEntityd.getBody();
 
-            Dado[] dado = gson.fromJson(jsonDado,  Dado[].class);
-             ArrayList<Dado> da = new  ArrayList<Dado>() ;
-             da.addAll(Arrays.asList(dado));
+            Dado[] dado = gson.fromJson(jsonDado, Dado[].class);
+            ArrayList<Dado> da = new ArrayList<Dado>();
+            da.addAll(Arrays.asList(dado));
             GestorCofre gestor = new GestorCofre();
             apiResponse.data = gestor.quitar_cofre_Dado(da, idPartida, jugador);
             apiResponse.message = "Se eliminó";

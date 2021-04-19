@@ -1,7 +1,6 @@
 package com.ReinosCenfotecosService.Entities;
 
 import com.ReinosCenfotecosService.Core.Cofre.ICofre;
-import java.util.ArrayList;
 
 public class Dado implements ICofre {
 

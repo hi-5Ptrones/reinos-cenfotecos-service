@@ -14,26 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-public class TimerController {
+public class VidasController {
 
     private static Gestor_Observador observador = new Gestor_Observador();
-    private static int time = 0;
+    private static int vida = 0;
     ApiResponse apiResponse;
 
-    @RequestMapping(value = "/api/timer/iniciarTimer", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/vidas/iniciarVidas", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<ApiResponse> randomValue() {
         ResponseEntity serverResponse;
-        //iniciaTurno(time);
         try {
-            time = 60;
+            vida = 4;
             apiResponse = new ApiResponse();
-            apiResponse.message = "Inicia el turno";
-            apiResponse.data = time;
+            apiResponse.message = "La vida del jugador es: "+vida;
+            apiResponse.data = vida;
 
             //Observador
-            observador.NuevoProducto("Tiempo");
-            observador.NuevoObservador("Cuenta Regresiva", "Tiempo");
+            observador.NuevoProducto("Vidas");
+            observador.NuevoObservador("Vidas restantes", "Vidas");
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -42,19 +41,19 @@ public class TimerController {
         }
     }
 
-    @RequestMapping(value = "/api/timer/cambiarTurno", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/vidas/bajarVidas", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<ApiResponse> cambiarTurno() {
         ResponseEntity serverResponse;
-        //iniciaTurno(time);
         try {
-            time = 0;
+            //llamar las vidas del jugador
+            vida = 0;
             apiResponse = new ApiResponse();
-            apiResponse.message = "Cambió el turno";
-            apiResponse.data = time;
+            apiResponse.message = "La vida del jugador es:"+ vida;
+            apiResponse.data = vida;
 
             //Observador
-                observador.NuevoTiempo("Tiempo", time);
+            observador.NuevoValor("Vidas", vida);
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {

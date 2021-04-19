@@ -33,7 +33,7 @@ public class GestorPersonajes {
                 throw new BussinessException(500);
             } else {
                 FactoryPersonaje factory = new FactoryPersonaje();
-                Personaje objPersonaje = factory.crearPersonaje(tpersonaje);
+                Personaje objPersonaje = factory.crearPersonaje(tpersonaje, jugador);
                 responseMessage = objPersonaje;
                 asignarPersonajeAJugador(objPersonaje, idPartida, jugador, coordenadas);
             }
@@ -65,7 +65,6 @@ public class GestorPersonajes {
                     i++;
                 }
 
-
             } else if (currectPlayer == 2) {
                 objPartida.getJugador2().addPJtoListPlayer(objPersonaje);
                 for (String coord : coordenadas) {
@@ -90,15 +89,15 @@ public class GestorPersonajes {
     }
 
     private void invocacionPJenTablero(int idPersonaje, int idTablero, int currectPlayer, int row,
-                                       int coll, Personaje objPersonaje, int idPartida) throws Exception {
-        Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(row, coll, idTablero),
+            int coll, Personaje objPersonaje, int idPartida) throws Exception {
+
+        Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(row, coll, idPartida),
                 idTablero, row, coll, objPersonaje, currectPlayer, true);
         ArrayList<Casilla> casillas = new ArrayList<Casilla>();
         casillas.add(casillaDeInvocacion);
         DataInvocar datInvocacion = new DataInvocar(idPersonaje, idPartida, currectPlayer, casillas);
         gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
-
 
     public Object saveCurrentPoscitionCharacter(int idPersonaje, String lastCoords) throws BussinessException, Exception {
         try {
@@ -112,7 +111,6 @@ public class GestorPersonajes {
         }
         return "";
     }
-
 
     public Object validateNewPosCharacter(int idPersonaje, String newCoords) throws BussinessException, Exception {
         try {

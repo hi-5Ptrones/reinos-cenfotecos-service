@@ -13,6 +13,10 @@ import com.ReinosCenfotecosService.Helper.Helper;
  */
 public class Tanque extends Personaje {
 
+    public Tanque(int jugador) {
+        super(jugador);
+    }
+
     @Override
     public void setEstadisticasPersonaje() {
         this.setId(Helper.creadorDeIdentificacion());

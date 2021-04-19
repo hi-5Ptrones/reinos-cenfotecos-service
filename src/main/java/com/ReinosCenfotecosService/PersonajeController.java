@@ -6,6 +6,7 @@
 package com.ReinosCenfotecosService;
 
 import com.ReinosCenfotecosService.Core.Personajes.GestorPersonajes;
+import com.ReinosCenfotecosService.Entities.Accion;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
@@ -15,14 +16,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
- *
  * @author jscru
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -56,15 +52,15 @@ public class PersonajeController {
         }
     }
 
-    @RequestMapping(value = "/api/personaje/guardarPoscionActualPersonaje", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/personaje/crearPersonaje", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<ApiResponse> guardarPoscionActualPersonaje(int idPersonaje, String lastCoords) {
+    public ResponseEntity<ApiResponse> accionPersonaje(int idPersonaje, int idPartida, int jugador, Accion accionRealizar) {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();
             apiResponse = new ApiResponse();
             GestorPersonajes gestor = new GestorPersonajes();
-            String string = gson.toJson(gestor.saveCurrentPoscitionCharacter(idPersonaje, lastCoords));
+            String string = gson.toJson(gestor.realizarAccionPersonaje(idPersonaje, idPartida, jugador, accionRealizar));
             JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
             apiResponse.data = jsonObject;
             apiResponse.message = "Tropa creada";
@@ -72,36 +68,11 @@ public class PersonajeController {
         } catch (BussinessException bex) {
 
             return serverResponse = new ResponseEntity(new ExceptionResponse(bex.message.message,
-                    ExceptionManager.StackTraceToString(bex)), HttpStatus.OK);
-
-        } catch (Exception e) {
-
-            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
-                    ExceptionManager.StackTraceToString(e)), HttpStatus.OK);
-        }
-    }
-
-    @RequestMapping(value = "/api/personaje/validarPosicionMover", method = RequestMethod.PUT)
-    @ResponseBody
-    public ResponseEntity<ApiResponse> validarPosicionMover(int idPersonaje, String newCoords) {
-        
-        try {
-            Gson gson = new Gson();
-            apiResponse = new ApiResponse();
-            GestorPersonajes gestor = new GestorPersonajes();
-            String string = gson.toJson(gestor.validateNewPosCharacter(idPersonaje, newCoords));
-            JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
-            apiResponse.data = jsonObject;
-            apiResponse.message = "Tropa creada";
-            return new ResponseEntity(apiResponse, HttpStatus.OK);
-        } catch (BussinessException bex) {
-
-            return new ResponseEntity(new ExceptionResponse(bex.message.message,
                     ExceptionManager.StackTraceToString(bex)), HttpStatus.INTERNAL_SERVER_ERROR);
 
         } catch (Exception e) {
 
-            return new ResponseEntity(new ExceptionResponse(e.getMessage(),
+            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

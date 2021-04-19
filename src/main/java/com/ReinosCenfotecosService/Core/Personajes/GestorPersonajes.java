@@ -7,10 +7,7 @@ package com.ReinosCenfotecosService.Core.Personajes;
 
 import com.ReinosCenfotecosService.Core.Partida.GestorAcciones;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
-import com.ReinosCenfotecosService.Entities.Casilla;
-import com.ReinosCenfotecosService.Entities.DataInvocar;
-import com.ReinosCenfotecosService.Entities.Partida;
-import com.ReinosCenfotecosService.Entities.Personaje;
+import com.ReinosCenfotecosService.Entities.*;
 import com.ReinosCenfotecosService.Helper.Helper;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
@@ -24,10 +21,15 @@ public class GestorPersonajes {
 
     private GestorPartidas gesPartidas = new GestorPartidas();
     private GestorAcciones gesAcciones = new GestorAcciones();
+    private RealizarAccion handler;
 
+    public GestorPersonajes() {
+        iniciarProceso();
+    }
+
+    /*####################################Inicio Creación de personajes ##########################################*/
     public Personaje CrearPersonaje(int tpersonaje, int idPartida, int jugador, String[] coordenadas) throws BussinessException, Exception {
         Personaje responseMessage = null;
-        DataInvocar dataInvocacion = null;
         try {
             if (tpersonaje < 1 || tpersonaje > 3) {
                 throw new BussinessException(500);
@@ -98,31 +100,66 @@ public class GestorPersonajes {
         gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
 
-
-    public Object saveCurrentPoscitionCharacter(int idPersonaje, String lastCoords) throws BussinessException, Exception {
+    public Personaje realizarAccionPersonaje(int idPersonaje, int idPartida, int jugador, Accion accionRealizar) throws Exception {
+        Personaje objPersonaje = null;
         try {
-            if (true) {
-                throw new BussinessException(500);
-            } else {
-
-            }
+            objPersonaje  = buscarPersonajebyID(idPersonaje, idPartida, jugador);
         } catch (BussinessException bex) {
             ExceptionManager.GetInstance().Process(bex);
+        } catch (Exception e) {
+
         }
-        return "";
+        return objPersonaje;
     }
 
-
-    public Object validateNewPosCharacter(int idPersonaje, String newCoords) throws BussinessException, Exception {
-        try {
-            if (true) {
-                throw new BussinessException(500);
+    private Personaje buscarPersonajebyID(int idPersonaje, int idPartida, int jugador) throws BussinessException {
+        Partida objPartida = gesPartidas.obtenerPartidaById(idPartida);
+        Personaje personajeEncontrado = null;
+        if (objPartida != null) {
+            if (jugador == 1) {
+                for (Personaje objPerPersonaje : objPartida.getJugador1().getPersonajesEnJuego()) {
+                    if (objPerPersonaje.getId() == idPersonaje) {
+                        personajeEncontrado = objPerPersonaje;
+                        break;
+                    }
+                }
+            } else if (jugador == 2) {
+                for (Personaje objPerPersonaje : objPartida.getJugador2().getPersonajesEnJuego()) {
+                    if (objPerPersonaje.getId() == idPersonaje) {
+                        personajeEncontrado = objPerPersonaje;
+                        break;
+                    }
+                }
             } else {
-
+                throw new BussinessException(505);
             }
-        } catch (BussinessException bex) {
-            ExceptionManager.GetInstance().Process(bex);
+        } else {
+            throw new BussinessException(504);
         }
-        return "";
+        if (personajeEncontrado == null) {
+            throw new BussinessException(506);
+        }
+        return personajeEncontrado;
+    }
+
+    private RealizarAccion configurarCadena(){
+        RealizarAccion accionAtaque = new RealizarAtaque();
+        RealizarAccion accionMovimiento = new RealizarMovimiento();
+        RealizarAccion accionAtaqueEspecial = new RealizarAtaqueEspecial();
+
+        accionAtaque.setAccionHandler(accionMovimiento);
+        accionMovimiento.setAccionHandler(accionAtaqueEspecial);
+
+        return accionAtaque;
+    }
+
+    public void iniciarProceso (){
+        this.handler = configurarCadena();
+    }
+
+    public void valizacionAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
+                                 Casilla[] casillas, Accion accionRealizar){
+        handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar);
+
     }
 }

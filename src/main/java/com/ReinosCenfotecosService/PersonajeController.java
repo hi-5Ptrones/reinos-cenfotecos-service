@@ -52,7 +52,7 @@ public class PersonajeController {
         }
     }
 
-    @RequestMapping(value = "/api/personaje/crearPersonaje", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/personaje/accionPersonaje", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ApiResponse> accionPersonaje(int idPersonaje, int idPartida, int jugador, Accion accionRealizar) {
         ResponseEntity serverResponse;

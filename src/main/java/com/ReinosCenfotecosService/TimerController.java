@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TimerController {
 
-    private static Gestor_Observador observador = new Gestor_Observador();
     private static int time = 0;
     ApiResponse apiResponse;
 
@@ -31,9 +30,6 @@ public class TimerController {
             apiResponse.message = "Inicia el turno";
             apiResponse.data = time;
 
-            //Observador
-            observador.NuevoProducto("Tiempo");
-            observador.NuevoObservador("Cuenta Regresiva", "Tiempo");
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -53,8 +49,6 @@ public class TimerController {
             apiResponse.message = "Cambió el turno";
             apiResponse.data = time;
 
-            //Observador
-                observador.NuevoTiempo("Tiempo", time);
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {

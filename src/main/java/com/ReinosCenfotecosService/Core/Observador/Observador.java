@@ -1,8 +1,9 @@
 package com.ReinosCenfotecosService.Core.Observador;
 
-import java.io.Serializable;
+import com.ReinosCenfotecosService.Entities.Partida;
+
 
 public interface Observador {
-    void update(Serializable value, String nombre);
+    Partida update(Partida value, String nombre);
 
 }

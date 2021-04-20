@@ -1,5 +1,6 @@
 package com.ReinosCenfotecosService.Core.Observador;
 
+import com.ReinosCenfotecosService.Entities.Partida;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,38 +9,38 @@ public class SujetoC implements Sujeto {
 
     private String Nombre_Producto;
     private List<Observador> observers = new ArrayList<Observador>();
-    private Integer value;
+    private Partida value;
 
     public SujetoC(String pNombre_Producto) {
         setNombre_Producto(pNombre_Producto);
     }
 
     @Override
-    public void addObserver(Observador o) {
+    public Partida addObserver(Observador o) {
         observers.add(o);
+        return new Partida();
     }
 
     @Override
-    public void removeObserver(Observador o) {
-
+    public Partida removeObserver(Observador o) {
+        return new Partida();
     }
     @Override
-    public void notifyObservers() {
+    public Partida notifyObservers() {
+        Partida nueva = new Partida();
+        
         for (Observador o : observers) {
-            o.update(this.value, getNombre_Producto());
+          nueva= o.update(this.value, getNombre_Producto());
         }
+        return nueva;
     }
 
-    public void setState(Integer value) {
+    public Partida setState2(Partida value) {
         this.value = value;
-        notifyObservers();
-    }
-    public void setState2(Integer value) {
-        this.value = value;
-        notifyObservers();
+        return notifyObservers();
     }
 
-    public Integer getValue() {
+    public Partida getValue() {
         return value;
     }
 

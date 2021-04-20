@@ -1,9 +1,11 @@
 package com.ReinosCenfotecosService.Core.Observador;
 
+import com.ReinosCenfotecosService.Entities.Partida;
+
 public interface Sujeto {
-    void addObserver(Observador o);
+    Partida addObserver(Observador o);
 
-    void removeObserver(Observador o);
+    Partida removeObserver(Observador o);
 
-    void notifyObservers();
+    Partida notifyObservers();
 }

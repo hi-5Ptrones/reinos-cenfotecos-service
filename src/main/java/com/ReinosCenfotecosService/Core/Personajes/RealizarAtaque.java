@@ -17,7 +17,7 @@ public class RealizarAtaque extends RealizarAccion {
         boolean estadosAtaque = false;
         if (accionRealizar.equals("Atacar")) {
             estadoValidacion = validacionMovimiento(casillas);
-            if (true) {
+            if (estadoValidacion) {
                 int rowAtacado, colAtacado;
 
 

@@ -123,7 +123,7 @@ public class GestorPartidas {
                     partida.getJugador1().setCofre(obj.get().getJugador1().getCofre());//ignore el cofre
                     partida.getJugador2().setCofre(obj.get().getJugador2().getCofre());
                     partidas.set(index, partida);
-                    return partida;
+                    return partidas.get(index);
                 } else {
                     throw new BussinessException(300);
                 }

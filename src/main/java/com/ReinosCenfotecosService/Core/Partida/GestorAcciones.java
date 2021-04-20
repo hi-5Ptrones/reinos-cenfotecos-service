@@ -23,7 +23,7 @@ public class GestorAcciones {
     // GestorPersonajes gpersonajes = new GestorPersonajes();
     GestorPartidas gPartidas = new GestorPartidas();
 
-    public Partida actualizarTableroInvocar(DataInvocar data) throws Exception {
+    public Partida actualizarTableroInvocar(DataInvocar data) throws Exception {//solo actualiza las casillas
         try {
             Partida partida = gPartidas.obtenerPartidaById(data.getIdPartida());
 

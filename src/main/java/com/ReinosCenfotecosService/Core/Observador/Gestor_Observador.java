@@ -1,5 +1,6 @@
-package com.ReinosCenfotecosService.Core.Timer;
+package com.ReinosCenfotecosService.Core.Observador;
 
+import com.ReinosCenfotecosService.Entities.Partida;
 import java.util.HashMap;
 
 
@@ -18,11 +19,7 @@ public class Gestor_Observador {
         ListaProductos.get(pProducto).addObserver(new ObservadorC(pObservador));
     }
 
-    public void NuevoValor(String pProducto, int pValor) {
-        ListaProductos.get(pProducto).setState2(pValor);
-    }
-
-    public void NuevoTiempo(String pProducto, int pTiempo) {
-        ListaProductos.get(pProducto).setState(pTiempo);
+    public Partida NuevoValor(String pProducto, Partida pValor) {
+        return ListaProductos.get(pProducto).setState2(pValor);
     }
 }

@@ -52,7 +52,7 @@ public class DirectorPartida {
     public void construirJugador(int id, String nombre, int row, int column, int color) {
         builderJugador.crearNuevo();
         construirCofre();
-        builderJugador.construir(id, nombre, 4, row, column,color, builderCofre.getObjeto());// aqui falta el cofre  builderCofre.getObjeto();
+        builderJugador.construir(id, nombre, 3, row, column,color, builderCofre.getObjeto());// aqui falta el cofre  builderCofre.getObjeto();
     }
 
     public BuilderPartida getBuilderPartida() {

@@ -1,6 +1,5 @@
 package com.ReinosCenfotecosService.Core.Dados;
 
-import com.ReinosCenfotecosService.Entities.Dado;
 import com.ReinosCenfotecosService.Helper.Helper;
 
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ public class GestorPrototype {
 
         //vamos a buscar los Id de los militantes y ponerlos en el DNI
         updateCloneDados(pDado, id);
-
         msj = "Dado "+(id+1)+" creado";
 
         return msj;
@@ -80,15 +78,11 @@ public class GestorPrototype {
         return mResult;
     }
     
-    public Dado[] obtenerArreglo() {
-        Dado[] arrdadosconvertidos = new Dado[3];
+    public PrototipoDado[] obtenerArreglo() {
+        PrototipoDado[] arrdadosconvertidos = new PrototipoDado[3];
         int i=0;
         for (PrototipoDado mOb : arrDados) {
-            Dado dado = new Dado();
-            dado.setId(mOb.getId());
-            dado.setTipo(mOb.getTipo());
-            dado.setValor(mOb.getCantMovimientos());
-            arrdadosconvertidos[i] = dado;
+            arrdadosconvertidos[i] = mOb;
             i++;
         }
         return arrdadosconvertidos;

@@ -1,23 +1,37 @@
 package com.ReinosCenfotecosService.Core.Personajes;
 
+import com.ReinosCenfotecosService.Core.Partida.GestorAcciones;
+import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
+import com.ReinosCenfotecosService.Entities.Casilla;
+import com.ReinosCenfotecosService.Entities.DataInvocar;
+import com.ReinosCenfotecosService.Entities.Partida;
 import com.ReinosCenfotecosService.Entities.Personaje;
+import com.ReinosCenfotecosService.Helper.Helper;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
+
+import java.util.ArrayList;
 
 public class RealizarMovimiento extends RealizarAccion {
 
     @Override
-    public void faseDeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar, String[] casillas, String accionRealizar) throws BussinessException {
+    public void faseDeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
+                             String[] casillas, String accionRealizar,
+                             Partida partidaActual, GestorAcciones gesAcciones, int jugadorAplica, int jugadorAplicar) throws Exception {
         boolean estadoValidacion = false;
         if (accionRealizar.equals("Mover")) {
             estadoValidacion = validacionMovimiento(casillas);
             if (estadoValidacion == true) {
+                int rowMover, colMover;
+                rowMover = Integer.parseInt(casillas[1].split("-")[0]);
+                colMover = Integer.parseInt(casillas[1].split("-")[1]);
 
+                actualizarTableroMovimiento(partidaActual, jugadorAplica, rowMover, colMover, objPersonajeAplicar, gesAcciones);
             }else{
                 throw new BussinessException(508);
             }
         } else {
             if (handler != null) {
-                handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar);
+                handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar, partidaActual, gesAcciones, jugadorAplica, jugadorAplicar);
             }
         }
 
@@ -56,5 +70,19 @@ public class RealizarMovimiento extends RealizarAccion {
         }
         return estadoValidacion;
 
+    }
+
+
+    private void actualizarTableroMovimiento(Partida objPartida,
+                                             int jugadorAplica,  int newrow, int newcol,
+                                             Personaje objPersonaje,  GestorAcciones gesAcciones) throws Exception {
+
+        Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(newrow, newcol, objPartida.getId()),
+                objPartida.getTablero().getId(), newrow, newcol, objPersonaje, jugadorAplica, true);
+        ArrayList<Casilla> casillas = new ArrayList<Casilla>();
+        casillas.add(casillaDeInvocacion);
+
+        DataInvocar datInvocacion = new DataInvocar(objPersonaje.getId(), objPartida.getId(), jugadorAplica, casillas);
+        gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
 }

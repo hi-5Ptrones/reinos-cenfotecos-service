@@ -7,6 +7,7 @@ package com.ReinosCenfotecosService;
 
 import com.ReinosCenfotecosService.Core.Personajes.GestorPersonajes;
 import com.ReinosCenfotecosService.Entities.Accion;
+import com.ReinosCenfotecosService.Entities.Personaje;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
@@ -54,16 +55,16 @@ public class PersonajeController {
 
     @RequestMapping(value = "/api/personaje/accionPersonaje", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<ApiResponse> accionPersonaje(int idPersonajeAplica, int idPersonajeAplicar, int idPartida, int jugador, String[] coordenadas, String accionRealizar) {
+    public ResponseEntity<ApiResponse> accionPersonaje(int idPersonajeAplica, int idPersonajeAplicar, int idPartida, int jugadorAplica, String[] coordenadas, String accionRealizar) {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();
             apiResponse = new ApiResponse();
             GestorPersonajes gestor = new GestorPersonajes();
-            String string = gson.toJson(gestor.realizarAccionPersonaje(idPersonajeAplica, idPersonajeAplicar, idPartida, jugador, coordenadas, accionRealizar));
-            JsonObject jsonObject = new JsonParser().parse(string).getAsJsonObject();
-            apiResponse.data = jsonObject;
-            apiResponse.message = "Tropa creada";
+
+            Personaje[] response = gestor.realizarAccionPersonaje(idPersonajeAplica, idPersonajeAplicar, idPartida, jugadorAplica, coordenadas, accionRealizar);
+            apiResponse.data = response;
+            apiResponse.message = "Acción realizada";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
         } catch (BussinessException bex) {
 

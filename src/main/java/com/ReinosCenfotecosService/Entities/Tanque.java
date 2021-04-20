@@ -20,10 +20,10 @@ public class Tanque extends Personaje {
     @Override
     public void setEstadisticasPersonaje() {
         this.setId(Helper.creadorDeIdentificacion());
-        this.setAtaque(2);
+        this.setAtaque(10);
         this.setDefensa(10);
         this.setMovsMaximos(Helper.getMovsMaximos(2));
-        this.setVida(10);
+        this.setVida(2);
         this.setTipoPersonaje("Tanque");
     }
 

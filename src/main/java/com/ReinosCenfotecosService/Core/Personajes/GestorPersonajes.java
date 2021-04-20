@@ -7,7 +7,10 @@ package com.ReinosCenfotecosService.Core.Personajes;
 
 import com.ReinosCenfotecosService.Core.Partida.GestorAcciones;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
-import com.ReinosCenfotecosService.Entities.*;
+import com.ReinosCenfotecosService.Entities.Casilla;
+import com.ReinosCenfotecosService.Entities.DataInvocar;
+import com.ReinosCenfotecosService.Entities.Partida;
+import com.ReinosCenfotecosService.Entities.Personaje;
 import com.ReinosCenfotecosService.Helper.Helper;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
@@ -90,7 +93,7 @@ public class GestorPersonajes {
     }
 
     private void invocacionPJenTablero(int idPersonaje, int idTablero, int currectPlayer, int row,
-            int coll, Personaje objPersonaje, int idPartida) throws Exception {
+                                       int coll, Personaje objPersonaje, int idPartida) throws Exception {
 
         Casilla casillaDeInvocacion = new Casilla(Helper.generarIdCasilla(row, coll, idPartida),
                 idTablero, row, coll, objPersonaje, currectPlayer, true);
@@ -101,20 +104,50 @@ public class GestorPersonajes {
         gesAcciones.actualizarTableroInvocar(datInvocacion);
     }
 
-    public Personaje realizarAccionPersonaje(int idPersonajeAplica, int idPersonajeAplcar, int idPartida, int jugador, String[] listCeldas, String accionRealizar) throws Exception {
+    public Personaje[] realizarAccionPersonaje(int idPersonajeAplica, int idPersonajeAplcar, int idPartida, int jugadorAplica, String[] listCeldas, String accionRealizar) throws Exception, BussinessException {
         Personaje objPersonajeAplica = null;
         Personaje objPersonajeAplicar = null;
-        try {
-            Partida partidaActual = gesPartidas.obtenerPartidaById(idPartida);
-            objPersonajeAplica  = buscarPersonajebyID(idPersonajeAplica, idPartida, jugador);
-            objPersonajeAplicar = buscarPersonajebyID(idPersonajeAplcar, idPartida, jugador);
-            realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar, partidaActual);
-        } catch (BussinessException bex) {
-            ExceptionManager.GetInstance().Process(bex);
-        } catch (Exception e) {
+        Personaje[] listPersonajes = new Personaje[2];
+        int jugadorAplicar = 0;
+        Partida partidaActual = gesPartidas.obtenerPartidaById(idPartida);
+        try{
+            if (accionRealizar.equals("Mover")) {
+                jugadorAplicar = jugadorAplica;
+                objPersonajeAplica = buscarPersonajebyID(idPersonajeAplica, idPartida, jugadorAplica);
+                objPersonajeAplicar = buscarPersonajebyID(idPersonajeAplcar, idPartida, jugadorAplicar);
+                realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar, partidaActual, jugadorAplica, jugadorAplicar);
 
+                listPersonajes[0] = objPersonajeAplica;
+                listPersonajes[1] = objPersonajeAplicar;
+            } else {
+                if (jugadorAplica == 1) {
+                    jugadorAplicar = 2;
+                    objPersonajeAplica = buscarPersonajebyID(idPersonajeAplica, idPartida, jugadorAplica);
+                    objPersonajeAplicar = buscarPersonajebyID(idPersonajeAplcar, idPartida, jugadorAplicar);
+                    realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar, partidaActual, jugadorAplica, jugadorAplicar);
+
+                    listPersonajes[0] = objPersonajeAplica;
+                    listPersonajes[1] = objPersonajeAplicar;
+
+                } else {
+                    jugadorAplicar = 1;
+                    objPersonajeAplica = buscarPersonajebyID(idPersonajeAplica, idPartida, jugadorAplica);
+                    objPersonajeAplicar = buscarPersonajebyID(idPersonajeAplcar, idPartida, jugadorAplicar);
+                    realizaciondeAccion(objPersonajeAplica, objPersonajeAplicar, listCeldas, accionRealizar, partidaActual, jugadorAplica, jugadorAplicar);
+
+                    listPersonajes[0] = objPersonajeAplica;
+                    listPersonajes[1] = objPersonajeAplicar;
+                }
+            }
+        }catch (BussinessException bex){
+            ExceptionManager.GetInstance().Process(bex);
         }
-        return objPersonajeAplica;
+
+        if(listPersonajes[1].getVida() <= 0){
+            listPersonajes[1] = null;
+        }
+
+        return listPersonajes;
     }
 
     private Personaje buscarPersonajebyID(int idPersonaje, int idPartida, int jugador) throws BussinessException {
@@ -147,7 +180,7 @@ public class GestorPersonajes {
         return personajeEncontrado;
     }
 
-    private RealizarAccion configurarCadena(){
+    private RealizarAccion configurarCadena() {
         RealizarAccion accionAtaque = new RealizarAtaque();
         RealizarAccion accionMovimiento = new RealizarMovimiento();
         RealizarAccion accionAtaqueEspecial = new RealizarAtaqueEspecial();
@@ -158,13 +191,13 @@ public class GestorPersonajes {
         return accionAtaque;
     }
 
-    public void iniciarProceso (){
+    public void iniciarProceso() {
         this.handler = configurarCadena();
     }
 
     public void realizaciondeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar,
-                                 String[] casillas, String accionRealizar, Partida partidaActual) throws BussinessException {
-        handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar);
+                                    String[] casillas, String accionRealizar, Partida partidaActual, int jugadorAplica, int jugadorAlicar) throws Exception {
+        handler.faseDeAccion(objPersonajeAplica, objPersonajeAplicar, casillas, accionRealizar, partidaActual, gesAcciones, jugadorAplica, jugadorAlicar);
 
     }
 }

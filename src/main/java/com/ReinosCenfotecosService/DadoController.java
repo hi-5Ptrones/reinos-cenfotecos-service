@@ -1,6 +1,9 @@
 package com.ReinosCenfotecosService;
 
+import com.ReinosCenfotecosService.Core.Dados.Dados;
 import com.ReinosCenfotecosService.Core.Dados.GestorPrototype;
+import com.ReinosCenfotecosService.Core.Dados.PrototipoDado;
+import com.ReinosCenfotecosService.Entities.Dado;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
 import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;
@@ -20,24 +23,23 @@ public class DadoController {
     private static GestorPrototype Prototype;
     ApiResponse apiResponse;
 
-    @RequestMapping(value = "/api/dado/obtenerdado", method = RequestMethod.GET)
+      @RequestMapping(value = "/api/dado/obtenerdados", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<ApiResponse> randomValue() {
+    public ResponseEntity<ApiResponse> obtenerDados() {
         ResponseEntity serverResponse;
         try {
             apiResponse = new ApiResponse();
-            //GestorPersonajes gestor = new GestorPersonajes();
-            //apiResponse.message = gestor.CrearPersonaje(tPersonaje);
 
             int randomArray[] = {1, 2, 3};
+
             for (int i = 0; i < randomArray.length; i++) {
                 randomArray[i] = (int) (Math.random() * (6 - 0) + 1);
             }
-            apiResponse.message = "Dado lanzado";
-            //crea los dados en el front
-            apiResponse.data = randomArray;
-            //crea los dados en el backend
-            creacionDados(randomArray);
+            //crea los dados en el backend y manda los objetos DADO a la UI
+            apiResponse.data = creacionDados(randomArray);
+            apiResponse.message = "Dados creados";
+
+            Prototype.limpiarLista();
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -45,8 +47,8 @@ public class DadoController {
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    public void creacionDados(int generados[]) {
+    
+    public PrototipoDado[] creacionDados(int generados[]) {
         //crea el gestor prototype
         Prototype = new GestorPrototype(1);
         //arreglo de dados por crear en backend
@@ -75,7 +77,7 @@ public class DadoController {
                 }
             }
             dados.add(dado);
-            System.out.println(dado);
+            //System.out.println(dado);
         }
 
         //patron prototype
@@ -85,8 +87,10 @@ public class DadoController {
         }
         //los imprime (o guarda en el chest)
         System.out.println("\n" + Prototype.obtenerDatos());
-        
-        //limpia la lista
-        Prototype.limpiarLista();
+
+        //devuelve arreglo de los dados generados por el prototype
+        return Prototype.obtenerArreglo();
     }
+
+  
 }

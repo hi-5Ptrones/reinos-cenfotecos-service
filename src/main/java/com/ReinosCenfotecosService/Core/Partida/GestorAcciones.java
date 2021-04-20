@@ -20,17 +20,17 @@ import java.util.Optional;
  */
 public class GestorAcciones {
 
-   // GestorPersonajes gpersonajes = new GestorPersonajes();
+    // GestorPersonajes gpersonajes = new GestorPersonajes();
     GestorPartidas gPartidas = new GestorPartidas();
 
-    public Partida actualizarTableroInvocar(DataInvocar data) throws Exception {
+    public Partida actualizarTableroInvocar(DataInvocar data) throws Exception {//solo actualiza las casillas
         try {
             Partida partida = gPartidas.obtenerPartidaById(data.getIdPartida());
 
             if (partida == null) {
                 throw new BussinessException(300);
             } else {
-                int index;
+                // int index;
                 //Personaje pj = gpersonajes.CrearPersonaje(data.getIdJugador());
 
                 ArrayList<Casilla> casillas = new ArrayList<Casilla>();
@@ -44,7 +44,14 @@ public class GestorAcciones {
                     if (!fila.isEmpty()) {
                         obj = fila.get(cas.getColumn());
                         if (obj != null) {
-                            fila.remove(cas.getColumn());
+                            if (obj.isFilled()) {
+                                // validacion para no poder remplazar el color de una casilla  no se pueda cambiar si ya estaba llena
+                                cas.setJugador(obj.getJugador());
+                                fila.set(cas.getColumn(), cas);
+                            } else {
+                                fila.set(cas.getColumn(), cas);
+                            }
+
                         }
 
                     }
@@ -52,6 +59,8 @@ public class GestorAcciones {
 
             }
 
+        } catch (BussinessException e) {
+            throw e;
         } catch (Exception e) {
             throw e;
         }

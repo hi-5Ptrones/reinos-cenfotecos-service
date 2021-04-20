@@ -1,7 +1,5 @@
 package com.ReinosCenfotecosService.Core.Dados;
 
-import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
-import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 import com.ReinosCenfotecosService.Helper.Helper;
 
 import java.util.ArrayList;
@@ -11,12 +9,11 @@ public class GestorPrototype {
     private static ArrayList<PrototipoDado> arrDados = new ArrayList<PrototipoDado>();
 
     private PrototipoDado protipoDado;
-    private static AtaqueNormal an = new AtaqueNormal();
-    private static AtaqueEspecial ae = new AtaqueEspecial();
+    
 
     public GestorPrototype(int pId) {
         //crea el que se va a clonar
-        protipoDado = new Dados(pId, "Invocacion", 3, an, ae, 0);
+        protipoDado = new Dados(pId, "Movimiento", 0);
     }
 
     public String nuevos_dados(String pDado, int id) {
@@ -26,7 +23,6 @@ public class GestorPrototype {
 
         //vamos a buscar los Id de los militantes y ponerlos en el DNI
         updateCloneDados(pDado, id);
-
         msj = "Dado "+(id+1)+" creado";
 
         return msj;
@@ -36,23 +32,14 @@ public class GestorPrototype {
 
         PrototipoDado cc = arrDados.get(id);
 
-        //Cambiamos de atributos id,nombre, profesion, campamento,nave
-        cc.setDado(id);
+        //Cambia los atributos de la copia
+        cc.setId(id);
         cc.setTipo(pDado);
-        cc.setValor(Helper.ramdomizeCantMovimientos());
-        cc.setAn(an);
-
-        //valorAE
-        if (pDado.equals("AtaqueEspecial")) {
-            ae.setNombre(Helper.ramdomizeAtaquesEspeciales());
-            cc.setAe(ae);
-        }
-
+        
         //valorCantMovs
         if (pDado.equals("Movimiento")) {
             cc.setCantMovimientos(Helper.ramdomizeCantMovimientos());
         }
-        ae = new AtaqueEspecial();
     }
 
     /**
@@ -88,8 +75,17 @@ public class GestorPrototype {
         for (PrototipoDado mOb : arrDados) {
             mResult += obtenerDatosObjeto(mOb) + "\n";
         }
-
         return mResult;
+    }
+    
+    public PrototipoDado[] obtenerArreglo() {
+        PrototipoDado[] arrdadosconvertidos = new PrototipoDado[3];
+        int i=0;
+        for (PrototipoDado mOb : arrDados) {
+            arrdadosconvertidos[i] = mOb;
+            i++;
+        }
+        return arrdadosconvertidos;
     }
 
     /**

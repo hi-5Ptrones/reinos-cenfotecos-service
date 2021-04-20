@@ -26,6 +26,7 @@ public class GestorPartidas {
 
     private Jugador construcionJugador(String nombre, int rowCastillo, int columnCastillo, int color) {
         objDirector.setBuilderJugador(new ConstructorJugador());
+        objDirector.setBuilderCofre(new ConstructorCofre());
         return crearJugador(nombre, rowCastillo, columnCastillo, color);
         //objDirector.construirJugador(getIdJugador(), nombre, rowCastillo, columnCastillo);
     }
@@ -72,7 +73,7 @@ public class GestorPartidas {
         try {
             objDirector.setBuilderTablero(new ConstructorTablero());
             //generar campo random para castillos
-            int row1 = 0, col1, row2 = 19, col2, color1, color2;
+            int row1 = 19, col1, row2 = 0, col2, color1, color2;
             Random random = new Random();
             col1 = random.nextInt(20 - 0) + 0;
             col2 = random.nextInt(20 - 0) + 0;
@@ -117,8 +118,12 @@ public class GestorPartidas {
                 int index = partidas.indexOf(obj.get());
                 if (index != -1) {
                     partida.setTablero(obj.get().getTablero());
+                    partida.getJugador1().setPersonajesEnJuego(obj.get().getJugador1().getPersonajesEnJuego());//ignora la lista de jugadores
+                    partida.getJugador2().setPersonajesEnJuego(obj.get().getJugador2().getPersonajesEnJuego());
+                    partida.getJugador1().setCofre(obj.get().getJugador1().getCofre());//ignore el cofre
+                    partida.getJugador2().setCofre(obj.get().getJugador2().getCofre());
                     partidas.set(index, partida);
-                    return partida;
+                    return partidas.get(index);
                 } else {
                     throw new BussinessException(300);
                 }

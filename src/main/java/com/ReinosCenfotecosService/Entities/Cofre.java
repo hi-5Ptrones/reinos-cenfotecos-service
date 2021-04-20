@@ -17,11 +17,9 @@ public class Cofre implements ICofre {
     private ArrayList<ICofre> listaComposicion; //Contiene los dados
     private int id;
     private static int classCounter = 0;
-    
+
     public Cofre() {
-        this.listaComposicion = new ArrayList<ICofre>();
-        this.id = classCounter;
-        classCounter ++;
+
     }
 
     public int getId() {
@@ -39,8 +37,23 @@ public class Cofre implements ICofre {
     public void agregarComponente(ICofre composicion) {
         this.listaComposicion.add(composicion);
     }
-    public void quitarComponente(int  indice) {
-        this.listaComposicion.remove(indice);
+
+    public void quitarComponente(String tipo) {
+        boolean salir = false;
+        int i = 0;
+        do {
+            ICofre dado = listaComposicion.get(i);
+            if (dado instanceof ICofre) {
+                Dado da = (Dado) dado;
+                if (da.getTipo().equals(tipo)) {
+                    this.listaComposicion.remove(i);
+                    salir = true;
+                } 
+            }
+            i++;
+
+        } while (salir == false);
+
     }
 
     public ArrayList<ICofre> getListaComposicion() {

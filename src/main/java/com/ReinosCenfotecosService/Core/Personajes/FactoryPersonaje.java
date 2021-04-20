@@ -11,25 +11,24 @@ import com.ReinosCenfotecosService.Entities.Personaje;
 import com.ReinosCenfotecosService.Entities.Tanque;
 
 /**
- *
  * @author jscru
  */
 public class FactoryPersonaje implements IAbstractFactoryMethodPersonaje {
 
     @Override
-    public Personaje crearPersonaje(int tPersonaje) {
+    public Personaje crearPersonaje(int tPersonaje, int jugador) {
         Personaje objPersonaje = null;
         switch (tPersonaje) {
             case 1:
-                objPersonaje = new Artillero();
+                objPersonaje = new Artillero(jugador);
                 objPersonaje.setEstadisticasPersonaje();
                 break;
             case 2:
-                objPersonaje = new Infanteria();
+                objPersonaje = new Infanteria(jugador);
                 objPersonaje.setEstadisticasPersonaje();
                 break;
             case 3:
-                objPersonaje = new Tanque();
+                objPersonaje = new Tanque(jugador);
                 objPersonaje.setEstadisticasPersonaje();
                 break;
             default:

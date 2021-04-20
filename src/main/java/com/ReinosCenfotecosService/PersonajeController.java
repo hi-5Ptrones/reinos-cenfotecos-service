@@ -53,7 +53,7 @@ public class PersonajeController {
         }
     }
 
-    @RequestMapping(value = "/api/personaje/accionPersonaje", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/personaje/accionPersonaje", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ApiResponse> accionPersonaje(int idPersonajeAplica, int idPersonajeAplicar, int idPartida, int jugadorAplica, String[] coordenadas, String accionRealizar) {
         ResponseEntity serverResponse;

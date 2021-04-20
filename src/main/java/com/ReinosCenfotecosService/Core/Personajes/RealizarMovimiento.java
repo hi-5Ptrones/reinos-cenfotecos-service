@@ -25,12 +25,14 @@ public class RealizarMovimiento extends RealizarAccion {
                 int rowMoverOld, colMoverOld;
                 rowMover = Integer.parseInt(casillas[1].split("-")[0]);
                 colMover = Integer.parseInt(casillas[1].split("-")[1]);
+
                 //casilla vieja
                 rowMoverOld = Integer.parseInt(casillas[0].split("-")[0]);
                 colMoverOld = Integer.parseInt(casillas[0].split("-")[1]);
 
                 actualizarTableroMovimiento(partidaActual, jugadorAplica, rowMover, colMover, objPersonajeAplicar, gesAcciones, jugadorAplica, rowMoverOld, colMoverOld, null);
             } else {
+
                 throw new BussinessException(508);
             }
         } else {

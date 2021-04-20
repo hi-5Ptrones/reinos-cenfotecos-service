@@ -65,6 +65,7 @@ public class PartidaController {
             GestorPartidas gestor = new GestorPartidas();
             //Observador
             apiResponse.data = gestor.actualizarPartida(observador.NuevoValor("Vidas", (partida)));
+
             //apiResponse.data = gestor.actualizarPartida(partida);
             apiResponse.message = "Partida Encontrada";
 

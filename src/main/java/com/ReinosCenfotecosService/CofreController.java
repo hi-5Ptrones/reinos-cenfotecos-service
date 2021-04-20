@@ -59,7 +59,7 @@ public class CofreController {
         }
     }
 
-    @RequestMapping(value = "/api/partida/quitarDado", method = RequestMethod.GET, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/partida/quitarDado", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ApiResponse> quitarDadoCofre(HttpEntity<String> httpEntityd, int idPartida, int jugador) {
         ResponseEntity serverResponse;

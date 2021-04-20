@@ -14,37 +14,41 @@ public class RealizarAtaque extends RealizarAccion {
     @Override
     public void faseDeAccion(Personaje objPersonajeAplica, Personaje objPersonajeAplicar, String[] casillas, String accionRealizar, Partida partidaActual, GestorAcciones gesAcciones, int jugadorAplica, int jugadorAplicar) throws Exception {
         boolean estadoValidacion = false;
+        boolean estadosAtaque = false;
         if (accionRealizar.equals("Atacar")) {
             estadoValidacion = validacionMovimiento(casillas);
-            if (estadoValidacion) {
-                int rowAtacante, colAtacante;
+            if (true) {
                 int rowAtacado, colAtacado;
 
-                while (objPersonajeAplicar.getDefensa() > 0 || objPersonajeAplicar.getVida() > 0) {
-                    if (objPersonajeAplicar.getDefensa() == objPersonajeAplica.getAtaque()) {
-                        int vidaAtacado = objPersonajeAplicar.getVida();
-                        int defensaAtacado = objPersonajeAplicar.getDefensa();
-                        int ataqueAtacante = objPersonajeAplica.getAtaque();
-                        defensaAtacado = defensaAtacado - ataqueAtacante;
-                        if (defensaAtacado < 0) {
-                            vidaAtacado = vidaAtacado + defensaAtacado;
-                        } else if (defensaAtacado == 0) {
-                            vidaAtacado = vidaAtacado - ataqueAtacante;
-                        }
-                        objPersonajeAplicar.setDefensa(0);
-                        objPersonajeAplicar.setVida(vidaAtacado);
-                        break;
-                    } else if (objPersonajeAplicar.getDefensa() >= objPersonajeAplica.getAtaque()) {
-                        int defensaAtacado = objPersonajeAplicar.getDefensa();
-                        int ataqueAtacante = objPersonajeAplica.getAtaque();
-                        defensaAtacado = defensaAtacado - ataqueAtacante;
-                        objPersonajeAplicar.setDefensa(defensaAtacado);
-                        break;
+
+                if (objPersonajeAplicar.getDefensa() >= objPersonajeAplica.getAtaque()) {
+                    int defensaAtacado = objPersonajeAplicar.getDefensa();
+                    int ataqueAtacante = objPersonajeAplica.getAtaque();
+                    defensaAtacado = defensaAtacado - ataqueAtacante;
+                    objPersonajeAplicar.setDefensa(defensaAtacado);
+                    estadosAtaque = true;
+                } else if (objPersonajeAplicar.getDefensa() == objPersonajeAplica.getAtaque()) {
+                    objPersonajeAplicar.setDefensa(0);
+                    estadosAtaque = true;
+                } else if (objPersonajeAplicar.getDefensa() == 0 && estadosAtaque != true) {
+                    int vidaAtacado = objPersonajeAplicar.getVida();
+                    int ataqueAtacante = objPersonajeAplica.getAtaque();
+                    vidaAtacado = vidaAtacado-ataqueAtacante;
+                    objPersonajeAplicar.setVida(vidaAtacado);
+                    estadosAtaque = true;
+                }else if(objPersonajeAplicar.getDefensa() > 0 && estadosAtaque != true){
+                    int vidaAtacado = objPersonajeAplicar.getVida();
+                    int ataqueAtacante = objPersonajeAplica.getAtaque();
+                    int defensaAtacado = objPersonajeAplicar.getDefensa();
+                    defensaAtacado = defensaAtacado - ataqueAtacante;
+                    if(defensaAtacado < 0){
+                        vidaAtacado = vidaAtacado + defensaAtacado;
+                        defensaAtacado = 0;
                     }
+                    objPersonajeAplicar.setDefensa(defensaAtacado);
+                    objPersonajeAplicar.setVida(vidaAtacado);
                 }
 
-                rowAtacante = Integer.parseInt(casillas[0].split("-")[0]);
-                colAtacante = Integer.parseInt(casillas[0].split("-")[1]);
                 rowAtacado = Integer.parseInt(casillas[1].split("-")[0]);
                 colAtacado = Integer.parseInt(casillas[1].split("-")[1]);
 
@@ -68,9 +72,9 @@ public class RealizarAtaque extends RealizarAccion {
         ArrayList<Casilla> casillas = new ArrayList<Casilla>();
         casillas.add(casillaDeInvocacion);
         DataInvocar datInvocacion = null;
-        if(objPersonaje == null){
-            datInvocacion  = new DataInvocar(0, partidaActual.getId(), jugadorAplica, casillas);
-        }else{
+        if (objPersonaje == null) {
+            datInvocacion = new DataInvocar(0, partidaActual.getId(), jugadorAplica, casillas);
+        } else {
             datInvocacion = new DataInvocar(objPersonaje.getId(), partidaActual.getId(), jugadorAplica, casillas);
         }
 

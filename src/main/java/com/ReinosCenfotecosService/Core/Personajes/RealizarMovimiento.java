@@ -24,8 +24,6 @@ public class RealizarMovimiento extends RealizarAccion {
                 int rowMover, colMover;
                 rowMover = Integer.parseInt(casillas[1].split("-")[0]);
                 colMover = Integer.parseInt(casillas[1].split("-")[1]);
-
-                actualizarTableroMovimiento(partidaActual, jugadorAplica, rowMover, colMover, objPersonajeAplicar, gesAcciones);
             }else{
                 throw new BussinessException(508);
             }

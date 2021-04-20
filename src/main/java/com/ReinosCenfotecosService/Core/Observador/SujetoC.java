@@ -16,14 +16,12 @@ public class SujetoC implements Sujeto {
     }
 
     @Override
-    public Partida addObserver(Observador o) {
+    public void addObserver(Observador o) {
         observers.add(o);
-        return new Partida();
     }
 
     @Override
-    public Partida removeObserver(Observador o) {
-        return new Partida();
+    public void removeObserver(Observador o) {
     }
     @Override
     public Partida notifyObservers() {

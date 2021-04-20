@@ -116,6 +116,9 @@ public class PartidaController {
             GestorPartidas gestor = new GestorPartidas();
             apiResponse.data = gestor.crearPartidaRapida();
             apiResponse.message = "Partida Iniciada ";
+            //Observador
+            observador.NuevoProducto("Vidas");
+            observador.NuevoObservador("Vidas restantes", "Vidas");
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {

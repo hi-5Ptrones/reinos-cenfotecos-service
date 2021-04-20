@@ -64,8 +64,8 @@ public class PartidaController {
             Partida partida = gson.fromJson(json, Partida.class);
             GestorPartidas gestor = new GestorPartidas();
             //Observador
-            //   apiResponse.data = gestor.actualizarPartida(observador.NuevoValor("Vidas", (partida)));
-            apiResponse.data = gestor.actualizarPartida(partida);
+             apiResponse.data = gestor.actualizarPartida(observador.NuevoValor("Vidas", (partida)));
+            //apiResponse.data = gestor.actualizarPartida(partida);
             apiResponse.message = "Partida Encontrada";
 
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);

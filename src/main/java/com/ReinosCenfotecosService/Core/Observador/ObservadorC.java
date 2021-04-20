@@ -17,10 +17,10 @@ public class ObservadorC implements Observador {
     }
 
     private Partida mostrarValor(Partida pPartida, String pNomProducto) {
-        
+        Partida p = pPartida;
         if (pNomProducto.equals("Vidas")) {
-            System.out.println("Ahora hay un total de : " + pPartida.getJugador1().getVidaCastillo() + " " + pNomProducto + " para el jugador 1 /n"
-                    + pPartida.getJugador2().getVidaCastillo() + " " + pNomProducto + " para el jugador 2");
+            System.out.println("Ahora hay un total de " + p.getJugador1().getVidaCastillo() + " " + pNomProducto + " para el jugador "+p.getJugador1().getNombre()+" \n"
+                    + "y "+ pPartida.getJugador2().getVidaCastillo() + " " + pNomProducto + " para el jugador "+p.getJugador2().getNombre());
             if ((pPartida.getJugador1().getVidaCastillo() == 0)) {
                 pPartida.setGanador(2);
                 pPartida.setEstado(0);

@@ -6,17 +6,12 @@
 package com.ReinosCenfotecosService.Core.Cofre;
 
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
-import com.ReinosCenfotecosService.Entities.AtaqueEspecial;
 import com.ReinosCenfotecosService.Entities.Cofre;
 import com.ReinosCenfotecosService.Entities.Dado;
-import com.ReinosCenfotecosService.Entities.Jugador;
 import com.ReinosCenfotecosService.Entities.Partida;
 import java.util.ArrayList;
 
-/**
- *
- * @author guiss
- */
+
 public class GestorCofre {
 
     private GestorPartidas gesPartidas = new GestorPartidas();
@@ -56,21 +51,18 @@ public class GestorCofre {
                 for (ICofre nodo : dados) {
                     if (nodo instanceof Dado) {
                         Dado da = (Dado) nodo;
-                        int indice = 0;
-                        indice = cofre.getListaComposicion().indexOf(da);
-                        cofre.quitarComponente(indice);
+                        //Le envia un tipo de dado para borrar!
+                        cofre.quitarComponente(da.getTipo());
                     }
                 }
                 cofre.ejecutar();
             } else if (jugador == 2) {
-
                 cofre = objPartida.getJugador2().getCofre();
                 for (ICofre nodo : dados) {
                     if (nodo instanceof Dado) {
                         Dado da = (Dado) nodo;
-                        int indice = 0;
-                        indice = cofre.getListaComposicion().indexOf(da);
-                        cofre.quitarComponente(indice);
+                        //Le envia un tipo de dado para borrar!
+                        cofre.quitarComponente(da.getTipo());
                     }
                 }
                 cofre.ejecutar();

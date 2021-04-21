@@ -22,7 +22,7 @@ import java.util.Random;
 public class GestorPartidas {
 
     protected static ArrayList<Partida> partidas = new ArrayList<Partida>();
-    private ArrayList<MementoPartida> partidasGuardadas = new ArrayList<MementoPartida>();
+    protected static ArrayList<MementoPartida> partidasGuardadas = new ArrayList<MementoPartida>();
     private DirectorPartida objDirector = new DirectorPartida();
 
     private Jugador construcionJugador(String nombre, int rowCastillo, int columnCastillo, int color) {
@@ -199,19 +199,21 @@ public class GestorPartidas {
     public Partida replacePartidaConMemento(int id) throws Exception {
         try {
             //llamo el memento
-            Partida partida = getMemento(id).getEstadoMemento();
-            Optional<MementoPartida> obj;
+            MementoPartida memento = getMemento(id);
+            Optional<Partida> obj;
             //busco la partida
-            obj = partidasGuardadas.stream().filter(e -> e.getEstadoMemento().getId() == id).findFirst();
+            obj = partidas.stream().filter(e -> e.getId() == id).findFirst();
             if (obj.isPresent()) {
+                obj.get().restaurarMemento(memento);
                 int index = partidas.indexOf(obj.get());
                 if (index != -1) {
 
-                    partidas.set(index, partida);
                     return partidas.get(index);
                 } else {
                     throw new BussinessException(300);
                 }
+                
+
             } else {
                 throw new BussinessException(300);
             }

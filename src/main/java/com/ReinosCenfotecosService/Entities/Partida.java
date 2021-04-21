@@ -114,7 +114,8 @@ public class Partida {
     }
 
     public MementoPartida generarMemento(){
-        return new MementoPartida(id,jugador1,jugador2,tablero,duracion,fecha,estado,ganador,turno);
+        
+        return new MementoPartida(id,jugador1.clone(),jugador2.clone(),tablero.clone(),duracion,fecha,estado,ganador,turno);
     }
     
     public void restaurarMemento(MementoPartida mp){

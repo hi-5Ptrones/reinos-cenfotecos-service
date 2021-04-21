@@ -50,7 +50,8 @@ public class MementoPartida {
     }
     
     public Partida getEstadoMemento(){
-        Partida par = new Partida(id,jugador1,jugador2, tablero,duracion,fecha,estado,ganador, turno);
+        
+        Partida par = new Partida(id,jugador1.clone(),jugador2.clone(),tablero.clone(),duracion,fecha,estado,ganador,turno);
         return par;
     }
 }

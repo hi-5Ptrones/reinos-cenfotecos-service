@@ -50,7 +50,6 @@ public class Cofre implements ICofre {
                     salir = true;
                 } 
             }
-            i++;
 
         } while (salir == false);
 

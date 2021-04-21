@@ -5,6 +5,7 @@
  */
 package com.ReinosCenfotecosService;
 
+import com.ReinosCenfotecosService.Core.Observador.Gestor_Observador;
 import com.ReinosCenfotecosService.Core.Partida.GestorPartidas;
 import com.ReinosCenfotecosService.Entities.Partida;
 import com.ReinosCenfotecosService.exceptions.BussinessException;
@@ -26,6 +27,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 public class PartidaController {
 
+    private static Gestor_Observador observador = new Gestor_Observador();
     ApiResponse apiResponse;
 
     @RequestMapping(value = "/api/partida/getPartidaById", method = RequestMethod.GET)
@@ -36,12 +38,12 @@ public class PartidaController {
             apiResponse = new ApiResponse();
             GestorPartidas gestor = new GestorPartidas();
             apiResponse.data = gestor.obtenerPartidaById(idPartida);
-            if(apiResponse.data != null){
+            if (apiResponse.data != null) {
                 apiResponse.message = "Partida Encontrada";
-            }else{
-                 throw new BussinessException(301);
+            } else {
+                throw new BussinessException(301);
             }
-            
+
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -61,8 +63,12 @@ public class PartidaController {
             String json = httpEntity.getBody();
             Partida partida = gson.fromJson(json, Partida.class);
             GestorPartidas gestor = new GestorPartidas();
-            apiResponse.data = gestor.actualizarPartida(partida);
+            //Observador
+            apiResponse.data = gestor.actualizarPartida(observador.NuevoValor("Vidas", (partida)));
+
+            //apiResponse.data = gestor.actualizarPartida(partida);
             apiResponse.message = "Partida Encontrada";
+
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (BussinessException bex) {
@@ -81,6 +87,11 @@ public class PartidaController {
     public ResponseEntity<ApiResponse> crearPartida(String nombre1, String nombre2, int ganador) {
         ResponseEntity serverResponse;
         try {
+
+            //Observador
+            observador.NuevoProducto("Vidas");
+            observador.NuevoObservador("Vidas restantes", "Vidas");
+
             apiResponse = new ApiResponse();
             GestorPartidas gestor = new GestorPartidas();
             apiResponse.data = gestor.construcionPartida(nombre1, nombre2, ganador);
@@ -98,7 +109,8 @@ public class PartidaController {
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-      @RequestMapping(value = "/api/partida/fachadaCrearPartidaRapida", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/api/partida/fachadaCrearPartidaRapida", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ApiResponse> fachadaCrearPartidaRapida() {
         ResponseEntity serverResponse;
@@ -107,6 +119,9 @@ public class PartidaController {
             GestorPartidas gestor = new GestorPartidas();
             apiResponse.data = gestor.crearPartidaRapida();
             apiResponse.message = "Partida Iniciada ";
+            //Observador
+            observador.NuevoProducto("Vidas");
+            observador.NuevoObservador("Vidas restantes", "Vidas");
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {

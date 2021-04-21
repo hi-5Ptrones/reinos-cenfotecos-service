@@ -23,7 +23,7 @@ public class GestorAcciones {
     // GestorPersonajes gpersonajes = new GestorPersonajes();
     GestorPartidas gPartidas = new GestorPartidas();
 
-    public Partida actualizarTableroInvocar(DataInvocar data) throws Exception {
+    public Partida actualizarTableroInvocar(DataInvocar data) throws Exception {//solo actualiza las casillas
         try {
             Partida partida = gPartidas.obtenerPartidaById(data.getIdPartida());
 
@@ -44,7 +44,14 @@ public class GestorAcciones {
                     if (!fila.isEmpty()) {
                         obj = fila.get(cas.getColumn());
                         if (obj != null) {
-                            fila.set(cas.getColumn(), cas);
+                            if (obj.isFilled()) {
+                                // validacion para no poder remplazar el color de una casilla  no se pueda cambiar si ya estaba llena
+                                cas.setJugador(obj.getJugador());
+                                fila.set(cas.getColumn(), cas);
+                            } else {
+                                fila.set(cas.getColumn(), cas);
+                            }
+
                         }
 
                     }

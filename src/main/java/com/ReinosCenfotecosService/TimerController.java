@@ -1,7 +1,6 @@
 package com.ReinosCenfotecosService;
 
-import com.ReinosCenfotecosService.Core.Dados.GestorPrototype;
-import com.ReinosCenfotecosService.Core.Timer.Gestor_Observador;
+import com.ReinosCenfotecosService.Core.Observador.Gestor_Observador;
 import com.ReinosCenfotecosService.exceptions.ExceptionManager;
 import com.ReinosCenfotecosService.webapi.models.ApiResponse;
 import com.ReinosCenfotecosService.webapi.models.ExceptionResponse;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TimerController {
 
-    private static Gestor_Observador observador = new Gestor_Observador();
     private static int time = 0;
     ApiResponse apiResponse;
 
@@ -32,9 +30,6 @@ public class TimerController {
             apiResponse.message = "Inicia el turno";
             apiResponse.data = time;
 
-            //Observador
-            observador.NuevoProducto("Tiempo");
-            observador.NuevoObservador("Cuenta Regresiva", "Tiempo");
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -42,30 +37,6 @@ public class TimerController {
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    public void iniciaTurno(int pTiempo) {
-        Gestor_Observador gestorOb = new Gestor_Observador();
-        do {
-
-            //Observador
-            gestorOb.NuevoProducto("Tiempo");
-            gestorOb.NuevoObservador("Cuenta Regresiva", "Tiempo");
-
-            try {
-                //VELOCIDAD DE LA ABEJA
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            pTiempo--;
-
-            //Observador
-            gestorOb.NuevoTiempo("Tiempo", pTiempo);
-        } while (pTiempo != 0);
-
-    }
-
 
     @RequestMapping(value = "/api/timer/cambiarTurno", method = RequestMethod.GET)
     @ResponseBody
@@ -78,8 +49,6 @@ public class TimerController {
             apiResponse.message = "Cambió el turno";
             apiResponse.data = time;
 
-            //Observador
-                observador.NuevoTiempo("Tiempo", time);
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {

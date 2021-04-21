@@ -22,6 +22,7 @@ import java.util.Random;
 public class GestorPartidas {
 
     protected static ArrayList<Partida> partidas = new ArrayList<Partida>();
+    private ArrayList<MementoPartida> partidasGuardadas = new ArrayList<MementoPartida>();
     private DirectorPartida objDirector = new DirectorPartida();
 
     private Jugador construcionJugador(String nombre, int rowCastillo, int columnCastillo, int color) {
@@ -92,6 +93,7 @@ public class GestorPartidas {
             objDirector.setBuilderPartida(new ConstructorPartida());
             par = crearPartida(jug1, jug2, ganador);
             partidas.add(par);
+            guardarMemento(par.generarMemento());
 
         } catch (Exception e) {
             ExceptionManager.GetInstance().Process(e);
@@ -175,4 +177,14 @@ public class GestorPartidas {
         return nombres.get(random.nextInt(nombres.size() - 0) + 0);
 
     }
+
+    public  MementoPartida getMemento(int id) {
+        return partidasGuardadas.get(id);
+    }
+    
+    public void guardarMemento(MementoPartida par){
+        partidasGuardadas.add(par);
+    }
+    
+    
 }

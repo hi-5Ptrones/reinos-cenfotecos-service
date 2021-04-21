@@ -6,6 +6,7 @@ import com.ReinosCenfotecosService.Entities.DataInvocar;
 import com.ReinosCenfotecosService.Entities.Partida;
 import com.ReinosCenfotecosService.Entities.Personaje;
 import com.ReinosCenfotecosService.Helper.Helper;
+import com.ReinosCenfotecosService.exceptions.BussinessException;
 
 import java.util.ArrayList;
 
@@ -58,6 +59,8 @@ public class RealizarAtaque extends RealizarAccion {
                 } else {
                     actualizarTableroAtaque(partidaActual, jugadorAplicar, rowAtacado, colAtacado, objPersonajeAplicar, gesAcciones);
                 }
+            }else{
+                throw new BussinessException(508);
             }
         } else {
             if (handler != null) {

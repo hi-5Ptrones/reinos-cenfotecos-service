@@ -138,7 +138,7 @@ public class PartidaController {
         try {
             apiResponse = new ApiResponse();
             GestorPartidas gestor = new GestorPartidas();
-            apiResponse.data = gestor.getMemento(id);
+            apiResponse.data = gestor.replacePartidaConMemento(id);
             apiResponse.message = "Partida Reiniciada ";
             //Observador
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);

@@ -5,6 +5,8 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
+import com.ReinosCenfotecosService.Core.Partida.MementoPartida;
+
 /**
  *
  * @author jorge
@@ -111,4 +113,20 @@ public class Partida {
         this.ganador = ganador;
     }
 
+    public MementoPartida generarMemento(){
+        return new MementoPartida(id,jugador1,jugador2,tablero,duracion,fecha,estado,ganador,turno);
+    }
+    
+    public void restaurarMemento(MementoPartida mp){
+        Partida par =  mp.getEstadoMemento();
+        this.id = par.getId();
+        this.jugador1 = par.getJugador1();
+        this.jugador2 = par.getJugador2();
+        this.tablero = par.getTablero();
+        this.duracion = par.getDuracion();
+        this.fecha = par.getFecha();
+        this.estado = par.getEstado();
+        this.ganador = par.getGanador();
+        this.turno = par.getTurno();
+    }
 }

@@ -5,6 +5,7 @@
  */
 package com.ReinosCenfotecosService.Entities;
 
+import com.ReinosCenfotecosService.Core.Cofre.ICofre;
 import java.util.ArrayList;
 
 /**
@@ -112,8 +113,16 @@ public class Jugador {
         this.cofre = cofre;
     }
 
-    public void addPJtoListPlayer(Personaje objPersonaje){
+    public void addPJtoListPlayer(Personaje objPersonaje) {
         this.personajesEnJuego.add(objPersonaje);
+    }
+
+    public Jugador clone() {
+        Cofre cofre = new Cofre();
+        cofre.setListaComposicion(new ArrayList<ICofre>());
+        cofre.setId(this.cofre.getId());
+
+        return new Jugador(this.id, this.nombre, this.vidaCastillo, this.row, this.column, this.color, cofre);
     }
 
 }

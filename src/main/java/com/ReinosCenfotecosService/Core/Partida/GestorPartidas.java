@@ -22,6 +22,7 @@ import java.util.Random;
 public class GestorPartidas {
 
     protected static ArrayList<Partida> partidas = new ArrayList<Partida>();
+    protected static ArrayList<MementoPartida> partidasGuardadas = new ArrayList<MementoPartida>();
     private DirectorPartida objDirector = new DirectorPartida();
 
     private Jugador construcionJugador(String nombre, int rowCastillo, int columnCastillo, int color) {
@@ -92,6 +93,7 @@ public class GestorPartidas {
             objDirector.setBuilderPartida(new ConstructorPartida());
             par = crearPartida(jug1, jug2, ganador);
             partidas.add(par);
+            guardarMemento(par.generarMemento());
 
         } catch (Exception e) {
             ExceptionManager.GetInstance().Process(e);
@@ -175,4 +177,55 @@ public class GestorPartidas {
         return nombres.get(random.nextInt(nombres.size() - 0) + 0);
 
     }
+
+    public MementoPartida getMemento(int id) throws Exception {
+        try {
+            Optional<MementoPartida> obj;
+            obj = partidasGuardadas.stream().filter(e -> e.getEstadoMemento().getId() == id).findFirst();
+            if (obj.isPresent()) {
+
+                return obj.get();
+            } else {
+                throw new BussinessException(301);
+            }
+
+        } catch (Exception e) {
+
+            ExceptionManager.GetInstance().Process(e);
+        }
+        return null;
+    }
+
+    public Partida replacePartidaConMemento(int id) throws Exception {
+        try {
+            //llamo el memento
+            MementoPartida memento = getMemento(id);
+            Optional<Partida> obj;
+            //busco la partida
+            obj = partidas.stream().filter(e -> e.getId() == id).findFirst();
+            if (obj.isPresent()) {
+                obj.get().restaurarMemento(memento);
+                int index = partidas.indexOf(obj.get());
+                if (index != -1) {
+
+                    return partidas.get(index);
+                } else {
+                    throw new BussinessException(300);
+                }
+                
+
+            } else {
+                throw new BussinessException(300);
+            }
+        } catch (Exception e) {
+
+            ExceptionManager.GetInstance().Process(e);
+        }
+        return null;
+    }
+
+    public void guardarMemento(MementoPartida par) {
+        partidasGuardadas.add(par);
+    }
+
 }

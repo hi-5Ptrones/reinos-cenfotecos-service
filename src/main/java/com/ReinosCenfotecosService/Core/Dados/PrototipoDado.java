@@ -7,7 +7,7 @@ import com.ReinosCenfotecosService.Entities.AtaqueNormal;
 public abstract class PrototipoDado {
     private int id;
     private String tipo;
-    private int cantMovimientos;
+    private int valor;
 
     public abstract PrototipoDado clone();
 
@@ -29,12 +29,12 @@ public abstract class PrototipoDado {
         this.tipo = tipo;
     }
     
-    public int getCantMovimientos() {
-        return cantMovimientos;
+    public int getValor() {
+        return valor;
     }
 
-    public void setCantMovimientos(int cantMovimientos) {
-        this.cantMovimientos = cantMovimientos;
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 
 
@@ -43,8 +43,8 @@ public abstract class PrototipoDado {
 
         mData += "De tipo: " + this.getTipo() + "\n";
 
-        if (this.getCantMovimientos() != 0) {
-            mData += "Movs: " + this.getCantMovimientos() + "\n";
+        if (this.getValor() != 0) {
+            mData += "Movs: " + this.getValor() + "\n";
         }
         return mData;
     }

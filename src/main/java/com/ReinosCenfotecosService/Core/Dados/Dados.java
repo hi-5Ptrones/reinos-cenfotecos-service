@@ -11,13 +11,13 @@ public class Dados extends PrototipoDado {
     public Dados(int pId, String pTipo, int cantMovimientos) {
         this.setId(pId);
         this.setTipo(pTipo);
-        this.setCantMovimientos(cantMovimientos);
+        this.setValor(cantMovimientos);
 
     }
 
     @Override
     public PrototipoDado clone() {
-        return new Dados(this.getId(), this.getTipo(), this.getCantMovimientos());
+        return new Dados(this.getId(), this.getTipo(), this.getValor());
     }
 
 }

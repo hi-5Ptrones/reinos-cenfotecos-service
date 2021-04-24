@@ -81,4 +81,27 @@ public class CofreController {
                     ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @RequestMapping(value = "/api/partida/quitarMov", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<ApiResponse> quitarMovimiento(HttpEntity<String> httpEntityd, int idPartida, int jugador) {
+        ResponseEntity serverResponse;
+        try {
+            Gson gson = new Gson();
+            apiResponse = new ApiResponse();
+            String jsonDado = httpEntityd.getBody();
+
+            Dado[] dado = gson.fromJson(jsonDado, Dado[].class);
+            ArrayList<Dado> da = new ArrayList<Dado>();
+            da.addAll(Arrays.asList(dado));
+            apiResponse.data = gestorComposite.quitar_mov_Dado(da, idPartida, jugador);
+            apiResponse.message = "Se eliminó";
+            return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+
+            return serverResponse = new ResponseEntity(new ExceptionResponse(e.getMessage(),
+                    ExceptionManager.StackTraceToString(e)), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

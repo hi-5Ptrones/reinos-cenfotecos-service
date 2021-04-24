@@ -63,7 +63,10 @@ public class Cofre implements ICofre {
             ICofre dado = listaComposicion.get(i);
             if (dado instanceof ICofre) {
                 Dado da = (Dado) dado;
-                if (da.getTipo().equals(tipo)) {
+                if(da.getTipo().equals(tipo) && da.getValor() == 1){
+                    this.listaComposicion.remove(i);
+                    salir = true;
+                }else if (da.getTipo().equals(tipo)) {
                     da.setValor(da.getValor()-1);
                     this.listaComposicion.set(i, (ICofre)da);
                     salir = true;

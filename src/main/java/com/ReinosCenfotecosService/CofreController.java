@@ -84,7 +84,7 @@ public class CofreController {
     
     @RequestMapping(value = "/api/partida/quitarMov", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<ApiResponse> quitarMovimiento(HttpEntity<String> httpEntityd, int idPartida, int jugador) {
+    public ResponseEntity<ApiResponse> quitarMov(HttpEntity<String> httpEntityd, int idPartida, int jugador) {
         ResponseEntity serverResponse;
         try {
             Gson gson = new Gson();
@@ -95,7 +95,7 @@ public class CofreController {
             ArrayList<Dado> da = new ArrayList<Dado>();
             da.addAll(Arrays.asList(dado));
             apiResponse.data = gestorComposite.quitar_mov_Dado(da, idPartida, jugador);
-            apiResponse.message = "Se eliminó";
+            apiResponse.message = "Se restó un movimiento";
             return serverResponse = new ResponseEntity(apiResponse, HttpStatus.OK);
 
         } catch (Exception e) {

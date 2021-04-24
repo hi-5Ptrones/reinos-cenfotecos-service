@@ -92,7 +92,7 @@ public class GestorCofre {
                     if (nodo instanceof Dado) {
                         Dado da = (Dado) nodo;
                         //Le envia un tipo de dado para borrar!
-                        cofre.quitarComponente(da.getTipo());
+                        cofre.quitarMov(da.getTipo());
                     }
                 }
                 cofre.ejecutar();

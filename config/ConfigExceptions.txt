@@ -9,4 +9,4 @@
 300:Partida no encontrado, favor envie una identificacion correcta.
 507:Acción no válida.
 508:Movimiento fuera de los límites válidos, sólo puede moverse una casilla a la vez.
-508:Ataque fuera de los límites válidos, sólo puede atacar a tropas enemigas cerca de la suya.
+509:Ataque fuera de los límites válidos, sólo puede atacar a tropas enemigas cerca de la suya.

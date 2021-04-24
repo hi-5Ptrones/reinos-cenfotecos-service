@@ -60,7 +60,7 @@ public class RealizarAtaque extends RealizarAccion {
                     actualizarTableroAtaque(partidaActual, jugadorAplicar, rowAtacado, colAtacado, objPersonajeAplicar, gesAcciones);
                 }
             }else{
-                throw new BussinessException(508);
+                throw new BussinessException(509);
             }
         } else {
             if (handler != null) {

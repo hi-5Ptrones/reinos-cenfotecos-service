@@ -38,7 +38,7 @@ public class GestorPrototype {
         
         //valorCantMovs
         if (pDado.equals("Movimiento")) {
-            cc.setCantMovimientos(Helper.ramdomizeCantMovimientos());
+            cc.setValor(Helper.ramdomizeCantMovimientos());
         }
     }
 

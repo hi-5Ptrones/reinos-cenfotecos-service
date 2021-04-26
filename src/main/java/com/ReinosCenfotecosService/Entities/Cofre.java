@@ -55,6 +55,28 @@ public class Cofre implements ICofre {
         } while (salir == false);
 
     }
+    
+    public void quitarMov(String tipo) {
+        boolean salir = false;
+        int i = 0;
+        do {
+            ICofre dado = listaComposicion.get(i);
+            if (dado instanceof ICofre) {
+                Dado da = (Dado) dado;
+                if(da.getTipo().equals(tipo) && da.getValor() == 1){
+                    this.listaComposicion.remove(i);
+                    salir = true;
+                }else if (da.getTipo().equals(tipo)) {
+                    da.setValor(da.getValor()-1);
+                    this.listaComposicion.set(i, (ICofre)da);
+                    salir = true;
+                } 
+            }
+            i++;//importanticimo este i
+
+        } while (salir == false);
+
+    }
 
     public ArrayList<ICofre> getListaComposicion() {
         return listaComposicion;

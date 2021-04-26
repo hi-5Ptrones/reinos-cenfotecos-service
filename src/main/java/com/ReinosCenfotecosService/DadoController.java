@@ -68,11 +68,12 @@ public class DadoController {
                 }
             } //dados de acción
             else {
-                if (generados[i]== 6) {
-                    dado = ("AtaqueEspecial");
-                } else if (generados[i] == 5 || generados[i] ==4) {
+                if (generados[i]>4) {
                     dado = ("Movimiento");
-                } else{
+                } 
+                //Se elemina ataque especial else if (generados[i] == 5 || generados[i] ==4) {
+                //    dado = ("AtaqueEspecial")};
+                else{
                     dado = ("AtaqueNormal");
                 }
             }
@@ -85,9 +86,7 @@ public class DadoController {
             //envia el id, DNI, y numero de militantes
             System.out.println(Prototype.nuevos_dados(dados.get(i), i));
         }
-        //los imprime (o guarda en el chest)
-        System.out.println("\n" + Prototype.obtenerDatos());
-
+        
         //devuelve arreglo de los dados generados por el prototype
         return Prototype.obtenerArreglo();
     }

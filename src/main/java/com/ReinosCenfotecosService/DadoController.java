@@ -68,11 +68,12 @@ public class DadoController {
                 }
             } //dados de acción
             else {
-                if (generados[i]== 6) {
-                    dado = ("AtaqueEspecial");
-                } else if (generados[i] == 5 || generados[i] ==4) {
+                if (generados[i]>4) {
                     dado = ("Movimiento");
-                } else{
+                } 
+                //Se elemina ataque especial else if (generados[i] == 5 || generados[i] ==4) {
+                //    dado = ("AtaqueEspecial")};
+                else{
                     dado = ("AtaqueNormal");
                 }
             }

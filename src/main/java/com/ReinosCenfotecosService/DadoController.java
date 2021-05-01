@@ -68,7 +68,7 @@ public class DadoController {
                 }
             } //dados de acción
             else {
-                if (generados[i]>4) {
+                if (generados[i]>3) {
                     dado = ("Movimiento");
                 } 
                 //Se elemina ataque especial else if (generados[i] == 5 || generados[i] ==4) {
